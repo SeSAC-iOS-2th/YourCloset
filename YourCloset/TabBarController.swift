@@ -19,14 +19,14 @@ class TabBarController: UITabBarController {
     
     func configureTabBarController() {
         let firstVC = MainViewController()
-        firstVC.tabBarItem.image = UIImage(systemName: "house.circle")
+        firstVC.tabBarItem = UITabBarItem(title: "메인화면", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
         let firstNav = UINavigationController(rootViewController: firstVC)
         
         let secondVC = ListToBuyViewController()
-        secondVC.tabBarItem.image = UIImage(systemName: "dollarsign.circle")
+        secondVC.tabBarItem = UITabBarItem(title: "구매 예정 목록", image: UIImage(systemName: "dollarsign.square"), selectedImage: UIImage(systemName: "dollarsign.square.fill"))
         
         let thirdVC = SettingViewController()
-        thirdVC.tabBarItem.image = UIImage(systemName: "gearshape.circle")
+        thirdVC.tabBarItem = UITabBarItem(title: "설정", image: UIImage(systemName: "gearshape.circle"), selectedImage: UIImage(systemName: "gearshape.circle.fill"))
         
         setViewControllers([firstNav, secondVC, thirdVC], animated: true)
     }
@@ -34,7 +34,7 @@ class TabBarController: UITabBarController {
     func setupTabBarAppearence() {
         let appearence = UITabBarAppearance()
         appearence.configureWithTransparentBackground()
-        appearence.backgroundColor = .orange
+        appearence.backgroundColor = .white
         tabBar.standardAppearance = appearence
         tabBar.scrollEdgeAppearance = appearence
         tabBar.tintColor = .black

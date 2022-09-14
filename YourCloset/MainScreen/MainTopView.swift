@@ -34,10 +34,10 @@ class MainTopview: BaseView {
     override func setConstraints() {
         appTitleLabel.snp.makeConstraints { make in
             make.centerX.equalTo(self.snp.centerX)
-            make.centerY.equalTo(self.snp.centerY)
+            make.bottom.equalTo(-15)
         }
         userNameLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(appTitleLabel.snp.centerY)
+            make.bottom.equalTo(appTitleLabel.snp.bottom)
             make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-10)
             
         }
