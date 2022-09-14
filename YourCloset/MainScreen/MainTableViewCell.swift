@@ -20,6 +20,7 @@ class MainTableViewCell: BaseTableViewCell {
     let itemNumLabel: UILabel = {
         let numLabel = UILabel()
         numLabel.text = "0개의 아이템"
+        numLabel.textColor = .darkGray
         numLabel.font = UIFont.systemFont(ofSize: 10)
         return numLabel
     }()

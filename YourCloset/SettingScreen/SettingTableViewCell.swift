@@ -38,7 +38,7 @@ class SettingTableViewCell: BaseTableViewCell {
         arrowImageView.snp.makeConstraints { make in
             make.centerY.equalTo(nameLabel.snp.centerY)
             make.trailing.equalTo(-15)
-            make.width.height.equalTo(self.frame.height * 0.5)
+            make.width.height.equalTo(self.frame.height * 0.4)
         }
     }
     

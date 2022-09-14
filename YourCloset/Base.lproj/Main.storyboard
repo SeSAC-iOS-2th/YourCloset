@@ -95,7 +95,7 @@
                                 <rect key="frame" x="0.0" y="101.33333333333331" width="390" height="659.66666666666674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" shouldIndentWhileEditing="NO" textLabel="p2D-7a-MLu" style="IBUITableViewCellStyleDefault" id="4Ce-wE-BiG">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" shouldIndentWhileEditing="NO" textLabel="p2D-7a-MLu" imageView="6l2-gv-TPx" style="IBUITableViewCellStyleDefault" id="4Ce-wE-BiG">
                                         <rect key="frame" x="0.0" y="44.666666030883789" width="390" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4Ce-wE-BiG" id="iM2-Oy-LQu">
@@ -103,12 +103,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="p2D-7a-MLu">
-                                                    <rect key="frame" x="20" y="0.0" width="333.33333333333331" height="43.666667938232422"/>
+                                                    <rect key="frame" x="55.833333333333343" y="0.0" width="297.5" height="43.666667938232422"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="bag.fill.badge.plus" catalog="system" id="6l2-gv-TPx">
+                                                    <rect key="frame" x="19.833333333333336" y="11.333333333333334" width="21" height="20.666666666666668"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -136,6 +140,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="bag.fill.badge.plus" catalog="system" width="128" height="128"/>
         <image name="dollarsign.square" catalog="system" width="128" height="114"/>
         <image name="gearshape.circle" catalog="system" width="128" height="121"/>
         <image name="house" catalog="system" width="128" height="106"/>

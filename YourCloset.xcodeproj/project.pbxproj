@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12038D3D28D264A4005D6DD7 /* ListToBuyTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12038D3C28D264A4005D6DD7 /* ListToBuyTopView.swift */; };
+		12038D3F28D26ABA005D6DD7 /* ListToBuyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12038D3E28D26ABA005D6DD7 /* ListToBuyTableViewCell.swift */; };
 		1222B27328D20F6A0051210B /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1222B27228D20F6A0051210B /* BaseTableViewCell.swift */; };
 		1222B27528D20FCB0051210B /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1222B27428D20FCB0051210B /* MainTableViewCell.swift */; };
 		1222B27728D2190D0051210B /* SettingTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1222B27628D2190D0051210B /* SettingTopView.swift */; };
@@ -41,6 +43,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		12038D3C28D264A4005D6DD7 /* ListToBuyTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListToBuyTopView.swift; sourceTree = "<group>"; };
+		12038D3E28D26ABA005D6DD7 /* ListToBuyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListToBuyTableViewCell.swift; sourceTree = "<group>"; };
 		1222B27228D20F6A0051210B /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		1222B27428D20FCB0051210B /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		1222B27628D2190D0051210B /* SettingTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTopView.swift; sourceTree = "<group>"; };
@@ -141,6 +145,8 @@
 			isa = PBXGroup;
 			children = (
 				128D438928D11CDC003C86BA /* ListToBuyViewController.swift */,
+				12038D3C28D264A4005D6DD7 /* ListToBuyTopView.swift */,
+				12038D3E28D26ABA005D6DD7 /* ListToBuyTableViewCell.swift */,
 			);
 			path = ListToBuyScreen;
 			sourceTree = "<group>";
@@ -234,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				128D435E28D0F1AE003C86BA /* ViewController.swift in Sources */,
+				12038D3D28D264A4005D6DD7 /* ListToBuyTopView.swift in Sources */,
 				1222B27728D2190D0051210B /* SettingTopView.swift in Sources */,
 				1222B27928D21C010051210B /* SettingTableViewCell.swift in Sources */,
 				128D436F28D0F5B5003C86BA /* BaseViewController.swift in Sources */,
@@ -241,6 +248,7 @@
 				128D438D28D11E0F003C86BA /* TabBarController.swift in Sources */,
 				128D438828D11CBB003C86BA /* SettingViewController.swift in Sources */,
 				1222B27328D20F6A0051210B /* BaseTableViewCell.swift in Sources */,
+				12038D3F28D26ABA005D6DD7 /* ListToBuyTableViewCell.swift in Sources */,
 				128D437728D0F9A6003C86BA /* MainViewController.swift in Sources */,
 				128D435A28D0F1AE003C86BA /* AppDelegate.swift in Sources */,
 				128D437E28D0FCB2003C86BA /* MainTopView.swift in Sources */,
