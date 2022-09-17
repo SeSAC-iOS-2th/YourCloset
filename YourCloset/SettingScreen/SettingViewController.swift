@@ -68,4 +68,35 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0:
+            print("0번째 셀 클릭")
+            showProfile()
+        case 1:
+            print("1번째 셀 클릭")
+        case 2:
+            initAlert()
+        default:
+            print("디폴트")
+        }
+    }
+    
+    func showProfile() {
+        let vc = ProfileViewController()
+        vc.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func initAlert() {
+        let alert = UIAlertController(title: "데이터 초기화", message: "모든 데이터가 초기화됩니다.\n 정말 초기화 하시겠습니까?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "네", style: .default)
+        let noAction = UIAlertAction(title: "아니오", style: .cancel)
+        
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        
+        present(alert, animated: true)
+    }
+    
 }

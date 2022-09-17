@@ -33,6 +33,15 @@ class MainViewController: BaseViewController {
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: "MainTableViewCell")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let nickname = UserDefaults.standard.string(forKey: "nickname") {
+            mainTopView.userNameLabel.text = "'\(nickname)'님"
+        }
+    }
+    
+    
     override func configure() {
         [mainTopView, tableView].forEach {
             self.view.addSubview($0)
@@ -69,6 +78,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.categoryNameLabel.text = categoryNameArray[indexPath.row]
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = ItemDetailViewController()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
     }
     
     

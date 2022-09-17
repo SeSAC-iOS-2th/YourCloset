@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		12038D3D28D264A4005D6DD7 /* ListToBuyTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12038D3C28D264A4005D6DD7 /* ListToBuyTopView.swift */; };
 		12038D3F28D26ABA005D6DD7 /* ListToBuyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12038D3E28D26ABA005D6DD7 /* ListToBuyTableViewCell.swift */; };
+		12038D4228D27998005D6DD7 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12038D4128D27998005D6DD7 /* ItemDetailViewController.swift */; };
+		12038D4428D27A33005D6DD7 /* ItemDetailTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12038D4328D27A33005D6DD7 /* ItemDetailTopView.swift */; };
+		120AAC9128D3E664000B3E8B /* ProjectColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120AAC9028D3E664000B3E8B /* ProjectColor.swift */; };
+		120AAC9328D3F5DC000B3E8B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120AAC9228D3F5DC000B3E8B /* ProfileViewController.swift */; };
+		120AAC9528D4090E000B3E8B /* ItemDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120AAC9428D4090E000B3E8B /* ItemDetailTableViewCell.swift */; };
+		120AAC9728D40BF7000B3E8B /* ItemDetailPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120AAC9628D40BF7000B3E8B /* ItemDetailPageView.swift */; };
+		120AAC9928D40D89000B3E8B /* ItemDetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120AAC9828D40D89000B3E8B /* ItemDetailPageViewController.swift */; };
 		1222B27328D20F6A0051210B /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1222B27228D20F6A0051210B /* BaseTableViewCell.swift */; };
 		1222B27528D20FCB0051210B /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1222B27428D20FCB0051210B /* MainTableViewCell.swift */; };
 		1222B27728D2190D0051210B /* SettingTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1222B27628D2190D0051210B /* SettingTopView.swift */; };
@@ -45,6 +52,13 @@
 /* Begin PBXFileReference section */
 		12038D3C28D264A4005D6DD7 /* ListToBuyTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListToBuyTopView.swift; sourceTree = "<group>"; };
 		12038D3E28D26ABA005D6DD7 /* ListToBuyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListToBuyTableViewCell.swift; sourceTree = "<group>"; };
+		12038D4128D27998005D6DD7 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
+		12038D4328D27A33005D6DD7 /* ItemDetailTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailTopView.swift; sourceTree = "<group>"; };
+		120AAC9028D3E664000B3E8B /* ProjectColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectColor.swift; sourceTree = "<group>"; };
+		120AAC9228D3F5DC000B3E8B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		120AAC9428D4090E000B3E8B /* ItemDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailTableViewCell.swift; sourceTree = "<group>"; };
+		120AAC9628D40BF7000B3E8B /* ItemDetailPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailPageView.swift; sourceTree = "<group>"; };
+		120AAC9828D40D89000B3E8B /* ItemDetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailPageViewController.swift; sourceTree = "<group>"; };
 		1222B27228D20F6A0051210B /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		1222B27428D20FCB0051210B /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		1222B27628D2190D0051210B /* SettingTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTopView.swift; sourceTree = "<group>"; };
@@ -78,6 +92,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		12038D4028D27936005D6DD7 /* ItemDetailScreen */ = {
+			isa = PBXGroup;
+			children = (
+				12038D4128D27998005D6DD7 /* ItemDetailViewController.swift */,
+				12038D4328D27A33005D6DD7 /* ItemDetailTopView.swift */,
+				120AAC9428D4090E000B3E8B /* ItemDetailTableViewCell.swift */,
+				120AAC9628D40BF7000B3E8B /* ItemDetailPageView.swift */,
+				120AAC9828D40D89000B3E8B /* ItemDetailPageViewController.swift */,
+			);
+			path = ItemDetailScreen;
+			sourceTree = "<group>";
+		};
 		128D434D28D0F1AE003C86BA = {
 			isa = PBXGroup;
 			children = (
@@ -97,10 +123,10 @@
 		128D435828D0F1AE003C86BA /* YourCloset */ = {
 			isa = PBXGroup;
 			children = (
-				128D437328D0F847003C86BA /* SettingScreen */,
-				128D437228D0F7AD003C86BA /* ListToBuyScreen */,
-				128D437128D0F770003C86BA /* ClothesDetailScreen */,
 				128D437028D0F76A003C86BA /* MainScreen */,
+				128D437228D0F7AD003C86BA /* ListToBuyScreen */,
+				128D437328D0F847003C86BA /* SettingScreen */,
+				12038D4028D27936005D6DD7 /* ItemDetailScreen */,
 				128D436D28D0F594003C86BA /* Base */,
 				128D435928D0F1AE003C86BA /* AppDelegate.swift */,
 				128D435B28D0F1AE003C86BA /* SceneDelegate.swift */,
@@ -110,6 +136,7 @@
 				128D436428D0F1B0003C86BA /* LaunchScreen.storyboard */,
 				128D436728D0F1B0003C86BA /* Info.plist */,
 				128D438C28D11E0F003C86BA /* TabBarController.swift */,
+				120AAC9028D3E664000B3E8B /* ProjectColor.swift */,
 			);
 			path = YourCloset;
 			sourceTree = "<group>";
@@ -134,13 +161,6 @@
 			path = MainScreen;
 			sourceTree = "<group>";
 		};
-		128D437128D0F770003C86BA /* ClothesDetailScreen */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ClothesDetailScreen;
-			sourceTree = "<group>";
-		};
 		128D437228D0F7AD003C86BA /* ListToBuyScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +177,7 @@
 				128D438728D11CBB003C86BA /* SettingViewController.swift */,
 				1222B27628D2190D0051210B /* SettingTopView.swift */,
 				1222B27828D21C010051210B /* SettingTableViewCell.swift */,
+				120AAC9228D3F5DC000B3E8B /* ProfileViewController.swift */,
 			);
 			path = SettingScreen;
 			sourceTree = "<group>";
@@ -239,21 +260,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				120AAC9928D40D89000B3E8B /* ItemDetailPageViewController.swift in Sources */,
 				128D435E28D0F1AE003C86BA /* ViewController.swift in Sources */,
 				12038D3D28D264A4005D6DD7 /* ListToBuyTopView.swift in Sources */,
+				120AAC9328D3F5DC000B3E8B /* ProfileViewController.swift in Sources */,
 				1222B27728D2190D0051210B /* SettingTopView.swift in Sources */,
+				12038D4228D27998005D6DD7 /* ItemDetailViewController.swift in Sources */,
 				1222B27928D21C010051210B /* SettingTableViewCell.swift in Sources */,
 				128D436F28D0F5B5003C86BA /* BaseViewController.swift in Sources */,
 				128D437528D0F929003C86BA /* BaseView.swift in Sources */,
+				120AAC9128D3E664000B3E8B /* ProjectColor.swift in Sources */,
 				128D438D28D11E0F003C86BA /* TabBarController.swift in Sources */,
 				128D438828D11CBB003C86BA /* SettingViewController.swift in Sources */,
 				1222B27328D20F6A0051210B /* BaseTableViewCell.swift in Sources */,
 				12038D3F28D26ABA005D6DD7 /* ListToBuyTableViewCell.swift in Sources */,
 				128D437728D0F9A6003C86BA /* MainViewController.swift in Sources */,
+				120AAC9728D40BF7000B3E8B /* ItemDetailPageView.swift in Sources */,
 				128D435A28D0F1AE003C86BA /* AppDelegate.swift in Sources */,
 				128D437E28D0FCB2003C86BA /* MainTopView.swift in Sources */,
 				128D435C28D0F1AE003C86BA /* SceneDelegate.swift in Sources */,
 				1222B27528D20FCB0051210B /* MainTableViewCell.swift in Sources */,
+				12038D4428D27A33005D6DD7 /* ItemDetailTopView.swift in Sources */,
+				120AAC9528D4090E000B3E8B /* ItemDetailTableViewCell.swift in Sources */,
 				128D438A28D11CDC003C86BA /* ListToBuyViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

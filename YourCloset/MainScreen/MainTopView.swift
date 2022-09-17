@@ -38,7 +38,7 @@ class MainTopview: BaseView {
         }
         userNameLabel.snp.makeConstraints { make in
             make.bottom.equalTo(appTitleLabel.snp.bottom)
-            make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-10)
+            make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-15)
             
         }
     }

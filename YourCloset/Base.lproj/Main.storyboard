@@ -103,14 +103,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="p2D-7a-MLu">
-                                                    <rect key="frame" x="55.833333333333343" y="0.0" width="297.5" height="43.666667938232422"/>
+                                                    <rect key="frame" x="55.666666666666657" y="0.0" width="297.66666666666663" height="43.666667938232422"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="bag.fill.badge.plus" catalog="system" id="6l2-gv-TPx">
-                                                    <rect key="frame" x="19.833333333333336" y="11.333333333333334" width="21" height="20.666666666666668"/>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="xmark" catalog="system" id="6l2-gv-TPx">
+                                                    <rect key="frame" x="21.666666666666664" y="14" width="17.333333333333336" height="15.333333333333334"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
@@ -140,10 +140,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bag.fill.badge.plus" catalog="system" width="128" height="128"/>
         <image name="dollarsign.square" catalog="system" width="128" height="114"/>
         <image name="gearshape.circle" catalog="system" width="128" height="121"/>
         <image name="house" catalog="system" width="128" height="106"/>
+        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
