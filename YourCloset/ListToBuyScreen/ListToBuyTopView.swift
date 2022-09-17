@@ -25,6 +25,7 @@ class ListToBuyTopView: BaseView {
         return button
     }()
     
+    
     override func configure() {
         [listToBuyNameLabel, addItemButton].forEach {
             self.addSubview($0)

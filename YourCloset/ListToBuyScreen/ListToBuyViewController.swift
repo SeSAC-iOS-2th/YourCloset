@@ -31,7 +31,7 @@ class ListToBuyViewController: BaseViewController {
         let tableView = UITableView()
         return tableView
     }()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,7 +39,7 @@ class ListToBuyViewController: BaseViewController {
         tableView.dataSource = self
         tableView.register(ListToBuyTableViewCell.self, forCellReuseIdentifier: "ListToBuyTableViewCell")
     }
-    
+        
     override func configure() {
         [listToBuyTopView, tableView].forEach {
             view.addSubview($0)
@@ -84,3 +84,4 @@ extension ListToBuyViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
+

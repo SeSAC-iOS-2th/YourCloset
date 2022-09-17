@@ -16,16 +16,24 @@ class ListToBuyTableViewCell: BaseTableViewCell {
         return nameLabel
     }()
     
-    let checkBoxButton: UIButton = {
+    lazy var checkBoxButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "checkmark.rectangle"), for: .normal)
         button.tintColor = .black
+        button.addTarget(self, action: #selector(checkBoxButtonClicked(_:)), for: .touchUpInside)
         return button
     }()
-    
+
+    @objc func checkBoxButtonClicked(_ button: UIButton) {
+        var checkBoxImage = checkBoxButton.image(for: .normal)
+        checkBoxImage = checkBoxImage == UIImage(systemName: "checkmark.rectangle") ? UIImage(systemName: "checkmark.rectangle.fill") : UIImage(systemName: "checkmark.rectangle")
+        
+        checkBoxButton.setImage(checkBoxImage, for: .normal)
+    }
+        
     override func configure() {
         [itemNameLabel, checkBoxButton].forEach {
-            self.addSubview($0)
+            self.contentView.addSubview($0)
         }
     }
     
