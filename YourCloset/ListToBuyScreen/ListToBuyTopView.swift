@@ -25,11 +25,11 @@ class ListToBuyTopView: BaseView {
         return button
     }()
     
-    
     override func configure() {
         [listToBuyNameLabel, addItemButton].forEach {
             self.addSubview($0)
         }
+        
     }
     
     override func setConstraints() {
@@ -41,7 +41,7 @@ class ListToBuyTopView: BaseView {
         addItemButton.snp.makeConstraints { make in
             make.centerY.equalTo(listToBuyNameLabel.snp.centerY)
             make.trailing.equalTo(-15)
-            //make.height.width.equalTo(self.frame.height * 0.75)
+            make.height.width.equalTo(30)
         }
     }
     

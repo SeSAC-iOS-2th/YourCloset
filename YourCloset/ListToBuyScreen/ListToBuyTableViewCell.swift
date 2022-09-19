@@ -23,8 +23,8 @@ class ListToBuyTableViewCell: BaseTableViewCell {
         button.addTarget(self, action: #selector(checkBoxButtonClicked(_:)), for: .touchUpInside)
         return button
     }()
-
-    @objc func checkBoxButtonClicked(_ button: UIButton) {
+    
+    @objc func checkBoxButtonClicked(_ checkBoxButton: UIButton) {
         var checkBoxImage = checkBoxButton.image(for: .normal)
         checkBoxImage = checkBoxImage == UIImage(systemName: "checkmark.rectangle") ? UIImage(systemName: "checkmark.rectangle.fill") : UIImage(systemName: "checkmark.rectangle")
         
@@ -51,3 +51,4 @@ class ListToBuyTableViewCell: BaseTableViewCell {
     }
     
 }
+
