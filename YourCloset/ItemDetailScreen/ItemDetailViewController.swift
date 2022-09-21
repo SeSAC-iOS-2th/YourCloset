@@ -8,24 +8,27 @@
 import Foundation
 import SnapKit
 import UIKit
+import RealmSwift
 
 class ItemDetailViewController: BaseViewController {
     
-    let groupArray = ["데님", "슬랙스"]
+    let groupRepo = GroupRepository()
+    let itemRepo = ItemRepository()
     
-    let denimItemInfo = [
-        ["Punk Town", "Mod9", "30", "스트레이트"],
-        ["Old Buddy", "Mod9", "30", "와이트"],
-        ["Sky High", "Mod9", "30", "와이트"]
-    ]
+    var groupByCategory: Results<Group>! {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
-    let slacksItemInfo = [
-        ["그레이 슬랙스", "무00", "31", "세미와이드"],
-        ["라이트베이즈 슬랙스", "인스펙터", "30", "와이드"]
-    ]
-    
-    let itemDetailTopView: ItemDetailTopView = {
+            
+    lazy var itemDetailTopView: ItemDetailTopView = {
         let itemDetailTopView = ItemDetailTopView()
+        
+        itemDetailTopView.backButton.addTarget(self, action: #selector(backButtonClicked), for: .touchUpInside)
+        itemDetailTopView.addGroupButton.addTarget(self, action: #selector(addGroupButtonClicked), for: .touchUpInside)
+        itemDetailTopView.addItemButton.addTarget(self, action: #selector(addItemButtonClicked), for: .touchUpInside)
+        
         itemDetailTopView.backgroundColor = .white
         return itemDetailTopView
     }()
@@ -43,12 +46,31 @@ class ItemDetailViewController: BaseViewController {
         tableView.register(ItemDetailTableViewCell.self, forCellReuseIdentifier: "ItemDetailTableViewCell")
         
         view.backgroundColor = .white
-        itemDetailTopView.backButton.addTarget(self, action: #selector(backButtonClicked), for: .touchUpInside)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        groupByCategory = groupRepo.fetchByCategory(itemDetailTopView.categoryNameLabel.text!)
+        tableView.reloadData()
     }
     
     @objc func backButtonClicked() {
         dismiss(animated: true)
-
+    }
+    
+    @objc func addItemButtonClicked() {
+        let vc = AddItemViewController()
+        vc.categoryInfo = itemDetailTopView.categoryNameLabel.text ?? ""
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+    }
+    
+    @objc func addGroupButtonClicked() {
+        let vc = AddGroupViewController()
+        vc.categoryInfo = itemDetailTopView.categoryNameLabel.text ?? ""
+        vc.modalPresentationStyle = .overCurrentContext
+        present(vc, animated: true)
     }
     
     override func configure() {
@@ -72,37 +94,37 @@ class ItemDetailViewController: BaseViewController {
 
 extension ItemDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
+    
     func numberOfSections(in tableView: UITableView) -> Int {
-        return groupArray.count
+        return groupByCategory.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0{
-            return denimItemInfo.count
-        } else {
-            return slacksItemInfo.count
-        }
+        let itemsByGroup = itemRepo.fetchByGroup(groupByCategory[section].category, groupByCategory[section].group)
+        return itemsByGroup.count
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return groupArray[section]
+        return groupByCategory[section].group
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        let itemsByGroup = itemRepo.fetchByGroup(groupByCategory[indexPath.section].category, groupByCategory[indexPath.section].group)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ItemDetailTableViewCell", for: indexPath) as? ItemDetailTableViewCell else { return UITableViewCell() }
         
-        if indexPath.section == 0 {
-            cell.itemNameLabel.text = denimItemInfo[indexPath.row][0]
-        } else if indexPath.section == 1 {
-            cell.itemNameLabel.text = slacksItemInfo[indexPath.row][0]
-        }
+        cell.itemNameLabel.text = itemsByGroup[indexPath.row].name
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let itemsByGroup = itemRepo.fetchByGroup(groupByCategory[indexPath.section].category, groupByCategory[indexPath.section].group)
+        
         let vc = ItemDetailPageViewController()
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.itemDetailPageView.itemNameLabel.text = "제품명: \(itemsByGroup[indexPath.row].name)"
+        vc.itemDetailPageView.brandLabel.text = "브랜드: \(itemsByGroup[indexPath.row].brand)"
+        vc.itemDetailPageView.sizeLabel.text = "사이즈: \(itemsByGroup[indexPath.row].size)"
         present(vc, animated: true)
     }
     

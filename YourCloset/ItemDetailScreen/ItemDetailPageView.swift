@@ -20,28 +20,19 @@ class ItemDetailPageView: BaseView {
     
     let itemNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "제품명: Punk Town"
         return label
     }()
     
     let brandLabel: UILabel = {
         let label = UILabel()
-        label.text = "브랜드: Mod9"
         return label
     }()
     
     let sizeLabel: UILabel = {
         let label = UILabel()
-        label.text = "사이즈: 30"
         return label
     }()
-    
-    let fitLabel: UILabel = {
-        let label = UILabel()
-        label.text = "핏: 세미 와이드"
-        return label
-    }()
-    
+        
     let dividingLineView: UIView = {
         let view = UIView()
         view.backgroundColor = .black
@@ -52,11 +43,12 @@ class ItemDetailPageView: BaseView {
     let modifyButton: UIButton = {
         let button = UIButton()
         button.setTitle("정보 수정하기", for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
         return button
     }()
     
     override func configure() {
-        [itemImageView, itemNameLabel, brandLabel, sizeLabel, fitLabel, dividingLineView, modifyButton].forEach {
+        [itemImageView, itemNameLabel, brandLabel, sizeLabel, dividingLineView, modifyButton].forEach {
             self.addSubview($0)
         }
     }
@@ -66,34 +58,28 @@ class ItemDetailPageView: BaseView {
             itemImageView.snp.makeConstraints { make in
                 make.centerX.equalToSuperview()
                 make.top.equalTo(30)
-                make.width.equalToSuperview().multipliedBy(0.75)
+                make.width.equalToSuperview().multipliedBy(0.65)
                 make.height.equalToSuperview().multipliedBy(0.4)
             }
             
             itemNameLabel.snp.makeConstraints { make in
                 make.centerX.equalToSuperview()
-                make.width.equalTo(itemImageView.snp.width)
+                make.width.equalTo(itemImageView.snp.width).multipliedBy(1.2)
                 make.top.equalTo(itemImageView.snp.bottom).offset(30)
             }
             
             brandLabel.snp.makeConstraints { make in
                 make.centerX.equalToSuperview()
-                make.width.equalTo(itemImageView.snp.width)
+                make.width.equalTo(itemImageView.snp.width).multipliedBy(1.2)
                 make.top.equalTo(itemNameLabel.snp.bottom).offset(15)
             }
             
             sizeLabel.snp.makeConstraints { make in
                 make.centerX.equalToSuperview()
-                make.width.equalTo(itemImageView.snp.width)
+                make.width.equalTo(itemImageView.snp.width).multipliedBy(1.2)
                 make.top.equalTo(brandLabel.snp.bottom).offset(15)
             }
-            
-            fitLabel.snp.makeConstraints { make in
-                make.centerX.equalToSuperview()
-                make.width.equalTo(itemImageView.snp.width)
-                make.top.equalTo(sizeLabel.snp.bottom).offset(15)
-            }
-                        
+                                    
             modifyButton.snp.makeConstraints { make in
                 make.leading.trailing.bottom.equalTo(0)
                 make.height.equalToSuperview().multipliedBy(0.1)

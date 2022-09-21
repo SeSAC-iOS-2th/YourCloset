@@ -11,7 +11,7 @@ import SnapKit
 
 class ItemDetailTopView: BaseView {
     
-    let categoryNameLabel: UILabel = {
+    var categoryNameLabel: UILabel = {
         let nameLabel = UILabel()
         nameLabel.text = "하의"
         nameLabel.font = UIFont.systemFont(ofSize: 22)
@@ -47,7 +47,7 @@ class ItemDetailTopView: BaseView {
     
     override func setConstraints() {
         categoryNameLabel.snp.makeConstraints { make in
-            make.centerX.equalTo(self.snp.centerX)
+            make.centerX.equalToSuperview()
             make.bottom.equalTo(-15)
         }
         

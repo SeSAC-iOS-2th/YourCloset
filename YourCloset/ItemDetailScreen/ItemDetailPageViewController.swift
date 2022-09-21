@@ -13,7 +13,7 @@ class ItemDetailPageViewController: BaseViewController {
     
     let itemDetailPageView: ItemDetailPageView = {
         let pageView = ItemDetailPageView()
-        pageView.backgroundColor = .lightGray
+        pageView.backgroundColor = .white
         return pageView
     }()
     
@@ -45,7 +45,7 @@ class ItemDetailPageViewController: BaseViewController {
         itemDetailPageView.snp.makeConstraints { make in
             make.centerX.equalTo(view.snp.centerX)
             make.centerY.equalTo(view.snp.centerY)
-            make.height.equalTo(view.frame.height * 0.6)
+            make.height.equalTo(view.frame.height * 0.5)
             make.width.equalTo(view.frame.width * 0.75)
         }
         
