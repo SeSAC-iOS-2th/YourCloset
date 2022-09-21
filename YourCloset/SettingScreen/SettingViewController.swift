@@ -8,8 +8,12 @@
 import Foundation
 import SnapKit
 import UIKit
+import Toast
 
 class SettingViewController: BaseViewController {
+    
+    let groupRepo = GroupRepository()
+    let itemRepo = ItemRepository()
     
     let settingNameArray = ["프로필", "백업/복구", "초기화"]
     
@@ -65,6 +69,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.nameLabel.text = settingNameArray[indexPath.row]
         
+        cell.selectionStyle = .none
+        
         return cell
     }
     
@@ -84,13 +90,20 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func showProfile() {
         let vc = ProfileViewController()
-        vc.modalPresentationStyle = .fullScreen
-        self.navigationController?.pushViewController(vc, animated: true)
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true)
     }
     
     func initAlert() {
-        let alert = UIAlertController(title: "데이터 초기화", message: "모든 데이터가 초기화됩니다.\n 정말 초기화 하시겠습니까?", preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: "네", style: .default)
+        let alert = UIAlertController(title: "주의", message: "모든 데이터가 초기화됩니다.\n 정말 초기화 하시겠습니까?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "네", style: .default) { _ in
+            self.groupRepo.deleteAll()
+            self.itemRepo.deleteAll()
+            UserDefaults.standard.removeObject(forKey: "nickname")
+            
+            self.view.makeToast("초기화되었습니다.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
+        }
         let noAction = UIAlertAction(title: "아니오", style: .cancel)
         
         alert.addAction(yesAction)
