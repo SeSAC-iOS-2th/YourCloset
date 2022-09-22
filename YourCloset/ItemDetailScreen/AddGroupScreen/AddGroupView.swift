@@ -58,7 +58,7 @@ class AddGroupView: BaseView {
             make.centerX.equalToSuperview()
             make.height.equalToSuperview().multipliedBy(0.25)
             make.width.equalToSuperview().multipliedBy(0.2)
-            make.top.equalTo(inputTextField.snp.bottom).offset(20)
+            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-10)
         }
     }
     

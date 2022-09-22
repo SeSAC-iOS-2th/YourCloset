@@ -13,7 +13,6 @@ class AddItemTableViewCell1: BaseTableViewCell {
     
     let itemImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "star.fill")
         imageView.layer.borderWidth = 1
         imageView.layer.borderColor = UIColor.black.cgColor
         return imageView
@@ -39,8 +38,9 @@ class AddItemTableViewCell1: BaseTableViewCell {
     override func setConstraints() {
         itemImageView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
-            make.height.equalToSuperview().multipliedBy(0.75)
-            make.width.equalToSuperview().multipliedBy(0.45)
+            //make.height.equalToSuperview().multipliedBy(0.75)
+            //make.width.equalToSuperview().multipliedBy(0.45)
+            make.width.height.equalTo(150)
         }
         
         galaryButton.snp.makeConstraints { make in

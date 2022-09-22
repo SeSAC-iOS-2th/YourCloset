@@ -58,25 +58,26 @@ class ItemDetailPageView: BaseView {
             itemImageView.snp.makeConstraints { make in
                 make.centerX.equalToSuperview()
                 make.top.equalTo(30)
-                make.width.equalToSuperview().multipliedBy(0.65)
-                make.height.equalToSuperview().multipliedBy(0.4)
+                //make.width.equalToSuperview().multipliedBy(0.65)
+                //make.height.equalToSuperview().multipliedBy(0.4)
+                make.width.height.equalTo(150)
             }
             
             itemNameLabel.snp.makeConstraints { make in
                 make.centerX.equalToSuperview()
-                make.width.equalTo(itemImageView.snp.width).multipliedBy(1.2)
-                make.top.equalTo(itemImageView.snp.bottom).offset(30)
+                make.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(30)
+                make.top.equalTo(itemImageView.snp.bottom).offset(15)
             }
             
             brandLabel.snp.makeConstraints { make in
                 make.centerX.equalToSuperview()
-                make.width.equalTo(itemImageView.snp.width).multipliedBy(1.2)
+                make.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(30)
                 make.top.equalTo(itemNameLabel.snp.bottom).offset(15)
             }
             
             sizeLabel.snp.makeConstraints { make in
                 make.centerX.equalToSuperview()
-                make.width.equalTo(itemImageView.snp.width).multipliedBy(1.2)
+                make.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(30)
                 make.top.equalTo(brandLabel.snp.bottom).offset(15)
             }
                                     

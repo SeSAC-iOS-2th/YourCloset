@@ -11,9 +11,10 @@ import UIKit
 
 class ItemDetailPageViewController: BaseViewController {
     
-    let itemDetailPageView: ItemDetailPageView = {
+    lazy var itemDetailPageView: ItemDetailPageView = {
         let pageView = ItemDetailPageView()
         pageView.backgroundColor = .white
+        pageView.modifyButton.addTarget(self, action: #selector(modifyButtonClicked), for: .touchUpInside)
         return pageView
     }()
     
@@ -24,6 +25,13 @@ class ItemDetailPageViewController: BaseViewController {
         button.tintColor = .lightGray
         return button
     }()
+    
+    @objc func modifyButtonClicked() {
+        let vc = AddItemViewController()
+        vc.modalPresentationStyle = .fullScreen
+        present(vc, animated: true)
+        
+    }
     
     @objc func xButtonClicked() {
         dismiss(animated: true)

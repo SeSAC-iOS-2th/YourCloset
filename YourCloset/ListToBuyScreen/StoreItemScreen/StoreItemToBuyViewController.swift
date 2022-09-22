@@ -11,18 +11,18 @@ import UIKit
 import Toast
 import DropDown
 
-enum ItemTextFieldData: Int {
+enum ItemToBuyTextFieldData: Int {
     case categoryTextField = 0
     case nameTextField
     case brandTextField
     case sizeTextField
 }
 
-struct ItemInfo {
-    lazy var category: String = ""
-    lazy var name: String = ""
-    var brand = "없음"
-    var size = "없음"
+struct ItemToBuyInfo {
+    var category = ""
+    var name = ""
+    var brand = ""
+    var size = ""
     
 //    init(category: String, name: String, brand: String, size: String) {
 //        self.category = category
@@ -34,15 +34,15 @@ struct ItemInfo {
 
 class StoreItemToBuyViewController: BaseViewController {
     
-    let itemToBuyRepo = ItemToBuyRepository()
-    
     let dropDown = DropDown()
     
-    lazy var itemInfo = ItemInfo()
+    let itemRepo = ItemRepository()
+    
+    lazy var itemToBuyInfo = ItemToBuyInfo()
     
     lazy var itemInfoArray: [String] = []
     
-    let infoNameArray = ["카테고리*", "제품명*", "브랜드", "사이즈"]
+    let infoNameArray = ["카테고리", "제품명", "브랜드", "사이즈"]
     let infoPlaceholderArray = ["Category", "Name", "Brand", "Size"]
     
     let categoryArray = ["아우터", "상의", "하의", "신발", "악세서리"]
@@ -64,13 +64,6 @@ class StoreItemToBuyViewController: BaseViewController {
         return tableView
     }()
     
-    let noticeLabel: UILabel = {
-        let label = UILabel()
-        label.text = "* 필수 입력 사항"
-        label.textColor = .red
-        label.font = UIFont.systemFont(ofSize: 14)
-        return label
-    }()
     
     @objc func backButtonClikced() {
         self.navigationController?.popViewController(animated: true)
@@ -81,9 +74,11 @@ class StoreItemToBuyViewController: BaseViewController {
         
         let yesAction = UIAlertAction(title: "네", style: .default, handler: {_ in
             
-            print(self.itemInfo.category, self.itemInfo.name, self.itemInfo.brand, self.itemInfo.size)
-            let item = ItemToBuy(category: self.itemInfo.category, name: self.itemInfo.name, brand: self.itemInfo.brand, size: self.itemInfo.size, purchasingStatus: false)
-            self.itemToBuyRepo.createItem(item: item)
+            print(self.itemToBuyInfo.category, self.itemToBuyInfo.name, self.itemToBuyInfo.brand, self.itemToBuyInfo.size)
+            
+            let item = Item(category: self.itemToBuyInfo.category, name: self.itemToBuyInfo.name, brand: self.itemToBuyInfo.brand, size: self.itemToBuyInfo.size, purchasingStatus: false)
+            
+            self.itemRepo.createItem(item: item)
             self.view.makeToast("저장되었습니다.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
             self.navigationController?.popViewController(animated: true)
             
@@ -113,7 +108,7 @@ class StoreItemToBuyViewController: BaseViewController {
     }
     
     override func configure() {
-        [tableView, noticeLabel].forEach {
+        [tableView].forEach {
             view.addSubview($0)
         }
     }
@@ -122,12 +117,7 @@ class StoreItemToBuyViewController: BaseViewController {
         tableView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).inset(70)
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(30)
-            make.height.equalToSuperview().multipliedBy(0.25)
-        }
-        
-        noticeLabel.snp.makeConstraints { make in
-            make.top.equalTo(tableView.snp.bottom)
-            make.trailing.equalTo(tableView.snp.trailing)
+            make.height.equalToSuperview()
         }
     }
     
@@ -142,9 +132,6 @@ extension StoreItemToBuyViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-//        cell.infoLabel.text = infoNameArray[indexPath.row]
-//        cell.infoTextField.delegate = self
-//        cell.infoTextField.placeholder = infoPlaceholderArray[indexPath.row]
         
         if indexPath.row == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "StoreItemTableViewCell1", for: indexPath) as? StoreItemTableViewCell1 else { return UITableViewCell() }
@@ -154,9 +141,7 @@ extension StoreItemToBuyViewController: UITableViewDelegate, UITableViewDataSour
             cell.selectionStyle = .none
             cell.infoLabel.text = infoNameArray[indexPath.row]
             cell.dropDownView.dropTextField.tag = indexPath.row
-            cell.dropDownView.iconImageView.tintColor = .gray
 
-            initDropDownUI(cell.dropDownView, cell.dropDownView.dropTextField, cell.dropDownView.iconImageView)
             setDropDown(cell.dropDownView, cell.dropDownView.dropTextField, cell.dropDownView.iconImageView)
 
             cell.dropDownView.selectButton.addTarget(self, action: #selector(dropDownClicked), for: .touchUpInside)
@@ -185,21 +170,21 @@ extension StoreItemToBuyViewController: UITableViewDelegate, UITableViewDataSour
     @objc func valueChanged(_ textField: UITextField) {
         
         switch textField.tag {
-        case ItemTextFieldData.categoryTextField.rawValue:
-            itemInfo.category = textField.text ?? "없음"
-        case ItemTextFieldData.nameTextField.rawValue:
-            itemInfo.name = textField.text ?? "없음"
-        case ItemTextFieldData.brandTextField.rawValue:
-            itemInfo.brand = textField.text ?? "없음"
-        case ItemTextFieldData.sizeTextField.rawValue:
-            itemInfo.size = textField.text ?? "없음"
+        case ItemToBuyTextFieldData.categoryTextField.rawValue:
+            itemToBuyInfo.category = textField.text ?? "없음"
+        case ItemToBuyTextFieldData.nameTextField.rawValue:
+            itemToBuyInfo.name = textField.text ?? "없음"
+        case ItemToBuyTextFieldData.brandTextField.rawValue:
+            itemToBuyInfo.brand = textField.text ?? "없음"
+        case ItemToBuyTextFieldData.sizeTextField.rawValue:
+            itemToBuyInfo.size = textField.text ?? "없음"
         default:
             break
         }
     }
 
     
-    func initDropDownUI(_ dropView: UIView, _ dropTextField: UITextField, _ iconImageView: UIImageView) {
+    func setDropDown(_ dropView: UIView, _ dropTextField: UITextField, _ iconImageView: UIImageView) {
         dropView.backgroundColor = hexStringToUIColor(hex: "#F1F1F1")
         dropView.layer.cornerRadius = 8
         
@@ -207,6 +192,7 @@ extension StoreItemToBuyViewController: UITableViewDelegate, UITableViewDataSour
         dropTextField.textColor = .black
         
         iconImageView.image = UIImage(systemName: "arrowtriangle.down.fill")
+        iconImageView.tintColor = .gray
         
         DropDown.appearance().textColor = UIColor.black
         DropDown.appearance().selectedTextColor = UIColor.blue
@@ -214,16 +200,14 @@ extension StoreItemToBuyViewController: UITableViewDelegate, UITableViewDataSour
         DropDown.appearance().selectionBackgroundColor = UIColor.lightGray
         DropDown.appearance().setupCornerRadius(8)
         dropDown.dismissMode = .automatic
-    }
-    
-    func setDropDown(_ dropView: UIView, _ dropTextField: UITextField, _ iconImageView: UIImageView) {
+
         dropDown.dataSource = categoryArray
         dropDown.anchorView = dropView
         dropDown.bottomOffset = CGPoint(x: 0, y: dropView.bounds.height)
         
         dropDown.selectionAction = {(index, item) in
             dropTextField.text = item
-            self.itemInfo.category = item
+            self.itemToBuyInfo.category = item
             iconImageView.image = UIImage(systemName: "arrowtriangle.up.fill")
         }
         

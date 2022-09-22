@@ -9,6 +9,7 @@ import Foundation
 import SnapKit
 import UIKit
 import RealmSwift
+import Toast
 
 class ItemDetailViewController: BaseViewController {
     
@@ -44,6 +45,7 @@ class ItemDetailViewController: BaseViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ItemDetailTableViewCell.self, forCellReuseIdentifier: "ItemDetailTableViewCell")
+        tableView.register(ItemDetailTableHeaderView.self, forHeaderFooterViewReuseIdentifier: "ItemDetailTableHeaderView")
         
         view.backgroundColor = .white
     }
@@ -103,11 +105,50 @@ extension ItemDetailViewController: UITableViewDelegate, UITableViewDataSource {
         let itemsByGroup = itemRepo.fetchByGroup(groupByCategory[section].category, groupByCategory[section].group)
         return itemsByGroup.count
     }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return groupByCategory[section].group
+        
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ItemDetailTableHeaderView") as? ItemDetailTableHeaderView else { return UIView() }
+        
+        if section == 0 {
+            header.removeButton.isEnabled = false
+            header.removeButton.isHidden = true
+        }
+        
+        header.groupLabel.text = groupByCategory[section].group
+        header.removeButton.addTarget(self, action: #selector(removeButtonClicked(_:)), for: .touchUpInside)
+        header.removeButton.tag = section
+        
+        
+        return header
     }
     
+    @objc func removeButtonClicked(_ sender: UIButton) {
+        let itemsByGroup = itemRepo.fetchByGroup(groupByCategory[sender.tag].category, groupByCategory[sender.tag].group)
+        
+        let alert = UIAlertController(title: nil, message: "그룹을 삭제하시겠습니까?\n 해당 그룹의 아이템은 Default 그룹으로 옮겨집니다.", preferredStyle: .alert)
+        
+        let yesAction = UIAlertAction(title: "네", style: .default) { _ in
+            for item in itemsByGroup {
+                self.itemRepo.updateGroupOfItem(item: item)
+            }
+            
+            let group = self.groupByCategory[sender.tag]
+            self.groupRepo.deleteItem(group: group)
+            
+            self.view.makeToast("삭제되었습니다.", duration: 1.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
+            
+            self.tableView.reloadData()
+        }
+        
+        let noAction = UIAlertAction(title: "아니오", style: .cancel)
+        
+        alert.addAction(yesAction)
+        alert.addAction(noAction)
+        
+        present(alert, animated: true)
+    }
+
+        
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let itemsByGroup = itemRepo.fetchByGroup(groupByCategory[indexPath.section].category, groupByCategory[indexPath.section].group)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ItemDetailTableViewCell", for: indexPath) as? ItemDetailTableViewCell else { return UITableViewCell() }
@@ -117,15 +158,64 @@ extension ItemDetailViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let itemsByGroup = itemRepo.fetchByGroup(groupByCategory[indexPath.section].category, groupByCategory[indexPath.section].group)
+        
+        let remove = UIContextualAction(style: .normal, title: nil) { action, view, completionHandler in
+            
+            let alert = UIAlertController(title: nil, message: "아이템을 내 옷장에서 삭제하시겠습니까?", preferredStyle: .alert)
+            
+            let yesAction = UIAlertAction(title: "네", style: .default) { _ in
+                let item = itemsByGroup[indexPath.row]
+                
+                self.itemRepo.deleteItem(item: item)
+                
+                self.view.makeToast("삭제되었습니다.", duration: 1.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
+                
+                self.tableView.reloadData()
+            }
+            
+            let noAction = UIAlertAction(title: "아니오", style: .cancel)
+            
+            alert.addAction(yesAction)
+            alert.addAction(noAction)
+            
+            self.present(alert, animated: true)
+        }
+        
+        remove.image = UIImage(systemName: "trash.fill")
+        remove.backgroundColor = .red
+        
+        return UISwipeActionsConfiguration(actions: [remove])
+    }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let itemsByGroup = itemRepo.fetchByGroup(groupByCategory[indexPath.section].category, groupByCategory[indexPath.section].group)
         
         let vc = ItemDetailPageViewController()
         vc.modalPresentationStyle = .overCurrentContext
+        vc.itemDetailPageView.itemImageView.image = showCategoryImage()
         vc.itemDetailPageView.itemNameLabel.text = "제품명: \(itemsByGroup[indexPath.row].name)"
         vc.itemDetailPageView.brandLabel.text = "브랜드: \(itemsByGroup[indexPath.row].brand)"
         vc.itemDetailPageView.sizeLabel.text = "사이즈: \(itemsByGroup[indexPath.row].size)"
         present(vc, animated: true)
     }
     
+    func showCategoryImage() -> UIImage {
+        switch itemDetailTopView.categoryNameLabel.text {
+        case "아우터":
+            return UIImage(named: "Jacket")!
+        case "상의":
+            return UIImage(named: "T-Shirt")!
+        case "하의":
+            return UIImage(named: "Pants")!
+        case "신발":
+            return UIImage(named: "Shoes")!
+        case "악세서리":
+            return UIImage(named: "Ring")!
+        default:
+            return UIImage()
+        }
+    }
+        
 }

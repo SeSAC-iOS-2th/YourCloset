@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 class DropDownView: BaseView {
-        
+
     let dropTextField: UITextField = {
         let textField = UITextField()
         textField.textColor = .black
@@ -51,7 +51,6 @@ class DropDownView: BaseView {
             make.edges.equalToSuperview()
         }
     }
-    
     
 }
 

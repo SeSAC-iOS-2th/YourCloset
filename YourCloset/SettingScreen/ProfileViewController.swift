@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import SnapKit
+import Toast
 
 class ProfileViewController: BaseViewController {
     
@@ -39,7 +40,7 @@ class ProfileViewController: BaseViewController {
     }()
     
     @objc func backButtonClikced() {
-        self.navigationController?.popViewController(animated: true)
+            dismiss(animated: true)
     }
         
     @objc func storeButtonClicked() {
@@ -47,6 +48,8 @@ class ProfileViewController: BaseViewController {
         
         let yesAction = UIAlertAction(title: "네", style: .default, handler: {_ in
             UserDefaults.standard.set(self.nicknameTextField.text, forKey: "nickname")
+            self.view.makeToast("저장되었습니다.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
+            
         })
         let noAction = UIAlertAction(title: "아니오", style: .cancel)
         

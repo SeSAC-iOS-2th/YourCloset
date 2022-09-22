@@ -20,15 +20,15 @@ class TabBarController: UITabBarController {
     func configureTabBarController() {
         let firstVC = MainViewController()
         firstVC.tabBarItem = UITabBarItem(title: "메인화면", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
-        let firstNav = UINavigationController(rootViewController: firstVC)
         
         let secondVC = ListToBuyViewController()
         secondVC.tabBarItem = UITabBarItem(title: "구매 예정 목록", image: UIImage(systemName: "dollarsign.square"), selectedImage: UIImage(systemName: "dollarsign.square.fill"))
+        let secondNav = UINavigationController(rootViewController: secondVC)
         
         let thirdVC = SettingViewController()
         thirdVC.tabBarItem = UITabBarItem(title: "설정", image: UIImage(systemName: "gearshape.circle"), selectedImage: UIImage(systemName: "gearshape.circle.fill"))
         
-        setViewControllers([firstNav, secondVC, thirdVC], animated: true)
+        setViewControllers([firstVC, secondNav, thirdVC], animated: true)
     }
     
     func setupTabBarAppearence() {

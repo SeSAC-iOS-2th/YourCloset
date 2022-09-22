@@ -77,10 +77,9 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            print("0번째 셀 클릭")
             showProfile()
         case 1:
-            print("1번째 셀 클릭")
+            print("첫번째 셀 클릭")
         case 2:
             initAlert()
         default:
@@ -101,6 +100,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             self.groupRepo.deleteAll()
             self.itemRepo.deleteAll()
             UserDefaults.standard.removeObject(forKey: "nickname")
+            
+            UserDefaults.standard.set("이름없음", forKey: "nickname")
             
             self.view.makeToast("초기화되었습니다.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
         }

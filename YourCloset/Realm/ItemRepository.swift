@@ -24,6 +24,16 @@ class ItemRepository {
         return localRealm.objects(Item.self).filter("category == '\(categoryName)'&& group == '\(groupName)' && purchasingStatus == true")
     }
     
+    func updateGroupOfItem(item: Item) {
+        do {
+            try localRealm.write {
+                item.group = "Default"
+            }
+        } catch let error {
+            print(error)
+        }
+    }
+    
     func createItem(item: Item) {
         do {
             try localRealm.write {

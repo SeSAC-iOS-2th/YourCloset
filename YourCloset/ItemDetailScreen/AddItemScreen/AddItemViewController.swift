@@ -148,6 +148,7 @@ extension AddItemViewController: UITableViewDelegate, UITableViewDataSource, UIT
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "AddItemTableViewCell1", for: indexPath) as? AddItemTableViewCell1 else { return UITableViewCell() }
             
             cell.selectionStyle = .none
+            cell.itemImageView.image = showCategoryImage()
             
             return cell
             
@@ -180,6 +181,23 @@ extension AddItemViewController: UITableViewDelegate, UITableViewDataSource, UIT
             
             return cell
             
+        }
+    }
+    
+    func showCategoryImage() -> UIImage {
+        switch categoryInfo {
+        case "아우터":
+            return UIImage(named: "Jacket")!
+        case "상의":
+            return UIImage(named: "T-Shirt")!
+        case "하의":
+            return UIImage(named: "Pants")!
+        case "신발":
+            return UIImage(named: "Shoes")!
+        case "악세서리":
+            return UIImage(named: "Ring")!
+        default:
+            return UIImage()
         }
     }
     
