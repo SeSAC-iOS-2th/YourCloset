@@ -21,7 +21,7 @@
 		1222B27728D2190D0051210B /* SettingTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1222B27628D2190D0051210B /* SettingTopView.swift */; };
 		1222B27928D21C010051210B /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1222B27828D21C010051210B /* SettingTableViewCell.swift */; };
 		1235FC0828DC145700531AFF /* BaseTableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1235FC0728DC145700531AFF /* BaseTableViewHeaderFooterView.swift */; };
-		1235FC0A28DC150700531AFF /* ItemDetailTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1235FC0928DC150700531AFF /* ItemDetailTableHeaderView.swift */; };
+		1235FC0A28DC150700531AFF /* ItemDetailTableHeaderView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1235FC0928DC150700531AFF /* ItemDetailTableHeaderView2.swift */; };
 		1245C28428DA21A4003449D2 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1245C28328DA21A4003449D2 /* AddItemViewController.swift */; };
 		1245C28B28DA2D4A003449D2 /* AddItemTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1245C28A28DA2D4A003449D2 /* AddItemTopView.swift */; };
 		1245C28F28DA47EC003449D2 /* AddItemTableViewCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1245C28E28DA47EC003449D2 /* AddItemTableViewCell1.swift */; };
@@ -34,6 +34,7 @@
 		124F682128D61FB500FFC9C2 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124F682028D61FB500FFC9C2 /* Item.swift */; };
 		124F682328D6219300FFC9C2 /* ItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124F682228D6219300FFC9C2 /* ItemRepository.swift */; };
 		125D8E0728DE188C000EC37A /* CheckBoxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D8E0628DE188C000EC37A /* CheckBoxButton.swift */; };
+		125D8E0928DE3506000EC37A /* ItemDetailTableHeaderView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D8E0828DE3506000EC37A /* ItemDetailTableHeaderView1.swift */; };
 		12767FA628D7419700E4D58F /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 12767FA528D7419700E4D58F /* Toast */; };
 		12767FAE28D74D2900E4D58F /* StoreItemToBuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12767FAD28D74D2900E4D58F /* StoreItemToBuyViewController.swift */; };
 		12767FB028D777B500E4D58F /* StoreItemTableViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12767FAF28D777B500E4D58F /* StoreItemTableViewCell2.swift */; };
@@ -88,7 +89,7 @@
 		1222B27628D2190D0051210B /* SettingTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTopView.swift; sourceTree = "<group>"; };
 		1222B27828D21C010051210B /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		1235FC0728DC145700531AFF /* BaseTableViewHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewHeaderFooterView.swift; sourceTree = "<group>"; };
-		1235FC0928DC150700531AFF /* ItemDetailTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailTableHeaderView.swift; sourceTree = "<group>"; };
+		1235FC0928DC150700531AFF /* ItemDetailTableHeaderView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailTableHeaderView2.swift; sourceTree = "<group>"; };
 		1245C28328DA21A4003449D2 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		1245C28A28DA2D4A003449D2 /* AddItemTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemTopView.swift; sourceTree = "<group>"; };
 		1245C28E28DA47EC003449D2 /* AddItemTableViewCell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemTableViewCell1.swift; sourceTree = "<group>"; };
@@ -99,6 +100,7 @@
 		124F682028D61FB500FFC9C2 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		124F682228D6219300FFC9C2 /* ItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRepository.swift; sourceTree = "<group>"; };
 		125D8E0628DE188C000EC37A /* CheckBoxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxButton.swift; sourceTree = "<group>"; };
+		125D8E0828DE3506000EC37A /* ItemDetailTableHeaderView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailTableHeaderView1.swift; sourceTree = "<group>"; };
 		12767FAD28D74D2900E4D58F /* StoreItemToBuyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemToBuyViewController.swift; sourceTree = "<group>"; };
 		12767FAF28D777B500E4D58F /* StoreItemTableViewCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemTableViewCell2.swift; sourceTree = "<group>"; };
 		128D435628D0F1AE003C86BA /* YourCloset.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourCloset.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,7 +151,8 @@
 				12038D4128D27998005D6DD7 /* ItemDetailViewController.swift */,
 				12038D4328D27A33005D6DD7 /* ItemDetailTopView.swift */,
 				120AAC9428D4090E000B3E8B /* ItemDetailTableViewCell.swift */,
-				1235FC0928DC150700531AFF /* ItemDetailTableHeaderView.swift */,
+				125D8E0828DE3506000EC37A /* ItemDetailTableHeaderView1.swift */,
+				1235FC0928DC150700531AFF /* ItemDetailTableHeaderView2.swift */,
 				120AAC9828D40D89000B3E8B /* ItemDetailPageViewController.swift */,
 				120AAC9628D40BF7000B3E8B /* ItemDetailPageView.swift */,
 			);
@@ -435,8 +438,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1235FC0A28DC150700531AFF /* ItemDetailTableHeaderView.swift in Sources */,
+				1235FC0A28DC150700531AFF /* ItemDetailTableHeaderView2.swift in Sources */,
 				120AAC9928D40D89000B3E8B /* ItemDetailPageViewController.swift in Sources */,
+				125D8E0928DE3506000EC37A /* ItemDetailTableHeaderView1.swift in Sources */,
 				12767FB028D777B500E4D58F /* StoreItemTableViewCell2.swift in Sources */,
 				128D435E28D0F1AE003C86BA /* ViewController.swift in Sources */,
 				125D8E0728DE188C000EC37A /* CheckBoxButton.swift in Sources */,

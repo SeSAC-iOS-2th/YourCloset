@@ -45,7 +45,8 @@ class ItemDetailViewController: BaseViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ItemDetailTableViewCell.self, forCellReuseIdentifier: "ItemDetailTableViewCell")
-        tableView.register(ItemDetailTableHeaderView.self, forHeaderFooterViewReuseIdentifier: "ItemDetailTableHeaderView")
+        tableView.register(ItemDetailTableHeaderView1.self, forHeaderFooterViewReuseIdentifier: "ItemDetailTableHeaderView1")
+        tableView.register(ItemDetailTableHeaderView2.self, forHeaderFooterViewReuseIdentifier: "ItemDetailTableHeaderView2")
         
         view.backgroundColor = .white
     }
@@ -105,21 +106,24 @@ extension ItemDetailViewController: UITableViewDelegate, UITableViewDataSource {
         let itemsByGroup = itemRepo.fetchByGroup(groupByCategory[section].category, groupByCategory[section].group)
         return itemsByGroup.count
     }
+    
         
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ItemDetailTableHeaderView") as? ItemDetailTableHeaderView else { return UIView() }
-        
         if section == 0 {
-            header.removeButton.isEnabled = false
-            header.removeButton.isHidden = true
+            guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ItemDetailTableHeaderView1") as? ItemDetailTableHeaderView1 else { return UIView() }
+                            
+            header.groupLabel.text = groupByCategory[section].group
+                            
+            return header
+        } else {
+            guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ItemDetailTableHeaderView2") as? ItemDetailTableHeaderView2 else { return UIView() }
+                            
+            header.groupLabel.text = groupByCategory[section].group
+            header.removeButton.addTarget(self, action: #selector(removeButtonClicked(_:)), for: .touchUpInside)
+            header.removeButton.tag = section
+                            
+            return header
         }
-        
-        header.groupLabel.text = groupByCategory[section].group
-        header.removeButton.addTarget(self, action: #selector(removeButtonClicked(_:)), for: .touchUpInside)
-        header.removeButton.tag = section
-        
-        
-        return header
     }
     
     @objc func removeButtonClicked(_ sender: UIButton) {

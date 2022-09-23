@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-class ItemDetailTableHeaderView: BaseTableViewHeaderFooterView {
+class ItemDetailTableHeaderView2: BaseTableViewHeaderFooterView {
     
     let groupLabel: UILabel = {
         let label = UILabel()
