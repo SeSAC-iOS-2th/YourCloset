@@ -16,8 +16,8 @@ class ListToBuyTableViewCell: BaseTableViewCell {
         return nameLabel
     }()
     
-    lazy var checkBoxButton: UIButton = {
-        let button = UIButton()
+    lazy var checkBoxButton: CheckBoxButton = {
+        let button = CheckBoxButton()
         button.setImage(UIImage(systemName: "checkmark.rectangle"), for: .normal)
         button.tintColor = .black
         button.addTarget(self, action: #selector(checkBoxButtonClicked(_:)), for: .touchUpInside)

@@ -33,6 +33,7 @@
 		124F681E28D61F1300FFC9C2 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 124F681D28D61F1300FFC9C2 /* RealmSwift */; };
 		124F682128D61FB500FFC9C2 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124F682028D61FB500FFC9C2 /* Item.swift */; };
 		124F682328D6219300FFC9C2 /* ItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124F682228D6219300FFC9C2 /* ItemRepository.swift */; };
+		125D8E0728DE188C000EC37A /* CheckBoxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D8E0628DE188C000EC37A /* CheckBoxButton.swift */; };
 		12767FA628D7419700E4D58F /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 12767FA528D7419700E4D58F /* Toast */; };
 		12767FAE28D74D2900E4D58F /* StoreItemToBuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12767FAD28D74D2900E4D58F /* StoreItemToBuyViewController.swift */; };
 		12767FB028D777B500E4D58F /* StoreItemTableViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12767FAF28D777B500E4D58F /* StoreItemTableViewCell2.swift */; };
@@ -97,6 +98,7 @@
 		1245C29A28DA5898003449D2 /* GroupRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRepository.swift; sourceTree = "<group>"; };
 		124F682028D61FB500FFC9C2 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		124F682228D6219300FFC9C2 /* ItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRepository.swift; sourceTree = "<group>"; };
+		125D8E0628DE188C000EC37A /* CheckBoxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxButton.swift; sourceTree = "<group>"; };
 		12767FAD28D74D2900E4D58F /* StoreItemToBuyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemToBuyViewController.swift; sourceTree = "<group>"; };
 		12767FAF28D777B500E4D58F /* StoreItemTableViewCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemTableViewCell2.swift; sourceTree = "<group>"; };
 		128D435628D0F1AE003C86BA /* YourCloset.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourCloset.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -273,6 +275,7 @@
 				128D438928D11CDC003C86BA /* ListToBuyViewController.swift */,
 				12038D3C28D264A4005D6DD7 /* ListToBuyTopView.swift */,
 				12038D3E28D26ABA005D6DD7 /* ListToBuyTableViewCell.swift */,
+				125D8E0628DE188C000EC37A /* CheckBoxButton.swift */,
 			);
 			path = ListToBuyScreen;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				120AAC9928D40D89000B3E8B /* ItemDetailPageViewController.swift in Sources */,
 				12767FB028D777B500E4D58F /* StoreItemTableViewCell2.swift in Sources */,
 				128D435E28D0F1AE003C86BA /* ViewController.swift in Sources */,
+				125D8E0728DE188C000EC37A /* CheckBoxButton.swift in Sources */,
 				12038D3D28D264A4005D6DD7 /* ListToBuyTopView.swift in Sources */,
 				12CF538728D8EA5D001BF159 /* AddGroupViewController.swift in Sources */,
 				120AAC9328D3F5DC000B3E8B /* ProfileViewController.swift in Sources */,

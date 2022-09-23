@@ -17,16 +17,18 @@ class Item: Object {
     @Persisted var brand: String
     @Persisted var size: String
     @Persisted var purchasingStatus: Bool
+    @Persisted var checkBoxStatus: Bool?
     
     @Persisted(primaryKey: true) var objectId: ObjectId
     
-    convenience init(category: String, name: String, brand: String, size: String, purchasingStatus: Bool) {
+    convenience init(category: String, name: String, brand: String, size: String, purchasingStatus: Bool, checkBoxStatus: Bool) {
         self.init()
         self.category = category
         self.name = name
         self.brand = brand
         self.size = size
         self.purchasingStatus = purchasingStatus
+        self.checkBoxStatus = checkBoxStatus
     }
     
     convenience init(category: String, group: String, imageURL: String, name: String, brand: String, size: String, purchasingStatus: Bool) {

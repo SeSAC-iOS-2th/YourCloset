@@ -76,7 +76,7 @@ class StoreItemToBuyViewController: BaseViewController {
             
             print(self.itemToBuyInfo.category, self.itemToBuyInfo.name, self.itemToBuyInfo.brand, self.itemToBuyInfo.size)
             
-            let item = Item(category: self.itemToBuyInfo.category, name: self.itemToBuyInfo.name, brand: self.itemToBuyInfo.brand, size: self.itemToBuyInfo.size, purchasingStatus: false)
+            let item = Item(category: self.itemToBuyInfo.category, name: self.itemToBuyInfo.name, brand: self.itemToBuyInfo.brand, size: self.itemToBuyInfo.size, purchasingStatus: false, checkBoxStatus: false)
             
             self.itemRepo.createItem(item: item)
             self.view.makeToast("저장되었습니다.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)

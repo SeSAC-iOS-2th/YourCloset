@@ -34,6 +34,16 @@ class ItemRepository {
         }
     }
     
+    func updateCheckBoxStatus(item: Item) {
+        do {
+            try localRealm.write {
+                item.checkBoxStatus = !(item.checkBoxStatus ?? false)
+            }
+        } catch let error {
+            print(error)
+        }
+    }
+    
     func createItem(item: Item) {
         do {
             try localRealm.write {

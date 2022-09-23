@@ -136,24 +136,66 @@ extension ListToBuyViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListToBuyTableViewCell", for: indexPath) as? ListToBuyTableViewCell else { return UITableViewCell() }
-                
+        var checkBoxButtonImage: UIImage! = UIImage()
+        cell.checkBoxButton.indexPath = indexPath
         
         switch indexPath.section {
         case 0:
+            checkBoxButtonImage = (outerItems[indexPath.row].checkBoxStatus!) ? UIImage(systemName: "checkmark.rectangle.fill") : UIImage(systemName: "checkmark.rectangle")
             cell.itemNameLabel.text = outerItems[indexPath.row].name
         case 1:
+            checkBoxButtonImage = (topItems[indexPath.row].checkBoxStatus!) ? UIImage(systemName: "checkmark.rectangle.fill") : UIImage(systemName: "checkmark.rectangle")
             cell.itemNameLabel.text = topItems[indexPath.row].name
         case 2:
+            checkBoxButtonImage = (bottomItems[indexPath.row].checkBoxStatus!) ? UIImage(systemName: "checkmark.rectangle.fill") : UIImage(systemName: "checkmark.rectangle")
             cell.itemNameLabel.text = bottomItems[indexPath.row].name
         case 3:
+            checkBoxButtonImage = (shoesItems[indexPath.row].checkBoxStatus!) ? UIImage(systemName: "checkmark.rectangle.fill") : UIImage(systemName: "checkmark.rectangle")
             cell.itemNameLabel.text = shoesItems[indexPath.row].name
         case 4:
+            checkBoxButtonImage = (accessoriesItems[indexPath.row].checkBoxStatus!) ? UIImage(systemName: "checkmark.rectangle.fill") : UIImage(systemName: "checkmark.rectangle")
             cell.itemNameLabel.text = accessoriesItems[indexPath.row].name
         default:
             break
         }
+        cell.checkBoxButton.addTarget(self, action: #selector(checkBoxButtonClicked(_:)), for: .touchUpInside)
+        cell.checkBoxButton.setImage(checkBoxButtonImage, for: .normal)
+        
         return cell
     }
+    
+    @objc func checkBoxButtonClicked(_ checkBoxButton: CheckBoxButton) {
+//        var checkBoxImage = checkBoxButton.image(for: .normal)
+//        checkBoxImage = checkBoxImage == UIImage(systemName: "checkmark.rectangle") ? UIImage(systemName: "checkmark.rectangle.fill") : UIImage(systemName: "checkmark.rectangle")
+//
+//        checkBoxButton.setImage(checkBoxImage, for: .normal)
+        
+        var item = Item()
+        
+        switch checkBoxButton.indexPath!.section {
+        case 0:
+            item = self.outerItems[checkBoxButton.indexPath!.row]
+            self.itemRepo.updateCheckBoxStatus(item: item)
+        case 1:
+            item = self.topItems[checkBoxButton.indexPath!.row]
+            self.itemRepo.updateCheckBoxStatus(item: item)
+        case 2:
+            item = self.bottomItems[checkBoxButton.indexPath!.row]
+            self.itemRepo.updateCheckBoxStatus(item: item)
+        case 3:
+            item = self.shoesItems[checkBoxButton.indexPath!.row]
+            self.itemRepo.updateCheckBoxStatus(item: item)
+        case 4:
+            item = self.accessoriesItems[checkBoxButton.indexPath!.row]
+            self.itemRepo.updateCheckBoxStatus(item: item)
+        default:
+            break
+        }
+        
+        self.tableView.reloadData()
+    }
+
+    
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let remove = UIContextualAction(style: .normal, title: nil) { action, view, completionHandler in
