@@ -36,6 +36,8 @@
 		125D8E0728DE188C000EC37A /* CheckBoxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D8E0628DE188C000EC37A /* CheckBoxButton.swift */; };
 		125D8E0928DE3506000EC37A /* ItemDetailTableHeaderView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D8E0828DE3506000EC37A /* ItemDetailTableHeaderView1.swift */; };
 		125D8E0C28DE3830000EC37A /* extension+textField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D8E0B28DE3830000EC37A /* extension+textField.swift */; };
+		125D8E1428DE6991000EC37A /* OpenSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D8E1328DE6991000EC37A /* OpenSourceViewController.swift */; };
+		125D8E1628DE6BFA000EC37A /* OpenSourceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D8E1528DE6BFA000EC37A /* OpenSourceTableViewCell.swift */; };
 		12767FA628D7419700E4D58F /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 12767FA528D7419700E4D58F /* Toast */; };
 		12767FAE28D74D2900E4D58F /* StoreItemToBuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12767FAD28D74D2900E4D58F /* StoreItemToBuyViewController.swift */; };
 		12767FB028D777B500E4D58F /* StoreItemTableViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12767FAF28D777B500E4D58F /* StoreItemTableViewCell2.swift */; };
@@ -103,6 +105,8 @@
 		125D8E0628DE188C000EC37A /* CheckBoxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxButton.swift; sourceTree = "<group>"; };
 		125D8E0828DE3506000EC37A /* ItemDetailTableHeaderView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailTableHeaderView1.swift; sourceTree = "<group>"; };
 		125D8E0B28DE3830000EC37A /* extension+textField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension+textField.swift"; sourceTree = "<group>"; };
+		125D8E1328DE6991000EC37A /* OpenSourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceViewController.swift; sourceTree = "<group>"; };
+		125D8E1528DE6BFA000EC37A /* OpenSourceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceTableViewCell.swift; sourceTree = "<group>"; };
 		12767FAD28D74D2900E4D58F /* StoreItemToBuyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemToBuyViewController.swift; sourceTree = "<group>"; };
 		12767FAF28D777B500E4D58F /* StoreItemTableViewCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemTableViewCell2.swift; sourceTree = "<group>"; };
 		128D435628D0F1AE003C86BA /* YourCloset.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourCloset.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -301,6 +305,8 @@
 				1222B27628D2190D0051210B /* SettingTopView.swift */,
 				1222B27828D21C010051210B /* SettingTableViewCell.swift */,
 				120AAC9228D3F5DC000B3E8B /* ProfileViewController.swift */,
+				125D8E1328DE6991000EC37A /* OpenSourceViewController.swift */,
+				125D8E1528DE6BFA000EC37A /* OpenSourceTableViewCell.swift */,
 			);
 			path = SettingScreen;
 			sourceTree = "<group>";
@@ -467,6 +473,7 @@
 				1245C29128DA47F6003449D2 /* AddItemTableViewCell2.swift in Sources */,
 				128D436F28D0F5B5003C86BA /* BaseViewController.swift in Sources */,
 				1245C28F28DA47EC003449D2 /* AddItemTableViewCell1.swift in Sources */,
+				125D8E1628DE6BFA000EC37A /* OpenSourceTableViewCell.swift in Sources */,
 				128D437528D0F929003C86BA /* BaseView.swift in Sources */,
 				1245C28428DA21A4003449D2 /* AddItemViewController.swift in Sources */,
 				120AAC9128D3E664000B3E8B /* ProjectColor.swift in Sources */,
@@ -488,6 +495,7 @@
 				1235FC0828DC145700531AFF /* BaseTableViewHeaderFooterView.swift in Sources */,
 				12C6C1B928D7DCD000606FDD /* DropDownView.swift in Sources */,
 				1245C29B28DA5898003449D2 /* GroupRepository.swift in Sources */,
+				125D8E1428DE6991000EC37A /* OpenSourceViewController.swift in Sources */,
 				1245C29328DA47FD003449D2 /* AddItemTableViewCell3.swift in Sources */,
 				12038D4428D27A33005D6DD7 /* ItemDetailTopView.swift in Sources */,
 				120AAC9528D4090E000B3E8B /* ItemDetailTableViewCell.swift in Sources */,

@@ -40,7 +40,7 @@ class ProfileViewController: BaseViewController {
     }()
     
     @objc func backButtonClikced() {
-            dismiss(animated: true)
+        dismiss(animated: true)
     }
         
     @objc func storeButtonClicked() {
