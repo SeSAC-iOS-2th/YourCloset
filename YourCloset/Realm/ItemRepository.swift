@@ -34,6 +34,19 @@ class ItemRepository {
         }
     }
     
+    func modifyItemInfo(item: Item, group: String, name: String, brand: String, size: String) {
+        do {
+            try localRealm.write {
+                item.group = group
+                item.name = name
+                item.brand = brand
+                item.size = size
+            }
+        } catch let error {
+            print(error)
+        }
+    }
+    
     func updateCheckBoxStatus(item: Item) {
         do {
             try localRealm.write {

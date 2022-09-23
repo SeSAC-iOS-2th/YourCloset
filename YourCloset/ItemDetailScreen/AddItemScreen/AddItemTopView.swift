@@ -13,7 +13,6 @@ class AddItemTopView: BaseView {
     
     let nameLabel: UILabel = {
         let nameLabel = UILabel()
-        nameLabel.text = "내 아이템 추가"
         nameLabel.font = UIFont.systemFont(ofSize: 22)
         return nameLabel
     }()

@@ -33,6 +33,8 @@ class AddItemViewController: BaseViewController {
     let groupRepo = GroupRepository()
     let itemRepo = ItemRepository()
     
+    var beforeModifyInfo: [String] = []
+    
     var groupByCategory: Results<Group>! {
         didSet {
             if groupByCategory.count != 0 {
@@ -44,6 +46,8 @@ class AddItemViewController: BaseViewController {
         }
     }
     
+    var transitionItem = Item()
+    
     lazy var myItemInfo = MyItemInfo()
     
     var groupArray: [String] = []
@@ -53,8 +57,11 @@ class AddItemViewController: BaseViewController {
     let infoNameArray = ["이미지", "제품명", "브랜드", "사이즈", "그룹"]
     let infoPlaceholderArray = ["Image", "Name", "Brand", "Size", "Group"]
     
+    weak var delegate: SendDataDelegate?
+    
     lazy var addItemTopView: AddItemTopView = {
         let addItemTopView = AddItemTopView()
+        addItemTopView.nameLabel.text = isAddNotModify() ? "내 아이템 추가" : "내 아이템 수정"
         addItemTopView.backButton.addTarget(self, action: #selector(backButtonClicked), for: .touchUpInside)
         addItemTopView.storeButton.addTarget(self, action: #selector(storeButtonClikced), for: .touchUpInside)
         return addItemTopView
@@ -70,16 +77,24 @@ class AddItemViewController: BaseViewController {
     }
     
     @objc func storeButtonClikced() {
-        let alert = UIAlertController(title: nil, message: "아이템을\n 내 옷장에 추가하시겠습니까?", preferredStyle: .alert)
+        let alertMessage = isAddNotModify() ? "아이템을\n 내 옷장에 추가하시겠습니까?" : "아이템 정보를\n 수정하시겠습니까?"
+        let toastMessage = isAddNotModify() ? "추가되었습니다." : "수정되었습니다."
+        
+        let alert = UIAlertController(title: nil, message: alertMessage, preferredStyle: .alert)
         
         let yesAction = UIAlertAction(title: "네", style: .default, handler: {_ in
-            print(self.myItemInfo.group, self.myItemInfo.name, self.myItemInfo.brand, self.myItemInfo.size)
-            
-            let item = Item(category: self.categoryInfo, group: self.myItemInfo.group, imageURL: "", name: self.myItemInfo.name, brand: self.myItemInfo.brand, size: self.myItemInfo.size, purchasingStatus: true)
-            
-            self.itemRepo.createItem(item: item)
-            self.view.makeToast("저장되었습니다.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
-            self.dismiss(animated: true)
+                        
+            if self.isAddNotModify() {
+                let item = Item(category: self.categoryInfo, group: self.myItemInfo.group, imageURL: "", name: self.myItemInfo.name, brand: self.myItemInfo.brand, size: self.myItemInfo.size, purchasingStatus: true)
+                self.itemRepo.createItem(item: item)
+            } else {
+                print(self.myItemInfo.name, self.myItemInfo.brand, self.myItemInfo.size)
+                self.itemRepo.modifyItemInfo(item: self.transitionItem, group: self.myItemInfo.group, name: self.myItemInfo.name, brand: self.myItemInfo.brand, size: self.myItemInfo.size)
+                self.delegate?.sendModifyData(name: self.myItemInfo.name, brand: self.myItemInfo.brand, size: self.myItemInfo.size)
+                self.delegate?.reload()
+            }
+            self.view.makeToast(toastMessage, duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
+            self.presentingViewController?.dismiss(animated: true)
         })
         let noAction = UIAlertAction(title: "아니오", style: .cancel)
         
@@ -101,10 +116,15 @@ class AddItemViewController: BaseViewController {
         
         view.backgroundColor = .white
         
-        print(groupArray)
+        if !isAddNotModify() { initMyItemInfo() }
     }
     
-
+    func initMyItemInfo() {
+        myItemInfo.group = transitionItem.group!
+        myItemInfo.name = transitionItem.name
+        myItemInfo.brand = transitionItem.brand
+        myItemInfo.size = transitionItem.size
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -128,6 +148,10 @@ class AddItemViewController: BaseViewController {
             make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(30)
             make.bottom.equalTo(0)
         }
+    }
+    
+    func isAddNotModify() -> Bool {
+        return UserDefaults.standard.string(forKey: "addOrModify") == "add"
     }
     
 }
@@ -178,6 +202,9 @@ extension AddItemViewController: UITableViewDelegate, UITableViewDataSource, UIT
             cell.infoLabel.text = infoNameArray[indexPath.row]
             cell.infoTextField.placeholder = infoPlaceholderArray[indexPath.row]
             cell.infoTextField.tag = indexPath.row - 1
+            if !isAddNotModify() {
+                cell.infoTextField.text = beforeModifyInfo[indexPath.row - 1]
+            }
             
             return cell
             
@@ -209,13 +236,13 @@ extension AddItemViewController: UITableViewDelegate, UITableViewDataSource, UIT
         
         switch textField.tag {
         case MyItemTextFieldData.nameTextField.rawValue:
-            myItemInfo.name = textField.text ?? "없음"
+            myItemInfo.name = textField.text ?? " "
         case MyItemTextFieldData.brandTextField.rawValue:
-            myItemInfo.brand = textField.text ?? "없음"
+            myItemInfo.brand = textField.text ?? " "
         case MyItemTextFieldData.sizeTextField.rawValue:
-            myItemInfo.size = textField.text ?? "없음"
+            myItemInfo.size = textField.text ?? " "
         case MyItemTextFieldData.groupTextField.rawValue:
-            myItemInfo.group = textField.text ?? "없음"
+            myItemInfo.group = textField.text ?? " "
         default:
             break
         }
@@ -225,7 +252,11 @@ extension AddItemViewController: UITableViewDelegate, UITableViewDataSource, UIT
         dropView.backgroundColor = hexStringToUIColor(hex: "#F1F1F1")
         dropView.layer.cornerRadius = 8
         
-        dropTextField.text = "Group"
+        if !isAddNotModify() {
+            dropTextField.text = myItemInfo.group
+        } else {
+            dropTextField.text = "Group"
+        }
         dropTextField.textColor = .black
         
         iconImageView.image = UIImage(systemName: "arrowtriangle.down.fill")

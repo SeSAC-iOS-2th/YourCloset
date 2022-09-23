@@ -20,15 +20,30 @@ class ItemDetailPageView: BaseView {
     
     let itemNameLabel: UILabel = {
         let label = UILabel()
+        label.text = "제품명: "
+        return label
+    }()
+    let itemNameInfoLabel: UILabel = {
+        let label = UILabel()
         return label
     }()
     
     let brandLabel: UILabel = {
         let label = UILabel()
+        label.text = "브랜드: "
         return label
     }()
-    
+    let brandInfoLabel: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+
     let sizeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "사이즈: "
+        return label
+    }()
+    let sizeInfoLabel: UILabel = {
         let label = UILabel()
         return label
     }()
@@ -48,7 +63,7 @@ class ItemDetailPageView: BaseView {
     }()
     
     override func configure() {
-        [itemImageView, itemNameLabel, brandLabel, sizeLabel, dividingLineView, modifyButton].forEach {
+        [itemImageView, itemNameLabel, itemNameInfoLabel, brandLabel, brandInfoLabel, sizeLabel, sizeInfoLabel, dividingLineView, modifyButton].forEach {
             self.addSubview($0)
         }
     }
@@ -64,21 +79,33 @@ class ItemDetailPageView: BaseView {
             }
             
             itemNameLabel.snp.makeConstraints { make in
-                make.centerX.equalToSuperview()
-                make.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(30)
+                make.leading.equalTo(self.safeAreaLayoutGuide).offset(30)
                 make.top.equalTo(itemImageView.snp.bottom).offset(15)
             }
             
+            itemNameInfoLabel.snp.makeConstraints { make in
+                make.leading.equalTo(itemNameLabel.snp.trailing).offset(10)
+                make.top.equalTo(itemNameLabel)
+            }
+            
             brandLabel.snp.makeConstraints { make in
-                make.centerX.equalToSuperview()
-                make.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(30)
+                make.leading.equalTo(self.safeAreaLayoutGuide).offset(30)
                 make.top.equalTo(itemNameLabel.snp.bottom).offset(15)
             }
             
+            brandInfoLabel.snp.makeConstraints { make in
+                make.leading.equalTo(brandLabel.snp.trailing).offset(10)
+                make.top.equalTo(brandLabel)
+            }
+            
             sizeLabel.snp.makeConstraints { make in
-                make.centerX.equalToSuperview()
-                make.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(30)
+                make.leading.equalTo(self.safeAreaLayoutGuide).offset(30)
                 make.top.equalTo(brandLabel.snp.bottom).offset(15)
+            }
+            
+            sizeInfoLabel.snp.makeConstraints { make in
+                make.leading.equalTo(sizeLabel.snp.trailing).offset(10)
+                make.top.equalTo(sizeLabel)
             }
                                     
             modifyButton.snp.makeConstraints { make in

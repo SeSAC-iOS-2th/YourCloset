@@ -35,6 +35,7 @@
 		124F682328D6219300FFC9C2 /* ItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124F682228D6219300FFC9C2 /* ItemRepository.swift */; };
 		125D8E0728DE188C000EC37A /* CheckBoxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D8E0628DE188C000EC37A /* CheckBoxButton.swift */; };
 		125D8E0928DE3506000EC37A /* ItemDetailTableHeaderView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D8E0828DE3506000EC37A /* ItemDetailTableHeaderView1.swift */; };
+		125D8E0C28DE3830000EC37A /* extension+textField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D8E0B28DE3830000EC37A /* extension+textField.swift */; };
 		12767FA628D7419700E4D58F /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 12767FA528D7419700E4D58F /* Toast */; };
 		12767FAE28D74D2900E4D58F /* StoreItemToBuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12767FAD28D74D2900E4D58F /* StoreItemToBuyViewController.swift */; };
 		12767FB028D777B500E4D58F /* StoreItemTableViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12767FAF28D777B500E4D58F /* StoreItemTableViewCell2.swift */; };
@@ -101,6 +102,7 @@
 		124F682228D6219300FFC9C2 /* ItemRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemRepository.swift; sourceTree = "<group>"; };
 		125D8E0628DE188C000EC37A /* CheckBoxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxButton.swift; sourceTree = "<group>"; };
 		125D8E0828DE3506000EC37A /* ItemDetailTableHeaderView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailTableHeaderView1.swift; sourceTree = "<group>"; };
+		125D8E0B28DE3830000EC37A /* extension+textField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension+textField.swift"; sourceTree = "<group>"; };
 		12767FAD28D74D2900E4D58F /* StoreItemToBuyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemToBuyViewController.swift; sourceTree = "<group>"; };
 		12767FAF28D777B500E4D58F /* StoreItemTableViewCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemTableViewCell2.swift; sourceTree = "<group>"; };
 		128D435628D0F1AE003C86BA /* YourCloset.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourCloset.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -209,6 +211,14 @@
 			path = Realm;
 			sourceTree = "<group>";
 		};
+		125D8E0A28DE3823000EC37A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				125D8E0B28DE3830000EC37A /* extension+textField.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		128D434D28D0F1AE003C86BA = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +240,7 @@
 		128D435828D0F1AE003C86BA /* YourCloset */ = {
 			isa = PBXGroup;
 			children = (
+				125D8E0A28DE3823000EC37A /* Extension */,
 				1245C29728DA4884003449D2 /* DropDown */,
 				124F681F28D61F6B00FFC9C2 /* Realm */,
 				128D437028D0F76A003C86BA /* MainScreen */,
@@ -439,6 +450,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1235FC0A28DC150700531AFF /* ItemDetailTableHeaderView2.swift in Sources */,
+				125D8E0C28DE3830000EC37A /* extension+textField.swift in Sources */,
 				120AAC9928D40D89000B3E8B /* ItemDetailPageViewController.swift in Sources */,
 				125D8E0928DE3506000EC37A /* ItemDetailTableHeaderView1.swift in Sources */,
 				12767FB028D777B500E4D58F /* StoreItemTableViewCell2.swift in Sources */,

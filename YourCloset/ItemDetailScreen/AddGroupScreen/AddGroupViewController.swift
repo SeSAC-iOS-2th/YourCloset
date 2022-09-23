@@ -53,12 +53,10 @@ class AddGroupViewController: BaseViewController {
     }
     
     @objc func addGroupCheckButtonClicked() {
-        let group = Group(category: self.categoryInfo, group: self.addGroupView.inputTextField.text ?? "")
-        
-        
         let alert = UIAlertController(title: nil, message: "그룹을 추가하시겠습니까?", preferredStyle: .alert)
         
         let yesAction = UIAlertAction(title: "네", style: .default) { _ in
+            let group = Group(category: self.categoryInfo, group: self.addGroupView.inputTextField.text ?? "")
             self.groupRepo.createItem(group: group)
             self.view.makeToast("저장되었습니다.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
             self.dismiss(animated: true)

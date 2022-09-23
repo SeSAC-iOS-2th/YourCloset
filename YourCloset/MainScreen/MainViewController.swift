@@ -10,8 +10,11 @@ import UIKit
 import SnapKit
 
 class MainViewController: BaseViewController {
-    
+        
     let categoryNameArray = ["아우터", "상의", "하의", "신발", "악세서리"]
+    
+    let groupRepo = GroupRepository()
+    let itemRepo = ItemRepository()
     
     let mainTopView: MainTopview = {
         let mainTopView = MainTopview()
@@ -27,10 +30,12 @@ class MainViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: "MainTableViewCell")
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,6 +44,27 @@ class MainViewController: BaseViewController {
         if let nickname = UserDefaults.standard.string(forKey: "nickname") {
             mainTopView.userNameLabel.text = "'\(nickname)'님"
         }
+        
+        setDefaultGroup()
+        
+        tableView.reloadData()
+        
+    }
+    
+    func setDefaultGroup() {
+        if groupRepo.fetch().count == 0 {
+            groupRepo.createItem(group: Group(category: "아우터", group: "Default"))
+            groupRepo.createItem(group: Group(category: "상의", group: "Default"))
+            groupRepo.createItem(group: Group(category: "하의", group: "Default"))
+            groupRepo.createItem(group: Group(category: "신발", group: "Default"))
+            groupRepo.createItem(group: Group(category: "악세서리", group: "Default"))
+        }
+    }
+    
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
     }
     
     
@@ -51,7 +77,7 @@ class MainViewController: BaseViewController {
     override func setConstraints() {
         mainTopView.snp.makeConstraints { make in
             make.leading.trailing.top.equalTo(0)
-            make.height.equalTo(view.frame.height * 0.12)
+            make.height.equalToSuperview().multipliedBy(0.12)
         }
         tableView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalTo(0)
@@ -72,9 +98,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let myItemByCategory = itemRepo.fetchByCategory(categoryNameArray[indexPath.row], true)
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell", for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
         
+        cell.selectionStyle = .none
+        cell.itemNumLabel.text = "\(myItemByCategory.count)개의 아이템"
         cell.categoryNameLabel.text = categoryNameArray[indexPath.row]
         
         return cell
@@ -82,6 +111,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = ItemDetailViewController()
+        vc.itemDetailTopView.categoryNameLabel.text = categoryNameArray[indexPath.row]
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
     }

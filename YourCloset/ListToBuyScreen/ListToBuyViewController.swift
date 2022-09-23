@@ -165,10 +165,6 @@ extension ListToBuyViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func checkBoxButtonClicked(_ checkBoxButton: CheckBoxButton) {
-//        var checkBoxImage = checkBoxButton.image(for: .normal)
-//        checkBoxImage = checkBoxImage == UIImage(systemName: "checkmark.rectangle") ? UIImage(systemName: "checkmark.rectangle.fill") : UIImage(systemName: "checkmark.rectangle")
-//
-//        checkBoxButton.setImage(checkBoxImage, for: .normal)
         
         var item = Item()
         
@@ -200,7 +196,7 @@ extension ListToBuyViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let remove = UIContextualAction(style: .normal, title: nil) { action, view, completionHandler in
             
-            let alert = UIAlertController(title: "주의", message: "정말 아이템을 구매 예정 목록에서 삭제하시겠습니까?", preferredStyle: .alert)
+            let alert = UIAlertController(title: nil, message: "정말 아이템을 구매 예정 목록에서 삭제하시겠습니까?", preferredStyle: .alert)
             
             let yesAction = UIAlertAction(title: "네", style: .default) { _ in
                 var item: Item

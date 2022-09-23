@@ -9,7 +9,14 @@ import Foundation
 import SnapKit
 import UIKit
 
-class ItemDetailPageViewController: BaseViewController {
+protocol SendDataDelegate: AnyObject {
+    func sendModifyData(name: String, brand: String, size: String)
+    func reload()
+}
+
+class ItemDetailPageViewController: BaseViewController, SendDataDelegate {
+    
+    var categoryInfo = ""
     
     lazy var itemDetailPageView: ItemDetailPageView = {
         let pageView = ItemDetailPageView()
@@ -17,7 +24,7 @@ class ItemDetailPageViewController: BaseViewController {
         pageView.modifyButton.addTarget(self, action: #selector(modifyButtonClicked), for: .touchUpInside)
         return pageView
     }()
-    
+        
     lazy var xButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
@@ -26,14 +33,24 @@ class ItemDetailPageViewController: BaseViewController {
         return button
     }()
     
+    var transitionItem = Item()
+    
+    weak var delegate: reloadTableDelegate?
+    
     @objc func modifyButtonClicked() {
         let vc = AddItemViewController()
+        vc.delegate = self
+        UserDefaults.standard.set("modify", forKey: "addOrModify")
+        vc.beforeModifyInfo.append(contentsOf: [itemDetailPageView.itemNameInfoLabel.text!, itemDetailPageView.brandInfoLabel.text!, itemDetailPageView.sizeInfoLabel.text!])
+        vc.categoryInfo = categoryInfo
         vc.modalPresentationStyle = .fullScreen
+        vc.transitionItem = transitionItem
         present(vc, animated: true)
         
     }
     
     @objc func xButtonClicked() {
+        self.delegate?.reload()
         dismiss(animated: true)
     }
     
@@ -42,7 +59,7 @@ class ItemDetailPageViewController: BaseViewController {
         
         view.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.5)
     }
-    
+        
     override func configure() {
         [itemDetailPageView, xButton].forEach {
             view.addSubview($0)
@@ -64,4 +81,15 @@ class ItemDetailPageViewController: BaseViewController {
         }
     }
     
+    func sendModifyData(name: String, brand: String, size: String) {
+        self.itemDetailPageView.itemNameInfoLabel.text = name
+        self.itemDetailPageView.brandInfoLabel.text = brand
+        self.itemDetailPageView.sizeInfoLabel.text = size
+    }
+    
+    func reload() {
+        self.delegate?.reload()
+    }
+    
 }
+

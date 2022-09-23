@@ -14,13 +14,15 @@ class MainTopview: BaseView {
     let appTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "너의 옷장은"
+        label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 22)
         return label
     }()
     
     let userNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "'고래밥'님"
+        label.text = "'이름없음'님"
+        label.textAlignment = .right
         label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
@@ -38,6 +40,7 @@ class MainTopview: BaseView {
         }
         userNameLabel.snp.makeConstraints { make in
             make.bottom.equalTo(appTitleLabel.snp.bottom)
+            make.leading.equalTo(appTitleLabel.snp.trailing).offset(50)
             make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-15)
             
         }

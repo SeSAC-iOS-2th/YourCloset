@@ -11,7 +11,11 @@ import UIKit
 import RealmSwift
 import Toast
 
-class ItemDetailViewController: BaseViewController {
+protocol reloadTableDelegate: AnyObject {
+    func reload()
+}
+
+class ItemDetailViewController: BaseViewController, reloadTableDelegate {
     
     let groupRepo = GroupRepository()
     let itemRepo = ItemRepository()
@@ -21,8 +25,7 @@ class ItemDetailViewController: BaseViewController {
             tableView.reloadData()
         }
     }
-    
-            
+                
     lazy var itemDetailTopView: ItemDetailTopView = {
         let itemDetailTopView = ItemDetailTopView()
         
@@ -64,6 +67,7 @@ class ItemDetailViewController: BaseViewController {
     
     @objc func addItemButtonClicked() {
         let vc = AddItemViewController()
+        UserDefaults.standard.set("add", forKey: "addOrModify")
         vc.categoryInfo = itemDetailTopView.categoryNameLabel.text ?? ""
         vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true)
@@ -91,6 +95,10 @@ class ItemDetailViewController: BaseViewController {
             make.leading.trailing.bottom.equalTo(0)
             make.top.equalTo(itemDetailTopView.snp.bottom)
         }
+    }
+    
+    func reload() {
+        self.tableView.reloadData()
     }
     
 }
@@ -197,11 +205,14 @@ extension ItemDetailViewController: UITableViewDelegate, UITableViewDataSource {
         let itemsByGroup = itemRepo.fetchByGroup(groupByCategory[indexPath.section].category, groupByCategory[indexPath.section].group)
         
         let vc = ItemDetailPageViewController()
+        vc.delegate = self
         vc.modalPresentationStyle = .overCurrentContext
         vc.itemDetailPageView.itemImageView.image = showCategoryImage()
-        vc.itemDetailPageView.itemNameLabel.text = "제품명: \(itemsByGroup[indexPath.row].name)"
-        vc.itemDetailPageView.brandLabel.text = "브랜드: \(itemsByGroup[indexPath.row].brand)"
-        vc.itemDetailPageView.sizeLabel.text = "사이즈: \(itemsByGroup[indexPath.row].size)"
+        vc.itemDetailPageView.itemNameInfoLabel.text = itemsByGroup[indexPath.row].name
+        vc.itemDetailPageView.brandInfoLabel.text = itemsByGroup[indexPath.row].brand
+        vc.itemDetailPageView.sizeInfoLabel.text = itemsByGroup[indexPath.row].size
+        vc.categoryInfo = groupByCategory[indexPath.row].category
+        vc.transitionItem = itemsByGroup[indexPath.row]
         present(vc, animated: true)
     }
     
