@@ -34,6 +34,7 @@ class Item: Object {
     convenience init(category: String, group: String, imageURL: String, name: String, brand: String, size: String, purchasingStatus: Bool) {
         self.init()
         self.category = category
+        self.imageURL = imageURL
         self.group = group
         self.name = name
         self.brand = brand

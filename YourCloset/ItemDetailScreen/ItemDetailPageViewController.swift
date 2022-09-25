@@ -18,6 +18,7 @@ class ItemDetailPageViewController: BaseViewController, SendDataDelegate {
     
     var categoryInfo = ""
     
+    
     lazy var itemDetailPageView: ItemDetailPageView = {
         let pageView = ItemDetailPageView()
         pageView.backgroundColor = .white

@@ -11,7 +11,7 @@ import SnapKit
 
 class OpenSourceViewController: BaseViewController {
     
-    let libraryArray = ["Realm", "SnapKit", "Toast"]
+    let libraryArray = ["Realm", "SnapKit", "Toast", "YPImagePicker"]
     
     lazy var leftBarButton: UIBarButtonItem = {
         let barButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonClicked))

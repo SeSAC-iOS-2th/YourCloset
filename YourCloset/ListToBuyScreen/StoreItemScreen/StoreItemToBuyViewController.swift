@@ -19,10 +19,10 @@ enum ItemToBuyTextFieldData: Int {
 }
 
 struct ItemToBuyInfo {
-    var category = ""
-    var name = ""
-    var brand = ""
-    var size = ""
+    var category: String?
+    var name: String?
+    var brand: String?
+    var size: String?
     
 //    init(category: String, name: String, brand: String, size: String) {
 //        self.category = category
@@ -70,30 +70,50 @@ class StoreItemToBuyViewController: BaseViewController {
     }
     
     @objc func storeButtonClicked() {
-        let alert = UIAlertController(title: nil, message: "옷을 구매 예정 목록에 추가하시겠습니까?", preferredStyle: .alert)
-        
-        let yesAction = UIAlertAction(title: "네", style: .default, handler: {_ in
+        if !isInputEmpty() {
+            self.view.makeToast("정보를 모두 입력해주세요.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
+        } else {
+            let alert = UIAlertController(title: nil, message: "옷을 구매 예정 목록에 추가하시겠습니까?", preferredStyle: .alert)
             
-            print(self.itemToBuyInfo.category, self.itemToBuyInfo.name, self.itemToBuyInfo.brand, self.itemToBuyInfo.size)
+            let yesAction = UIAlertAction(title: "네", style: .default, handler: {_ in
+                
+                let item = Item(category: self.itemToBuyInfo.category!, name: self.itemToBuyInfo.name!, brand: self.itemToBuyInfo.brand!, size: self.itemToBuyInfo.size!, purchasingStatus: false, checkBoxStatus: false)
+                
+                self.itemRepo.createItem(item: item)
+                self.view.makeToast("저장되었습니다.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
+                self.navigationController?.popViewController(animated: true)
+                
+            })
+            let noAction = UIAlertAction(title: "아니오", style: .cancel)
             
-            let item = Item(category: self.itemToBuyInfo.category, name: self.itemToBuyInfo.name, brand: self.itemToBuyInfo.brand, size: self.itemToBuyInfo.size, purchasingStatus: false, checkBoxStatus: false)
+            alert.addAction(yesAction)
+            alert.addAction(noAction)
             
-            self.itemRepo.createItem(item: item)
-            self.view.makeToast("저장되었습니다.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
-            self.navigationController?.popViewController(animated: true)
-            
-        })
-        let noAction = UIAlertAction(title: "아니오", style: .cancel)
-        
-        alert.addAction(yesAction)
-        alert.addAction(noAction)
-        
-        present(alert, animated: true)
+            present(alert, animated: true)
+        }
+    }
+    
+    func isInputEmpty() -> Bool {
+        if self.itemToBuyInfo.category == nil || self.itemToBuyInfo.category == "" {
+            return false
+        }
+        if self.itemToBuyInfo.name == nil || self.itemToBuyInfo.name == "" {
+            return false
+        }
+        if self.itemToBuyInfo.brand == nil || self.itemToBuyInfo.brand == "" {
+            return false
+        }
+        if self.itemToBuyInfo.size == nil || self.itemToBuyInfo.category == "" {
+            return false
+        }
+        return true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
                 
+        hideKeyboardWhenTappedBackground()
+        
         view.backgroundColor = .white
         navigationItem.title = "구매 예정 아이템 추가"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
@@ -170,14 +190,12 @@ extension StoreItemToBuyViewController: UITableViewDelegate, UITableViewDataSour
     @objc func valueChanged(_ textField: UITextField) {
         
         switch textField.tag {
-        case ItemToBuyTextFieldData.categoryTextField.rawValue:
-            itemToBuyInfo.category = textField.text ?? "없음"
         case ItemToBuyTextFieldData.nameTextField.rawValue:
-            itemToBuyInfo.name = textField.text ?? "없음"
+            itemToBuyInfo.name = textField.text
         case ItemToBuyTextFieldData.brandTextField.rawValue:
-            itemToBuyInfo.brand = textField.text ?? "없음"
+            itemToBuyInfo.brand = textField.text
         case ItemToBuyTextFieldData.sizeTextField.rawValue:
-            itemToBuyInfo.size = textField.text ?? "없음"
+            itemToBuyInfo.size = textField.text
         default:
             break
         }

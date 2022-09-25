@@ -25,7 +25,7 @@ class ItemDetailViewController: BaseViewController, reloadTableDelegate {
             tableView.reloadData()
         }
     }
-                
+                    
     lazy var itemDetailTopView: ItemDetailTopView = {
         let itemDetailTopView = ItemDetailTopView()
         
@@ -125,11 +125,11 @@ extension ItemDetailViewController: UITableViewDelegate, UITableViewDataSource {
             return header
         } else {
             guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ItemDetailTableHeaderView2") as? ItemDetailTableHeaderView2 else { return UIView() }
-                            
+                    
             header.groupLabel.text = groupByCategory[section].group
             header.removeButton.addTarget(self, action: #selector(removeButtonClicked(_:)), for: .touchUpInside)
             header.removeButton.tag = section
-                            
+            
             return header
         }
     }
@@ -207,11 +207,11 @@ extension ItemDetailViewController: UITableViewDelegate, UITableViewDataSource {
         let vc = ItemDetailPageViewController()
         vc.delegate = self
         vc.modalPresentationStyle = .overCurrentContext
-        vc.itemDetailPageView.itemImageView.image = showCategoryImage()
+        vc.itemDetailPageView.itemImageView.image = showCategoryImage()        
         vc.itemDetailPageView.itemNameInfoLabel.text = itemsByGroup[indexPath.row].name
         vc.itemDetailPageView.brandInfoLabel.text = itemsByGroup[indexPath.row].brand
         vc.itemDetailPageView.sizeInfoLabel.text = itemsByGroup[indexPath.row].size
-        vc.categoryInfo = groupByCategory[indexPath.row].category
+        vc.categoryInfo = groupByCategory[indexPath.section].category
         vc.transitionItem = itemsByGroup[indexPath.row]
         present(vc, animated: true)
     }

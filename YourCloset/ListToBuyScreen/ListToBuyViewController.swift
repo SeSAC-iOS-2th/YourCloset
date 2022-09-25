@@ -116,6 +116,7 @@ extension ListToBuyViewController: UITableViewDelegate, UITableViewDataSource {
         return categoryNameArray[section]
     }
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
@@ -133,6 +134,10 @@ extension ListToBuyViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ListToBuyTableViewCell", for: indexPath) as? ListToBuyTableViewCell else { return UITableViewCell() }
@@ -143,18 +148,28 @@ extension ListToBuyViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             checkBoxButtonImage = (outerItems[indexPath.row].checkBoxStatus!) ? UIImage(systemName: "checkmark.rectangle.fill") : UIImage(systemName: "checkmark.rectangle")
             cell.itemNameLabel.text = outerItems[indexPath.row].name
+            cell.brandLabel.text = outerItems[indexPath.row].brand
+            cell.sizeLabel.text = outerItems[indexPath.row].size
         case 1:
             checkBoxButtonImage = (topItems[indexPath.row].checkBoxStatus!) ? UIImage(systemName: "checkmark.rectangle.fill") : UIImage(systemName: "checkmark.rectangle")
             cell.itemNameLabel.text = topItems[indexPath.row].name
+            cell.brandLabel.text = topItems[indexPath.row].brand
+            cell.sizeLabel.text = topItems[indexPath.row].size
         case 2:
             checkBoxButtonImage = (bottomItems[indexPath.row].checkBoxStatus!) ? UIImage(systemName: "checkmark.rectangle.fill") : UIImage(systemName: "checkmark.rectangle")
             cell.itemNameLabel.text = bottomItems[indexPath.row].name
+            cell.brandLabel.text = bottomItems[indexPath.row].brand
+            cell.sizeLabel.text = bottomItems[indexPath.row].size
         case 3:
             checkBoxButtonImage = (shoesItems[indexPath.row].checkBoxStatus!) ? UIImage(systemName: "checkmark.rectangle.fill") : UIImage(systemName: "checkmark.rectangle")
             cell.itemNameLabel.text = shoesItems[indexPath.row].name
+            cell.brandLabel.text = shoesItems[indexPath.row].brand
+            cell.sizeLabel.text = shoesItems[indexPath.row].size
         case 4:
             checkBoxButtonImage = (accessoriesItems[indexPath.row].checkBoxStatus!) ? UIImage(systemName: "checkmark.rectangle.fill") : UIImage(systemName: "checkmark.rectangle")
             cell.itemNameLabel.text = accessoriesItems[indexPath.row].name
+            cell.brandLabel.text = accessoriesItems[indexPath.row].brand
+            cell.sizeLabel.text = accessoriesItems[indexPath.row].size
         default:
             break
         }

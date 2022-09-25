@@ -11,6 +11,7 @@ import UIKit
 import DropDown
 import RealmSwift
 import Toast
+import YPImagePicker
 
 enum MyItemTextFieldData: Int {
     case nameTextField = 0
@@ -20,10 +21,10 @@ enum MyItemTextFieldData: Int {
 }
 
 struct MyItemInfo {
-    var name = ""
-    var brand = ""
-    var size = ""
-    var group = ""
+    var name: String?
+    var brand: String?
+    var size: String?
+    var group: String?
 }
 
 class AddItemViewController: BaseViewController {
@@ -56,7 +57,7 @@ class AddItemViewController: BaseViewController {
     
     let infoNameArray = ["이미지", "제품명", "브랜드", "사이즈", "그룹"]
     let infoPlaceholderArray = ["Image", "Name", "Brand", "Size", "Group"]
-    
+        
     weak var delegate: SendDataDelegate?
     
     lazy var addItemTopView: AddItemTopView = {
@@ -77,46 +78,71 @@ class AddItemViewController: BaseViewController {
     }
     
     @objc func storeButtonClikced() {
-        let alertMessage = isAddNotModify() ? "아이템을\n 내 옷장에 추가하시겠습니까?" : "아이템 정보를\n 수정하시겠습니까?"
-        let toastMessage = isAddNotModify() ? "추가되었습니다." : "수정되었습니다."
-        
-        let alert = UIAlertController(title: nil, message: alertMessage, preferredStyle: .alert)
-        
-        let yesAction = UIAlertAction(title: "네", style: .default, handler: {_ in
-                        
-            if self.isAddNotModify() {
-                let item = Item(category: self.categoryInfo, group: self.myItemInfo.group, imageURL: "", name: self.myItemInfo.name, brand: self.myItemInfo.brand, size: self.myItemInfo.size, purchasingStatus: true)
-                self.itemRepo.createItem(item: item)
-            } else {
-                print(self.myItemInfo.name, self.myItemInfo.brand, self.myItemInfo.size)
-                self.itemRepo.modifyItemInfo(item: self.transitionItem, group: self.myItemInfo.group, name: self.myItemInfo.name, brand: self.myItemInfo.brand, size: self.myItemInfo.size)
-                self.delegate?.sendModifyData(name: self.myItemInfo.name, brand: self.myItemInfo.brand, size: self.myItemInfo.size)
-                self.delegate?.reload()
-            }
-            self.view.makeToast(toastMessage, duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
-            self.presentingViewController?.dismiss(animated: true)
-        })
-        let noAction = UIAlertAction(title: "아니오", style: .cancel)
-        
-        alert.addAction(yesAction)
-        alert.addAction(noAction)
-        
-        present(alert, animated: true)
+        print(self.myItemInfo.group, self.myItemInfo.name, self.myItemInfo.brand, self.myItemInfo.size)
+        if !isInputEmpty() {
+            self.view.makeToast("정보를 모두 입력해주세요.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
+        } else {
+            let alertMessage = isAddNotModify() ? "아이템을\n 내 옷장에 추가하시겠습니까?" : "아이템 정보를\n 수정하시겠습니까?"
+            let toastMessage = isAddNotModify() ? "추가되었습니다." : "수정되었습니다."
+            
+            let alert = UIAlertController(title: nil, message: alertMessage, preferredStyle: .alert)
+            
+            let yesAction = UIAlertAction(title: "네", style: .default, handler: {_ in
+                            
+                if self.isAddNotModify() {
+                    let item = Item(category: self.categoryInfo, group: self.myItemInfo.group!, imageURL: "", name: self.myItemInfo.name!, brand: self.myItemInfo.brand!, size: self.myItemInfo.size!, purchasingStatus: true)
+                    self.itemRepo.createItem(item: item)
+                } else {
+                    self.itemRepo.modifyItemInfo(item: self.transitionItem, group: self.myItemInfo.group!, name: self.myItemInfo.name!, brand: self.myItemInfo.brand!, size: self.myItemInfo.size!)
+                    self.delegate?.sendModifyData(name: self.myItemInfo.name!, brand: self.myItemInfo.brand!, size: self.myItemInfo.size!)
+                    self.delegate?.reload()
+                }
+                self.view.makeToast(toastMessage, duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
+                self.presentingViewController?.dismiss(animated: true)
+            })
+            let noAction = UIAlertAction(title: "아니오", style: .cancel)
+            
+            alert.addAction(yesAction)
+            alert.addAction(noAction)
+            
+            present(alert, animated: true)
 
+        }
+    }
+    
+    func isInputEmpty() -> Bool {
+        if self.myItemInfo.group == nil || self.myItemInfo.group == "" {
+            return false
+        }
+        if self.myItemInfo.name == nil || self.myItemInfo.name == "" {
+            return false
+        }
+        if self.myItemInfo.brand == nil || self.myItemInfo.brand == "" {
+            return false
+        }
+        if self.myItemInfo.size == nil || self.myItemInfo.size == "" {
+            return false
+        }
+        return true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        hideKeyboardWhenTappedBackground()
+        
+        groupByCategory = groupRepo.fetchByCategory(categoryInfo)
         
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(AddItemTableViewCell1.self, forCellReuseIdentifier: "AddItemTableViewCell1")
         tableView.register(AddItemTableViewCell2.self, forCellReuseIdentifier: "AddItemTableViewCell2")
         tableView.register(AddItemTableViewCell3.self, forCellReuseIdentifier: "AddItemTableViewCell3")
-        
+            
         view.backgroundColor = .white
         
         if !isAddNotModify() { initMyItemInfo() }
+        
     }
     
     func initMyItemInfo() {
@@ -125,13 +151,7 @@ class AddItemViewController: BaseViewController {
         myItemInfo.brand = transitionItem.brand
         myItemInfo.size = transitionItem.size
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
-        groupByCategory = groupRepo.fetchByCategory(categoryInfo)
-    }
-    
     override func configure() {
         [addItemTopView, tableView].forEach {
             view.addSubview($0)
@@ -172,6 +192,8 @@ extension AddItemViewController: UITableViewDelegate, UITableViewDataSource, UIT
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "AddItemTableViewCell1", for: indexPath) as? AddItemTableViewCell1 else { return UITableViewCell() }
             
             cell.selectionStyle = .none
+            cell.galaryButton.addTarget(self, action: #selector(galaryButtonClicked(_:)), for: .touchUpInside)
+            
             cell.itemImageView.image = showCategoryImage()
             
             return cell
@@ -189,7 +211,7 @@ extension AddItemViewController: UITableViewDelegate, UITableViewDataSource, UIT
             setDropDown(cell.dropDownView, cell.dropDownView.dropTextField, cell.dropDownView.iconImageView)
             
             cell.dropDownView.selectButton.addTarget(self, action: #selector(dropDownClicked), for: .touchUpInside)
-            
+
             return cell
             
         } else {
@@ -209,6 +231,23 @@ extension AddItemViewController: UITableViewDelegate, UITableViewDataSource, UIT
             return cell
             
         }
+    }
+    
+    @objc func galaryButtonClicked(_ sender: CameraAndGalaryButton) {
+        var config = YPImagePickerConfiguration()
+        config.library.mediaType = .photo
+        
+        let picker = YPImagePicker(configuration: config)
+        
+        picker.didFinishPicking { [unowned picker] items, _ in
+            if let photo = items.singlePhoto {
+                print(photo.fromCamera)
+                print(photo.image)
+                print(photo.originalImage)
+            }
+            picker.dismiss(animated: true)
+        }
+        present(picker, animated: true)
     }
     
     func showCategoryImage() -> UIImage {
@@ -236,13 +275,13 @@ extension AddItemViewController: UITableViewDelegate, UITableViewDataSource, UIT
         
         switch textField.tag {
         case MyItemTextFieldData.nameTextField.rawValue:
-            myItemInfo.name = textField.text ?? " "
+            myItemInfo.name = textField.text
         case MyItemTextFieldData.brandTextField.rawValue:
-            myItemInfo.brand = textField.text ?? " "
+            myItemInfo.brand = textField.text
         case MyItemTextFieldData.sizeTextField.rawValue:
-            myItemInfo.size = textField.text ?? " "
+            myItemInfo.size = textField.text
         case MyItemTextFieldData.groupTextField.rawValue:
-            myItemInfo.group = textField.text ?? " "
+            myItemInfo.group = textField.text
         default:
             break
         }

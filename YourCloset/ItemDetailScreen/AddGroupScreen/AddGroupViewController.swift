@@ -20,6 +20,7 @@ class AddGroupViewController: BaseViewController {
         let addGroupView = AddGroupView()
         addGroupView.backgroundColor = .white
         addGroupView.layer.cornerRadius = 8
+        addGroupView.inputTextField.becomeFirstResponder()
         return addGroupView
     }()
     
@@ -33,6 +34,8 @@ class AddGroupViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        hideKeyboardWhenTappedBackground()
         
         view.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.5)
         addGroupView.addButton.addTarget(self, action: #selector(addGroupCheckButtonClicked), for: .touchUpInside)
@@ -53,20 +56,29 @@ class AddGroupViewController: BaseViewController {
     }
     
     @objc func addGroupCheckButtonClicked() {
-        let alert = UIAlertController(title: nil, message: "그룹을 추가하시겠습니까?", preferredStyle: .alert)
-        
-        let yesAction = UIAlertAction(title: "네", style: .default) { _ in
-            let group = Group(category: self.categoryInfo, group: self.addGroupView.inputTextField.text ?? "")
-            self.groupRepo.createItem(group: group)
-            self.view.makeToast("저장되었습니다.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
-            self.dismiss(animated: true)
+        if let text = self.addGroupView.inputTextField.text, text.isEmpty {
+//            let alert = UIAlertController(title: "주의", message: "입력값이 비어있습니다.", preferredStyle: .alert)
+//            let yesAction = UIAlertAction(title: "네", style: .default)
+//
+//            alert.addAction(yesAction)
+//            present(alert, animated: true)
+            self.view.makeToast("입력값이 비어있습니다.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
+        } else {
+            let alert = UIAlertController(title: nil, message: "그룹을 추가하시겠습니까?", preferredStyle: .alert)
+            
+            let yesAction = UIAlertAction(title: "네", style: .default) { _ in
+                let group = Group(category: self.categoryInfo, group: self.addGroupView.inputTextField.text ?? "")
+                self.groupRepo.createItem(group: group)
+                self.view.makeToast("저장되었습니다.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
+                self.dismiss(animated: true)
+            }
+            let noAction = UIAlertAction(title: "아니오", style: .cancel)
+            
+            alert.addAction(yesAction)
+            alert.addAction(noAction)
+            
+            present(alert, animated: true)
         }
-        let noAction = UIAlertAction(title: "아니오", style: .cancel)
-        
-        alert.addAction(yesAction)
-        alert.addAction(noAction)
-        
-        present(alert, animated: true)
     }
     
     override func configure() {

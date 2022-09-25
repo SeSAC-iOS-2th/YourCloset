@@ -1,15 +1,14 @@
 //
-//  CheckBoxButton.swift
+//  CameraAndGalaryButton.swift
 //  YourCloset
 //
-//  Created by 이중원 on 2022/09/24.
+//  Created by 이중원 on 2022/09/25.
 //
 
 import Foundation
 import UIKit
 
-class CheckBoxButton: UIButton {
-    var indexPath: IndexPath?
+class CameraAndGalaryButton: UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,5 +18,3 @@ class CheckBoxButton: UIButton {
         fatalError("init(coder: has not been implemeted")
     }
 }
-
-

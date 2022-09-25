@@ -12,8 +12,20 @@ import UIKit
 class ListToBuyTableViewCell: BaseTableViewCell {
     
     let itemNameLabel: UILabel = {
-        let nameLabel = UILabel()
-        return nameLabel
+        let label = UILabel()
+        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 18)
+        return label
+    }()
+    
+    let brandLabel: BrandAndSizeCustomLabel = {
+        let label = BrandAndSizeCustomLabel()
+        return label
+    }()
+    
+    let sizeLabel: BrandAndSizeCustomLabel = {
+        let label = BrandAndSizeCustomLabel()
+        return label
     }()
     
     lazy var checkBoxButton: CheckBoxButton = {
@@ -32,7 +44,7 @@ class ListToBuyTableViewCell: BaseTableViewCell {
     }
         
     override func configure() {
-        [itemNameLabel, checkBoxButton].forEach {
+        [itemNameLabel, brandLabel, sizeLabel, checkBoxButton].forEach {
             self.contentView.addSubview($0)
         }
     }
@@ -40,12 +52,24 @@ class ListToBuyTableViewCell: BaseTableViewCell {
     override func setConstraints() {
         itemNameLabel.snp.makeConstraints { make in
             make.leading.equalTo(15)
-            make.centerY.equalTo(self.snp.centerY)
+            make.top.equalTo(10)
+        }
+        
+        brandLabel.snp.makeConstraints { make in
+            make.leading.equalTo(itemNameLabel.snp.leading)
+            make.top.equalTo(itemNameLabel.snp.bottom).offset(15)
+            make.width.greaterThanOrEqualTo(50)
+        }
+        
+        sizeLabel.snp.makeConstraints { make in
+            make.top.equalTo(brandLabel.snp.top)
+            make.leading.equalTo(brandLabel.snp.trailing).offset(15)
+            make.width.greaterThanOrEqualTo(20)
         }
         
         checkBoxButton.snp.makeConstraints { make in
             make.trailing.equalTo(-15)
-            make.centerY.equalTo(itemNameLabel.snp.centerY)
+            make.centerY.equalToSuperview()
             make.height.width.equalTo(self.frame.height * 0.75)
         }
     }

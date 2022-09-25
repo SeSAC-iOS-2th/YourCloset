@@ -18,20 +18,21 @@ class AddItemTableViewCell1: BaseTableViewCell {
         return imageView
     }()
     
-    let galaryButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "camera.fill"), for: .normal)
-        button.layer.cornerRadius = 15
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.gray.cgColor
-        button.contentMode = .scaleToFill
-        button.tintColor = .gray
+    let galaryButton: CameraAndGalaryButton = {
+        let button = CameraAndGalaryButton()
         return button
     }()
     
+    let galaryButtonImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(systemName: "photo.circle.fill")
+        imageView.tintColor = .darkGray
+        return imageView
+    }()
+    
     override func configure() {
-        [itemImageView, galaryButton].forEach {
-            self.addSubview($0)
+        [itemImageView, galaryButton, galaryButtonImageView].forEach {
+            contentView.addSubview($0)
         }
     }
     
@@ -47,6 +48,10 @@ class AddItemTableViewCell1: BaseTableViewCell {
             make.centerX.equalTo(itemImageView.snp.trailing)
             make.centerY.equalTo(itemImageView.snp.bottom)
             make.height.width.equalTo(30)
+        }
+        
+        galaryButtonImageView.snp.makeConstraints { make in
+            make.edges.equalTo(galaryButton)
         }
     }
     
