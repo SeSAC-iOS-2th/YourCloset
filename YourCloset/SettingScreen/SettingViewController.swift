@@ -102,9 +102,11 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func dataInitAlert() {
         let alert = UIAlertController(title: "주의", message: "모든 데이터가 초기화됩니다.\n 정말 초기화 하시겠습니까?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "네", style: .default) { _ in
+            for element in self.itemRepo.fetch() {
+                self.deleteImageFromDocumentDirectory(imageName: "\(element.objectId).png")
+            }
             self.groupRepo.deleteAll()
             self.itemRepo.deleteAll()
-            UserDefaults.standard.removeObject(forKey: "nickname")
             
             UserDefaults.standard.set("이름없음", forKey: "nickname")
             
@@ -123,6 +125,21 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         let nav = UINavigationController(rootViewController: vc)
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true)
+    }
+    
+    func deleteImageFromDocumentDirectory(imageName: String) {
+        guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        
+        let imageURL = documentDirectory.appendingPathComponent(imageName)
+        
+        if FileManager.default.fileExists(atPath: imageURL.path) {
+            do {
+                try FileManager.default.removeItem(at: imageURL)
+                print("이미지 삭제 완료")
+            } catch {
+                print("이미지 삭제하지 못함")
+            }
+        }
     }
     
 }

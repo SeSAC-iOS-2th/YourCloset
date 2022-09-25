@@ -45,7 +45,8 @@ class AddItemTopView: BaseView {
         
         backButton.snp.makeConstraints { make in
             make.centerY.equalTo(nameLabel.snp.centerY)
-            make.leading.equalTo(15)
+            make.leading.equalTo(5)
+            make.height.width.equalTo(50)
         }
         
         storeButton.snp.makeConstraints { make in

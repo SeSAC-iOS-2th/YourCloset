@@ -16,7 +16,7 @@ class MainViewController: BaseViewController {
     let groupRepo = GroupRepository()
     let itemRepo = ItemRepository()
     
-    let mainTopView: MainTopview = {
+    lazy var mainTopView: MainTopview = {
         let mainTopView = MainTopview()
         mainTopView.backgroundColor = .white
         return mainTopView
@@ -27,6 +27,24 @@ class MainViewController: BaseViewController {
         tableView.isScrollEnabled = false
         return tableView
     }()
+    
+//    @objc func exitButtonClicked() {
+//        let alert = UIAlertController(title: nil, message: "앱을 종료하시겠습니까?", preferredStyle: .alert)
+//
+//        let yesAction = UIAlertAction(title: "네", style: .default) { _ in
+//            UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
+//
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//                exit(0)
+//            }
+//        }
+//        let noAction = UIAlertAction(title: "아니오", style: .cancel)
+//
+//        alert.addAction(yesAction)
+//        alert.addAction(noAction)
+//
+//        present(alert, animated: true)
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +60,7 @@ class MainViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         if let nickname = UserDefaults.standard.string(forKey: "nickname") {
-            mainTopView.userNameLabel.text = "'\(nickname)'님"
+            mainTopView.userNameLabel.text = nickname
         }
         
         setDefaultGroup()

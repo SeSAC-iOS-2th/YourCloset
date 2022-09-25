@@ -10,7 +10,7 @@ import SnapKit
 import UIKit
 
 protocol SendDataDelegate: AnyObject {
-    func sendModifyData(name: String, brand: String, size: String)
+    func sendModifyData(name: String, brand: String, size: String, image: UIImage)
     func reload()
 }
 
@@ -43,6 +43,7 @@ class ItemDetailPageViewController: BaseViewController, SendDataDelegate {
         vc.delegate = self
         UserDefaults.standard.set("modify", forKey: "addOrModify")
         vc.beforeModifyInfo.append(contentsOf: [itemDetailPageView.itemNameInfoLabel.text!, itemDetailPageView.brandInfoLabel.text!, itemDetailPageView.sizeInfoLabel.text!])
+        vc.pickImage = itemDetailPageView.itemImageView.image
         vc.categoryInfo = categoryInfo
         vc.modalPresentationStyle = .fullScreen
         vc.transitionItem = transitionItem
@@ -82,10 +83,13 @@ class ItemDetailPageViewController: BaseViewController, SendDataDelegate {
         }
     }
     
-    func sendModifyData(name: String, brand: String, size: String) {
+    func sendModifyData(name: String, brand: String, size: String, image: UIImage) {
         self.itemDetailPageView.itemNameInfoLabel.text = name
         self.itemDetailPageView.brandInfoLabel.text = brand
         self.itemDetailPageView.sizeInfoLabel.text = size
+        if image != UIImage() {
+            self.itemDetailPageView.itemImageView.image = image
+        }
     }
     
     func reload() {

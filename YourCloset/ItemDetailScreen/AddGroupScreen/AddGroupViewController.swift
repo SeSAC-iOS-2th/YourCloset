@@ -57,11 +57,6 @@ class AddGroupViewController: BaseViewController {
     
     @objc func addGroupCheckButtonClicked() {
         if let text = self.addGroupView.inputTextField.text, text.isEmpty {
-//            let alert = UIAlertController(title: "주의", message: "입력값이 비어있습니다.", preferredStyle: .alert)
-//            let yesAction = UIAlertAction(title: "네", style: .default)
-//
-//            alert.addAction(yesAction)
-//            present(alert, animated: true)
             self.view.makeToast("입력값이 비어있습니다.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
         } else {
             let alert = UIAlertController(title: nil, message: "그룹을 추가하시겠습니까?", preferredStyle: .alert)

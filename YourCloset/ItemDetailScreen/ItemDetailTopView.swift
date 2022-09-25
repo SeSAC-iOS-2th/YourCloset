@@ -53,17 +53,20 @@ class ItemDetailTopView: BaseView {
         
         backButton.snp.makeConstraints { make in
             make.centerY.equalTo(categoryNameLabel.snp.centerY)
-            make.leading.equalTo(15)
+            make.leading.equalTo(5)
+            make.height.width.equalTo(50)
         }
         
         addGroupButton.snp.makeConstraints { make in
             make.centerY.equalTo(categoryNameLabel.snp.centerY)
             make.trailing.equalTo(-15)
+            make.height.width.equalTo(30)
         }
         
         addItemButton.snp.makeConstraints { make in
             make.centerY.equalTo(categoryNameLabel.snp.centerY)
             make.trailing.equalTo(addGroupButton.snp.leading).offset(-15)
+            make.height.width.equalTo(30)
         }
         
     }

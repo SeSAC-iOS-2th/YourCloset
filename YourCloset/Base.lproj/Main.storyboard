@@ -1,45 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cxZ-Z8-VmP">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--설정-->
-        <scene sceneID="yZg-p7-oKy">
-            <objects>
-                <viewController id="tVv-SG-dYl" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="7sJ-KP-Eah">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="XQe-SE-oqg"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="설정" image="gearshape.circle" catalog="system" id="cnw-8I-zxT"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rQJ-vz-r6O" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-509" y="321"/>
-        </scene>
-        <!--구매 예정 목록-->
-        <scene sceneID="Qg5-52-Qt3">
-            <objects>
-                <viewController id="ftt-Dz-wlj" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ZXd-bN-pU5">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="cWX-og-Ly8"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="구매 예정 목록" image="dollarsign.square" catalog="system" id="brf-Lh-sqA"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oVh-Bp-SPK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-508" y="-328"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Jxc-eo-kIL">
             <objects>
@@ -49,21 +16,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
-                    <connections>
-                        <segue destination="ftt-Dz-wlj" kind="relationship" relationship="viewControllers" id="1j8-an-b3B"/>
-                        <segue destination="tVv-SG-dYl" kind="relationship" relationship="viewControllers" id="auS-dB-MJ3"/>
-                    </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W74-LN-YeQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1533" y="-328"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="dollarsign.square" catalog="system" width="128" height="114"/>
-        <image name="gearshape.circle" catalog="system" width="128" height="121"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

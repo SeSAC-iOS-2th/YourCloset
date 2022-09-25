@@ -30,12 +30,14 @@ class ProfileViewController: BaseViewController {
         return label
     }()
     
-    let nicknameTextField: UITextField = {
+    lazy var nicknameTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "닉네임을 입력하세요"
+        textField.placeholder = "1~4글자 입력"
         textField.layer.borderWidth = 1
         textField.layer.borderColor = UIColor.lightGray.cgColor
         textField.font = UIFont.systemFont(ofSize: 18)
+        textField.delegate = self
+        textField.becomeFirstResponder()
         return textField
     }()
     
@@ -44,26 +46,35 @@ class ProfileViewController: BaseViewController {
     }
         
     @objc func storeButtonClicked() {
-        let alert = UIAlertController(title: "저장", message: "수정 사항을 저장하시겠습니까?", preferredStyle: .alert)
-        
-        let yesAction = UIAlertAction(title: "네", style: .default, handler: {_ in
-            UserDefaults.standard.set(self.nicknameTextField.text, forKey: "nickname")
-            self.view.makeToast("저장되었습니다.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
+        if let nickname = self.nicknameTextField.text, nickname.isEmpty {
+            self.view.makeToast("입력값이 비어있습니다.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
+        } else {
+            let alert = UIAlertController(title: nil, message: "닉네임을 저장하시겠습니까?", preferredStyle: .alert)
             
-        })
-        let noAction = UIAlertAction(title: "아니오", style: .cancel)
-        
-        alert.addAction(yesAction)
-        alert.addAction(noAction)
-        
-        present(alert, animated: true)
+            let yesAction = UIAlertAction(title: "네", style: .default, handler: {_ in
+                UserDefaults.standard.set(self.nicknameTextField.text, forKey: "nickname")
+                self.view.makeToast("저장되었습니다.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
+                
+                self.nicknameTextField.resignFirstResponder()
+
+            })
+            let noAction = UIAlertAction(title: "아니오", style: .cancel)
+            
+            alert.addAction(yesAction)
+            alert.addAction(noAction)
+            
+            present(alert, animated: true)
+        }
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        hideKeyboardWhenTappedBackground()
+        
         view.backgroundColor = .white
+        
         navigationItem.title = "프로필"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
         navigationItem.leftBarButtonItem = leftBarButton
@@ -89,4 +100,15 @@ class ProfileViewController: BaseViewController {
         }
     }
     
+}
+
+extension ProfileViewController: UITextFieldDelegate {
+        
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText = textField.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        
+        let changeText = currentText.replacingCharacters(in: stringRange, with: string)
+        return changeText.count <= 5
+    }
 }

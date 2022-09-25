@@ -12,7 +12,6 @@ class ItemDetailPageView: BaseView {
     
     let itemImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "star.fill")
         imageView.layer.borderWidth = 1
         imageView.layer.borderColor = UIColor.black.cgColor
         return imageView

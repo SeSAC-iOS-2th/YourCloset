@@ -50,13 +50,15 @@ class AddItemViewController: BaseViewController {
     var transitionItem = Item()
     
     lazy var myItemInfo = MyItemInfo()
-    
+        
     var groupArray: [String] = []
 
     var categoryInfo = ""
     
     let infoNameArray = ["이미지", "제품명", "브랜드", "사이즈", "그룹"]
     let infoPlaceholderArray = ["Image", "Name", "Brand", "Size", "Group"]
+    
+    var pickImage: UIImage?
         
     weak var delegate: SendDataDelegate?
     
@@ -78,7 +80,6 @@ class AddItemViewController: BaseViewController {
     }
     
     @objc func storeButtonClikced() {
-        print(self.myItemInfo.group, self.myItemInfo.name, self.myItemInfo.brand, self.myItemInfo.size)
         if !isInputEmpty() {
             self.view.makeToast("정보를 모두 입력해주세요.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
         } else {
@@ -92,9 +93,17 @@ class AddItemViewController: BaseViewController {
                 if self.isAddNotModify() {
                     let item = Item(category: self.categoryInfo, group: self.myItemInfo.group!, imageURL: "", name: self.myItemInfo.name!, brand: self.myItemInfo.brand!, size: self.myItemInfo.size!, purchasingStatus: true)
                     self.itemRepo.createItem(item: item)
+                    if self.pickImage != nil {
+                        self.saveImageToDocumentDirectory(imageName: "\(item.objectId).png", image: self.pickImage!)
+                        print("그냥 id: \(item.objectId)")
+                    }
                 } else {
                     self.itemRepo.modifyItemInfo(item: self.transitionItem, group: self.myItemInfo.group!, name: self.myItemInfo.name!, brand: self.myItemInfo.brand!, size: self.myItemInfo.size!)
-                    self.delegate?.sendModifyData(name: self.myItemInfo.name!, brand: self.myItemInfo.brand!, size: self.myItemInfo.size!)
+                    if self.pickImage != nil {
+                        self.saveImageToDocumentDirectory(imageName: "\(self.transitionItem.objectId).png", image: self.pickImage!)
+                        print("바뀐 id: \(self.transitionItem.objectId)")
+                    }
+                    self.delegate?.sendModifyData(name: self.myItemInfo.name!, brand: self.myItemInfo.brand!, size: self.myItemInfo.size!, image: self.pickImage ?? UIImage())
                     self.delegate?.reload()
                 }
                 self.view.makeToast(toastMessage, duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
@@ -174,6 +183,35 @@ class AddItemViewController: BaseViewController {
         return UserDefaults.standard.string(forKey: "addOrModify") == "add"
     }
     
+    func saveImageToDocumentDirectory(imageName: String, image: UIImage) {
+        
+        guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        print("경로: \(documentDirectory)")
+        
+        let imageURL = documentDirectory.appendingPathComponent(imageName)
+        
+        guard let data = image.pngData() else {
+            print("압축이 실패했습니다.")
+            return
+        }
+        
+        if FileManager.default.fileExists(atPath: imageURL.path) {
+            do {
+                try FileManager.default.removeItem(at: imageURL)
+                print("이미지 삭제")
+            } catch {
+                print("이미지를 삭제하지 못함")
+            }
+        }
+        
+        do {
+            try data.write(to: imageURL)
+            print("이미지 저장 완료")
+        } catch {
+            print("이미지를 저장하지 못함")
+        }
+    }
+    
 }
 
 extension AddItemViewController: UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
@@ -194,8 +232,12 @@ extension AddItemViewController: UITableViewDelegate, UITableViewDataSource, UIT
             cell.selectionStyle = .none
             cell.galaryButton.addTarget(self, action: #selector(galaryButtonClicked(_:)), for: .touchUpInside)
             
-            cell.itemImageView.image = showCategoryImage()
-            
+            if self.pickImage != nil {
+                cell.itemImageView.image = self.pickImage
+            } else {
+                cell.itemImageView.image = showCategoryImage()
+            }
+                        
             return cell
             
         } else if indexPath.row == infoNameArray.count - 1 {
@@ -229,7 +271,6 @@ extension AddItemViewController: UITableViewDelegate, UITableViewDataSource, UIT
             }
             
             return cell
-            
         }
     }
     
@@ -241,9 +282,11 @@ extension AddItemViewController: UITableViewDelegate, UITableViewDataSource, UIT
         
         picker.didFinishPicking { [unowned picker] items, _ in
             if let photo = items.singlePhoto {
-                print(photo.fromCamera)
-                print(photo.image)
-                print(photo.originalImage)
+                print("이미지: \(photo.image)")
+                print("url: \(photo.image.hashValue)")
+                
+                self.pickImage = photo.image
+                self.tableView.reloadData()
             }
             picker.dismiss(animated: true)
         }

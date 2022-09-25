@@ -180,10 +180,10 @@ extension ItemDetailViewController: UITableViewDelegate, UITableViewDataSource {
             let yesAction = UIAlertAction(title: "네", style: .default) { _ in
                 let item = itemsByGroup[indexPath.row]
                 
+                self.deleteImageFromDocumentDirectory(imageName: "\(item.objectId).png")
                 self.itemRepo.deleteItem(item: item)
                 
                 self.view.makeToast("삭제되었습니다.", duration: 1.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
-                
                 self.tableView.reloadData()
             }
             
@@ -207,7 +207,12 @@ extension ItemDetailViewController: UITableViewDelegate, UITableViewDataSource {
         let vc = ItemDetailPageViewController()
         vc.delegate = self
         vc.modalPresentationStyle = .overCurrentContext
-        vc.itemDetailPageView.itemImageView.image = showCategoryImage()        
+        if let image = loadImageFromDocumentDirectory(imageName: "\(itemsByGroup[indexPath.row].objectId).png") {
+            vc.itemDetailPageView.itemImageView.image = image
+        } else {
+            vc.itemDetailPageView.itemImageView.image = showCategoryImage()
+            print("보여주기 id: \(itemsByGroup[indexPath.row].objectId)")
+        }
         vc.itemDetailPageView.itemNameInfoLabel.text = itemsByGroup[indexPath.row].name
         vc.itemDetailPageView.brandInfoLabel.text = itemsByGroup[indexPath.row].brand
         vc.itemDetailPageView.sizeInfoLabel.text = itemsByGroup[indexPath.row].size
@@ -230,6 +235,36 @@ extension ItemDetailViewController: UITableViewDelegate, UITableViewDataSource {
             return UIImage(named: "Ring")!
         default:
             return UIImage()
+        }
+    }
+    
+    func loadImageFromDocumentDirectory(imageName: String) -> UIImage? {
+        
+        let documentDirectory = FileManager.SearchPathDirectory.documentDirectory
+        let userDomainMask = FileManager.SearchPathDomainMask.userDomainMask
+        let path = NSSearchPathForDirectoriesInDomains(documentDirectory, userDomainMask, true)
+        
+        if let directoryPath = path.first {
+            
+            let imageURL = URL(fileURLWithPath: directoryPath).appendingPathComponent(imageName)
+            return UIImage(contentsOfFile: imageURL.path)
+        }
+        
+        return nil
+    }
+    
+    func deleteImageFromDocumentDirectory(imageName: String) {
+        guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        
+        let imageURL = documentDirectory.appendingPathComponent(imageName)
+        
+        if FileManager.default.fileExists(atPath: imageURL.path) {
+            do {
+                try FileManager.default.removeItem(at: imageURL)
+                print("이미지 삭제 완료")
+            } catch {
+                print("이미지 삭제하지 못함")
+            }
         }
     }
         

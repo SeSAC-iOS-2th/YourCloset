@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 class CameraAndGalaryButton: UIButton {
+    var pickImage = UIImage()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

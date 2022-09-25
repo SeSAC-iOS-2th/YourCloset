@@ -61,26 +61,11 @@
 		12BAABDC28DF948900668F40 /* extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BAABDB28DF948900668F40 /* extension+String.swift */; };
 		12BAABDE28DF949700668F40 /* extension+UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BAABDD28DF949700668F40 /* extension+UIImage.swift */; };
 		12C6C1B428D7D04800606FDD /* Pods_YourCloset.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3CA9D1F062F8230F453F179 /* Pods_YourCloset.framework */; };
-		12C6C1B528D7D04800606FDD /* Pods_YourCloset.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D3CA9D1F062F8230F453F179 /* Pods_YourCloset.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		12C6C1B728D7D90000606FDD /* StoreItemTableViewCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C6C1B628D7D90000606FDD /* StoreItemTableViewCell1.swift */; };
 		12C6C1B928D7DCD000606FDD /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12C6C1B828D7DCD000606FDD /* DropDownView.swift */; };
 		12CF538728D8EA5D001BF159 /* AddGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF538628D8EA5D001BF159 /* AddGroupViewController.swift */; };
 		12CF538928D8EA77001BF159 /* AddGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF538828D8EA77001BF159 /* AddGroupView.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		128D438528D118CB003C86BA /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				12C6C1B528D7D04800606FDD /* Pods_YourCloset.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		12038D3C28D264A4005D6DD7 /* ListToBuyTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListToBuyTopView.swift; sourceTree = "<group>"; };
@@ -353,7 +338,6 @@
 				128D435228D0F1AE003C86BA /* Sources */,
 				128D435328D0F1AE003C86BA /* Frameworks */,
 				128D435428D0F1AE003C86BA /* Resources */,
-				128D438528D118CB003C86BA /* Embed Frameworks */,
 				2DC75DD34C78772983E2816F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (

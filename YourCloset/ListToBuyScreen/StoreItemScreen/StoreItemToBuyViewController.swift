@@ -23,13 +23,6 @@ struct ItemToBuyInfo {
     var name: String?
     var brand: String?
     var size: String?
-    
-//    init(category: String, name: String, brand: String, size: String) {
-//        self.category = category
-//        self.name = name
-//        self.brand = brand
-//        self.size = size
-//    }
 }
 
 class StoreItemToBuyViewController: BaseViewController {
