@@ -54,6 +54,7 @@ class StoreItemToBuyViewController: BaseViewController {
     
     let tableView: UITableView = {
         let tableView = UITableView()
+        tableView.backgroundColor = .systemGray4
         return tableView
     }()
     
@@ -107,11 +108,12 @@ class StoreItemToBuyViewController: BaseViewController {
                 
         hideKeyboardWhenTappedBackground()
         
-        view.backgroundColor = .white
+        view.backgroundColor = .systemGray4
         navigationItem.title = "구매 예정 아이템 추가"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
         self.navigationItem.leftBarButtonItem = leftBarButton
         self.navigationItem.rightBarButtonItem = rightBarButton
+        navigationController?.navigationBar.barTintColor = .systemGray4
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -149,8 +151,8 @@ extension StoreItemToBuyViewController: UITableViewDelegate, UITableViewDataSour
         if indexPath.row == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "StoreItemTableViewCell1", for: indexPath) as? StoreItemTableViewCell1 else { return UITableViewCell() }
             
+            cell.backgroundColor = UIColor.projectColor(.backgroundColor)
             cell.dropDownView.dropTextField.delegate = self
-            
             cell.selectionStyle = .none
             cell.infoLabel.text = infoNameArray[indexPath.row]
             cell.dropDownView.dropTextField.tag = indexPath.row
@@ -164,9 +166,9 @@ extension StoreItemToBuyViewController: UITableViewDelegate, UITableViewDataSour
         } else {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "StoreItemTableViewCell2", for: indexPath) as? StoreItemTableViewCell2 else { return UITableViewCell() }
             
+            cell.backgroundColor = UIColor.projectColor(.backgroundColor)
             cell.infoTextField.delegate = self
             cell.selectionStyle = .none
-
             cell.infoLabel.text = infoNameArray[indexPath.row]
             cell.infoTextField.placeholder = infoPlaceholderArray[indexPath.row]
             cell.infoTextField.tag = indexPath.row

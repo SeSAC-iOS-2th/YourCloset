@@ -72,6 +72,7 @@ class AddItemViewController: BaseViewController {
     
     let tableView: UITableView = {
         let tableView = UITableView()
+        tableView.backgroundColor = UIColor.projectColor(.backgroundColor)
         return tableView
     }()
     
@@ -151,7 +152,7 @@ class AddItemViewController: BaseViewController {
         tableView.register(AddItemTableViewCell2.self, forCellReuseIdentifier: "AddItemTableViewCell2")
         tableView.register(AddItemTableViewCell3.self, forCellReuseIdentifier: "AddItemTableViewCell3")
             
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.projectColor(.backgroundColor)
         
         if !isAddNotModify() { initMyItemInfo() }
         
@@ -248,6 +249,7 @@ extension AddItemViewController: UITableViewDelegate, UITableViewDataSource, UIT
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "AddItemTableViewCell1", for: indexPath) as? AddItemTableViewCell1 else { return UITableViewCell() }
             
             cell.selectionStyle = .none
+            cell.backgroundColor = UIColor.projectColor(.backgroundColor)
             cell.galaryButton.addTarget(self, action: #selector(galaryButtonClicked(_:)), for: .touchUpInside)
             
             if self.pickImage != nil {
@@ -265,6 +267,7 @@ extension AddItemViewController: UITableViewDelegate, UITableViewDataSource, UIT
             cell.dropDownView.dropTextField.delegate = self
             
             cell.selectionStyle = .none
+            cell.backgroundColor = UIColor.projectColor(.backgroundColor)
             cell.infoLabel.text = infoNameArray[indexPath.row]
             cell.dropDownView.dropTextField.tag = indexPath.row - 1
             
@@ -281,6 +284,7 @@ extension AddItemViewController: UITableViewDelegate, UITableViewDataSource, UIT
             cell.infoTextField.delegate = self
             
             cell.selectionStyle = .none
+            cell.backgroundColor = UIColor.projectColor(.backgroundColor)
             cell.infoLabel.text = infoNameArray[indexPath.row]
             cell.infoTextField.placeholder = infoPlaceholderArray[indexPath.row]
             cell.infoTextField.tag = indexPath.row - 1
@@ -319,11 +323,13 @@ extension AddItemViewController: UITableViewDelegate, UITableViewDataSource, UIT
             self.present(picker, animated: true)
         }
         
+        let noAction = UIAlertAction(title: "취소", style: .cancel)
+        
         actionSheet.addAction(defaultImageAction)
         actionSheet.addAction(galaryImageAction)
+        actionSheet.addAction(noAction)
         
         self.present(actionSheet, animated: true)
-        
     }
     
     func showCategoryImage() -> UIImage {

@@ -16,6 +16,10 @@ class ItemRepository {
         return localRealm.objects(Item.self)
     }
     
+    func fetchToBuy() -> Results<Item> {
+        return localRealm.objects(Item.self).filter("purchasingStatus == false")
+    }
+    
     func fetchByCategory(_ categoryName: String, _ status: Bool) -> Results<Item> {
         return localRealm.objects(Item.self).filter("category == '\(categoryName)' && purchasingStatus == \(status)")
     }

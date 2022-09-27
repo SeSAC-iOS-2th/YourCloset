@@ -21,6 +21,7 @@ class OpenSourceViewController: BaseViewController {
     
     let tableView: UITableView = {
         let tableView = UITableView()
+        tableView.backgroundColor = UIColor.projectColor(.backgroundColor)
         return tableView
     }()
     
@@ -61,6 +62,7 @@ extension OpenSourceViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "OpenSourceTableViewCell", for: indexPath) as? OpenSourceTableViewCell else { return UITableViewCell() }
         
         cell.selectionStyle = .none
+        cell.backgroundColor = UIColor.projectColor(.backgroundColor)
         cell.nameLabel.text = libraryArray[indexPath.row]
         
         return cell

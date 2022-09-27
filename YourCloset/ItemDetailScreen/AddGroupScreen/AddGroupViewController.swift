@@ -18,7 +18,7 @@ class AddGroupViewController: BaseViewController {
     
     let addGroupView: AddGroupView = {
         let addGroupView = AddGroupView()
-        addGroupView.backgroundColor = .white
+        addGroupView.backgroundColor = UIColor.projectColor(.backgroundColor)
         addGroupView.layer.cornerRadius = 8
         addGroupView.inputTextField.becomeFirstResponder()
         return addGroupView

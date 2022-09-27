@@ -15,7 +15,7 @@ protocol reloadTableDelegate: AnyObject {
     func reload()
 }
 
-class ItemDetailViewController: BaseViewController, reloadTableDelegate {
+class ItemDetailViewController: BaseViewController, reloadTableDelegate, UIGestureRecognizerDelegate {
     
     let groupRepo = GroupRepository()
     let itemRepo = ItemRepository()
@@ -25,6 +25,14 @@ class ItemDetailViewController: BaseViewController, reloadTableDelegate {
             tableView.reloadData()
         }
     }
+    
+    var itemsByCategory: Results<Item>! {
+        didSet {
+            self.noticeLabel.isHidden = itemsByCategory.count != 0 ? true : false
+        }
+    }
+    
+    var categoryInfo = ""
                     
     lazy var itemDetailTopView: ItemDetailTopView = {
         let itemDetailTopView = ItemDetailTopView()
@@ -36,10 +44,10 @@ class ItemDetailViewController: BaseViewController, reloadTableDelegate {
         itemDetailTopView.backgroundColor = .clear
         return itemDetailTopView
     }()
-    
-    let backgroundImageView: UIImageView = {
+        
+    lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "InsideOfCloset")
+        imageView.image = self.backgroundImageByCategory()
         return imageView
     }()
     
@@ -47,6 +55,14 @@ class ItemDetailViewController: BaseViewController, reloadTableDelegate {
         let tableView = UITableView()
         tableView.backgroundColor = .clear
         return tableView
+    }()
+    
+    let noticeLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.text = "옷장에 옷들을 추가해보세요!"
+        return label
     }()
     
     override func viewDidLoad() {
@@ -58,14 +74,23 @@ class ItemDetailViewController: BaseViewController, reloadTableDelegate {
         tableView.register(ItemDetailTableHeaderView1.self, forHeaderFooterViewReuseIdentifier: "ItemDetailTableHeaderView1")
         tableView.register(ItemDetailTableHeaderView2.self, forHeaderFooterViewReuseIdentifier: "ItemDetailTableHeaderView2")
         
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
         view.backgroundColor = .white
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         groupByCategory = groupRepo.fetchByCategory(itemDetailTopView.categoryNameLabel.text!)
+        itemsByCategory = itemRepo.fetchByCategory(self.categoryInfo, true)
         tableView.reloadData()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
     
     @objc func backButtonClicked() {
@@ -88,7 +113,7 @@ class ItemDetailViewController: BaseViewController, reloadTableDelegate {
     }
     
     override func configure() {
-        [backgroundImageView, itemDetailTopView, tableView].forEach {
+        [backgroundImageView, itemDetailTopView, tableView, noticeLabel].forEach {
             view.addSubview($0)
         }
     }
@@ -102,15 +127,36 @@ class ItemDetailViewController: BaseViewController, reloadTableDelegate {
             make.edges.equalTo(0)
         }
         tableView.snp.makeConstraints { make in
-            make.width.equalToSuperview().multipliedBy(0.63)
+            make.width.equalToSuperview().multipliedBy(0.65)
             make.height.equalToSuperview().multipliedBy(0.8)
             make.centerX.equalToSuperview()
-            make.top.equalTo(itemDetailTopView.snp.bottom)
+            make.top.equalTo(itemDetailTopView.snp.bottom).offset(20)
+        }
+        noticeLabel.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.height.equalTo(100)
         }
     }
     
     func reload() {
         self.tableView.reloadData()
+    }
+    
+    func backgroundImageByCategory() -> UIImage {
+        switch categoryInfo {
+        case "아우터" :
+            return UIImage(named: "ClosetOfOuter")!
+        case "상의" :
+            return UIImage(named: "ClosetOfTop")!
+        case "하의" :
+            return UIImage(named: "ClosetOfBottom")!
+        case "신발" :
+            return UIImage(named: "ClosetOfShoes")!
+        case "악세서리" :
+            return UIImage(named: "ClosetOfAccessories")!
+        default:
+            return UIImage()
+        }
     }
     
 }
@@ -127,16 +173,23 @@ extension ItemDetailViewController: UITableViewDelegate, UITableViewDataSource {
         return itemsByGroup.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 30
+    }
+    
         
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ItemDetailTableHeaderView1") as? ItemDetailTableHeaderView1 else { return UIView() }
                             
             header.groupLabel.text = groupByCategory[section].group
+            header.backgroundColor = .clear
                             
             return header
         } else {
             guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ItemDetailTableHeaderView2") as? ItemDetailTableHeaderView2 else { return UIView() }
+            
+            header.backgroundColor = .clear
             
             header.groupLabel.text = groupByCategory[section].group
             header.removeButton.addTarget(self, action: #selector(removeButtonClicked(_:)), for: .touchUpInside)
@@ -177,9 +230,10 @@ extension ItemDetailViewController: UITableViewDelegate, UITableViewDataSource {
         let itemsByGroup = itemRepo.fetchByGroup(groupByCategory[indexPath.section].category, groupByCategory[indexPath.section].group)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ItemDetailTableViewCell", for: indexPath) as? ItemDetailTableViewCell else { return UITableViewCell() }
         
-        cell.layer.cornerRadius = 8
+        cell.layer.cornerRadius = 2
         cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor.black.cgColor
+        cell.backgroundColor = UIColor.projectColor(.itemColor)
         cell.itemNameLabel.text = itemsByGroup[indexPath.row].name
         
         return cell

@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 class ItemDetailTableViewCell: BaseTableViewCell {
-    
+        
     let itemNameLabel: UILabel = {
         let label = UILabel()
         return label

@@ -21,7 +21,7 @@ class ItemDetailPageViewController: BaseViewController, SendDataDelegate {
     
     lazy var itemDetailPageView: ItemDetailPageView = {
         let pageView = ItemDetailPageView()
-        pageView.backgroundColor = .white
+        pageView.backgroundColor = UIColor.projectColor(.backgroundColor)
         pageView.modifyButton.addTarget(self, action: #selector(modifyButtonClicked), for: .touchUpInside)
         return pageView
     }()

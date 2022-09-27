@@ -24,7 +24,7 @@ class MainViewController: BaseViewController {
     
     lazy var mainTopView: MainTopview = {
         let mainTopView = MainTopview()
-        mainTopView.backgroundColor = .white
+        mainTopView.backgroundColor = UIColor.projectColor(.backgroundColor)
         return mainTopView
     }()
     
@@ -34,41 +34,20 @@ class MainViewController: BaseViewController {
         tableView.backgroundColor = .clear
         return tableView
     }()
-    
-//    @objc func exitButtonClicked() {
-//        let alert = UIAlertController(title: nil, message: "앱을 종료하시겠습니까?", preferredStyle: .alert)
-//
-//        let yesAction = UIAlertAction(title: "네", style: .default) { _ in
-//            UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
-//
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//                exit(0)
-//            }
-//        }
-//        let noAction = UIAlertAction(title: "아니오", style: .cancel)
-//
-//        alert.addAction(yesAction)
-//        alert.addAction(noAction)
-//
-//        present(alert, animated: true)
-//    }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: "MainTableViewCell")
-        
-        view.backgroundColor = .white
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if let nickname = UserDefaults.standard.string(forKey: "nickname") {
-            mainTopView.userNameLabel.text = nickname
+            mainTopView.appTitleLabel.text = "\(nickname)님의 옷장"
         }
         
         setDefaultGroup()
@@ -131,9 +110,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell", for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
         
-        cell.layer.borderWidth = 1
-        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderWidth = 2
+        cell.layer.borderColor = UIColor.projectColor(.closetEdgeColor).cgColor
         cell.layer.cornerRadius = 8
+        cell.backgroundColor = UIColor.projectColor(.closetColor)
         
         cell.selectionStyle = .none
         cell.itemNumLabel.text = "\(myItemByCategory.count)개의 아이템"
@@ -145,7 +125,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = ItemDetailViewController()
         vc.itemDetailTopView.categoryNameLabel.text = categoryNameArray[indexPath.row]
+        vc.categoryInfo = categoryNameArray[indexPath.row]
         vc.modalPresentationStyle = .fullScreen
+        vc.modalTransitionStyle = .flipHorizontal
         present(vc, animated: true)
     }
     

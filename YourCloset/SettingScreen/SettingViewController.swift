@@ -19,12 +19,13 @@ class SettingViewController: BaseViewController {
     
     let settingTopView: SettingTopView = {
         let settingTopView = SettingTopView()
-        settingTopView.backgroundColor = .white
+        settingTopView.backgroundColor = UIColor.projectColor(.backgroundColor)
         return settingTopView
     }()
     
     let tableView: UITableView = {
         let tableView = UITableView()
+        tableView.backgroundColor = UIColor.projectColor(.backgroundColor)
         return tableView
     }()
     
@@ -69,6 +70,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.nameLabel.text = settingArray[indexPath.row]
         cell.selectionStyle = .none
+        cell.backgroundColor = UIColor.projectColor(.backgroundColor)
 
         return cell
     }
@@ -108,7 +110,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             self.groupRepo.deleteAll()
             self.itemRepo.deleteAll()
             
-            UserDefaults.standard.set("이름없음", forKey: "nickname")
+            UserDefaults.standard.removeObject(forKey: "nickname")
             
             self.view.makeToast("초기화되었습니다.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
         }

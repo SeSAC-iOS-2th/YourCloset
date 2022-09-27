@@ -73,7 +73,7 @@ class ProfileViewController: BaseViewController {
         
         hideKeyboardWhenTappedBackground()
         
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.projectColor(.backgroundColor)
         
         navigationItem.title = "프로필"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]

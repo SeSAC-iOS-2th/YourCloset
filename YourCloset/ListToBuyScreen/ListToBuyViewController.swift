@@ -16,6 +16,12 @@ class ListToBuyViewController: BaseViewController {
     
     let itemRepo = ItemRepository()
     
+    var allItems: Results<Item>! {
+        didSet {
+            self.nothingToBuyView.isHidden = allItems.count != 0 ? true : false
+        }
+    }
+    
     var outerItems: Results<Item>! {
         didSet {
             tableView.reloadData()
@@ -45,6 +51,12 @@ class ListToBuyViewController: BaseViewController {
     
     let categoryNameArray = ["아우터", "상의", "하의", "신발", "악세서리"]
         
+    let nothingToBuyView: NothingToBuyView = {
+        let view = NothingToBuyView()
+        view.backgroundColor = UIColor.projectColor(.backgroundColor)
+        return view
+    }()
+    
     lazy var rightBarButton: UIBarButtonItem = {
         let barButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addButtonClicked))
         barButton.tintColor = .black
@@ -53,6 +65,7 @@ class ListToBuyViewController: BaseViewController {
                     
     let tableView: UITableView = {
         let tableView = UITableView()
+        tableView.backgroundColor = UIColor.projectColor(.backgroundColor)
         return tableView
     }()
 
@@ -74,7 +87,7 @@ class ListToBuyViewController: BaseViewController {
         navigationItem.title = "구매 예정 목록"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
         navigationItem.rightBarButtonItem = rightBarButton
-                
+        navigationController?.navigationBar.barTintColor = .systemGray4
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,6 +97,7 @@ class ListToBuyViewController: BaseViewController {
     }
     
     func fetchRepo() {
+        allItems = itemRepo.fetchToBuy()
         outerItems = itemRepo.fetchByCategory("아우터", false)
         topItems = itemRepo.fetchByCategory("상의", false)
         bottomItems = itemRepo.fetchByCategory("하의", false)
@@ -92,12 +106,15 @@ class ListToBuyViewController: BaseViewController {
     }
         
     override func configure() {
-        [tableView].forEach {
+        [tableView, nothingToBuyView].forEach {
             view.addSubview($0)
         }
     }
     
     override func setConstraints() {
+        nothingToBuyView.snp.makeConstraints { make in
+            make.edges.equalTo(0)
+        }
         tableView.snp.makeConstraints { make in
             make.edges.equalTo(0)
         }

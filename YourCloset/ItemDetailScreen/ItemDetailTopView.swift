@@ -13,7 +13,6 @@ class ItemDetailTopView: BaseView {
     
     var categoryNameLabel: UILabel = {
         let nameLabel = UILabel()
-        nameLabel.text = "하의"
         nameLabel.font = UIFont.systemFont(ofSize: 22)
         return nameLabel
     }()

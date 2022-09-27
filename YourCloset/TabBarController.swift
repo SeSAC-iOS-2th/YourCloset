@@ -34,7 +34,7 @@ class TabBarController: UITabBarController {
     func setupTabBarAppearence() {
         let appearence = UITabBarAppearance()
         appearence.configureWithTransparentBackground()
-        appearence.backgroundColor = .white
+        appearence.backgroundColor = UIColor.projectColor(.backgroundColor)
         tabBar.standardAppearance = appearence
         tabBar.scrollEdgeAppearance = appearence
         tabBar.tintColor = .black

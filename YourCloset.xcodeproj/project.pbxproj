@@ -11,11 +11,12 @@
 		12038D3F28D26ABA005D6DD7 /* ListToBuyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12038D3E28D26ABA005D6DD7 /* ListToBuyTableViewCell.swift */; };
 		12038D4228D27998005D6DD7 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12038D4128D27998005D6DD7 /* ItemDetailViewController.swift */; };
 		12038D4428D27A33005D6DD7 /* ItemDetailTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12038D4328D27A33005D6DD7 /* ItemDetailTopView.swift */; };
-		120AAC9128D3E664000B3E8B /* ProjectColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120AAC9028D3E664000B3E8B /* ProjectColor.swift */; };
 		120AAC9328D3F5DC000B3E8B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120AAC9228D3F5DC000B3E8B /* ProfileViewController.swift */; };
 		120AAC9528D4090E000B3E8B /* ItemDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120AAC9428D4090E000B3E8B /* ItemDetailTableViewCell.swift */; };
 		120AAC9728D40BF7000B3E8B /* ItemDetailPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120AAC9628D40BF7000B3E8B /* ItemDetailPageView.swift */; };
 		120AAC9928D40D89000B3E8B /* ItemDetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120AAC9828D40D89000B3E8B /* ItemDetailPageViewController.swift */; };
+		120B37D128E360FA00A4806C /* NothingToBuyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B37D028E360FA00A4806C /* NothingToBuyView.swift */; };
+		120B37D628E3676700A4806C /* ProjectColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B37D528E3676700A4806C /* ProjectColor.swift */; };
 		1222B27328D20F6A0051210B /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1222B27228D20F6A0051210B /* BaseTableViewCell.swift */; };
 		1222B27528D20FCB0051210B /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1222B27428D20FCB0051210B /* MainTableViewCell.swift */; };
 		1222B27728D2190D0051210B /* SettingTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1222B27628D2190D0051210B /* SettingTopView.swift */; };
@@ -89,11 +90,12 @@
 		12038D3E28D26ABA005D6DD7 /* ListToBuyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListToBuyTableViewCell.swift; sourceTree = "<group>"; };
 		12038D4128D27998005D6DD7 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		12038D4328D27A33005D6DD7 /* ItemDetailTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailTopView.swift; sourceTree = "<group>"; };
-		120AAC9028D3E664000B3E8B /* ProjectColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectColor.swift; sourceTree = "<group>"; };
 		120AAC9228D3F5DC000B3E8B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		120AAC9428D4090E000B3E8B /* ItemDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailTableViewCell.swift; sourceTree = "<group>"; };
 		120AAC9628D40BF7000B3E8B /* ItemDetailPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailPageView.swift; sourceTree = "<group>"; };
 		120AAC9828D40D89000B3E8B /* ItemDetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailPageViewController.swift; sourceTree = "<group>"; };
+		120B37D028E360FA00A4806C /* NothingToBuyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NothingToBuyView.swift; sourceTree = "<group>"; };
+		120B37D528E3676700A4806C /* ProjectColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectColor.swift; sourceTree = "<group>"; };
 		1222B27228D20F6A0051210B /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		1222B27428D20FCB0051210B /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		1222B27628D2190D0051210B /* SettingTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTopView.swift; sourceTree = "<group>"; };
@@ -176,6 +178,14 @@
 				120AAC9628D40BF7000B3E8B /* ItemDetailPageView.swift */,
 			);
 			path = ItemDetailScreen;
+			sourceTree = "<group>";
+		};
+		120B37D428E3675D00A4806C /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				120B37D528E3676700A4806C /* ProjectColor.swift */,
+			);
+			path = Project;
 			sourceTree = "<group>";
 		};
 		1245C29428DA4810003449D2 /* AddGroupScreen */ = {
@@ -267,6 +277,7 @@
 		128D435828D0F1AE003C86BA /* YourCloset */ = {
 			isa = PBXGroup;
 			children = (
+				120B37D428E3675D00A4806C /* Project */,
 				125D8E0A28DE3823000EC37A /* Extension */,
 				1245C29728DA4884003449D2 /* DropDown */,
 				124F681F28D61F6B00FFC9C2 /* Realm */,
@@ -283,7 +294,6 @@
 				128D436428D0F1B0003C86BA /* LaunchScreen.storyboard */,
 				128D436728D0F1B0003C86BA /* Info.plist */,
 				128D438C28D11E0F003C86BA /* TabBarController.swift */,
-				120AAC9028D3E664000B3E8B /* ProjectColor.swift */,
 				1289FE9928E2072E007B49DC /* Pods.xcodeproj */,
 				128D435728D0F1AE003C86BA /* Products */,
 				F37DDBEAA6B21458F0AF6AE3 /* Pods */,
@@ -321,6 +331,7 @@
 				12038D3C28D264A4005D6DD7 /* ListToBuyTopView.swift */,
 				12038D3E28D26ABA005D6DD7 /* ListToBuyTableViewCell.swift */,
 				12BAABD428DF61C500668F40 /* BrandAndSizeCustomLabel.swift */,
+				120B37D028E360FA00A4806C /* NothingToBuyView.swift */,
 				125D8E0628DE188C000EC37A /* CheckBoxButton.swift */,
 			);
 			path = ListToBuyScreen;
@@ -529,12 +540,13 @@
 				125D8E1628DE6BFA000EC37A /* OpenSourceTableViewCell.swift in Sources */,
 				128D437528D0F929003C86BA /* BaseView.swift in Sources */,
 				12BAABD528DF61C500668F40 /* BrandAndSizeCustomLabel.swift in Sources */,
+				120B37D628E3676700A4806C /* ProjectColor.swift in Sources */,
 				1245C28428DA21A4003449D2 /* AddItemViewController.swift in Sources */,
 				122BE73828E0729400AB27A3 /* extension+UiViewController.swift in Sources */,
-				120AAC9128D3E664000B3E8B /* ProjectColor.swift in Sources */,
 				128D438D28D11E0F003C86BA /* TabBarController.swift in Sources */,
 				128D438828D11CBB003C86BA /* SettingViewController.swift in Sources */,
 				1222B27328D20F6A0051210B /* BaseTableViewCell.swift in Sources */,
+				120B37D128E360FA00A4806C /* NothingToBuyView.swift in Sources */,
 				12038D3F28D26ABA005D6DD7 /* ListToBuyTableViewCell.swift in Sources */,
 				12CF538928D8EA77001BF159 /* AddGroupView.swift in Sources */,
 				128D437728D0F9A6003C86BA /* MainViewController.swift in Sources */,
