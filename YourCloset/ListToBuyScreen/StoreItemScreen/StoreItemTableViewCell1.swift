@@ -27,6 +27,7 @@ class StoreItemTableViewCell1: BaseTableViewCell {
         }
     }
     
+    
     override func setConstraints() {
         infoLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()

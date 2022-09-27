@@ -15,21 +15,22 @@ class MainTopview: BaseView {
         let label = UILabel()
         label.text = "너의 옷장은"
         label.textAlignment = .left
-        label.font = UIFont.systemFont(ofSize: 22)
+        label.font = UIFont.boldSystemFont(ofSize: 22)
         return label
     }()
-    
+        
     let userNameLabel: UILabel = {
         let label = UILabel()
+        label.text = "이름없음"
         label.textAlignment = .right
-        label.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         return label
     }()
     
     let nimLabel: UILabel = {
         let label = UILabel()
         label.text = "님"
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: 16)
         return label
     }()
     

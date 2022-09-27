@@ -48,7 +48,6 @@ class ItemDetailPageViewController: BaseViewController, SendDataDelegate {
         vc.modalPresentationStyle = .fullScreen
         vc.transitionItem = transitionItem
         present(vc, animated: true)
-        
     }
     
     @objc func xButtonClicked() {
@@ -89,11 +88,30 @@ class ItemDetailPageViewController: BaseViewController, SendDataDelegate {
         self.itemDetailPageView.sizeInfoLabel.text = size
         if image != UIImage() {
             self.itemDetailPageView.itemImageView.image = image
+        } else {
+            self.itemDetailPageView.itemImageView.image = showCategoryImage()
         }
     }
     
     func reload() {
         self.delegate?.reload()
+    }
+    
+    func showCategoryImage() -> UIImage {
+        switch self.categoryInfo {
+        case "아우터":
+            return UIImage(named: "Jacket")!
+        case "상의":
+            return UIImage(named: "T-Shirt")!
+        case "하의":
+            return UIImage(named: "Pants")!
+        case "신발":
+            return UIImage(named: "Shoes")!
+        case "악세서리":
+            return UIImage(named: "Ring")!
+        default:
+            return UIImage()
+        }
     }
     
 }

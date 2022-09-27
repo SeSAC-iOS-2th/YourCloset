@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Pants.png",
+      "filename" : "free-icon-trouser-2390134.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "free-icon-trouser-2390134@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "free-icon-trouser-2390134@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -20,7 +20,7 @@ class ItemDetailTableHeaderView2: BaseTableViewHeaderFooterView {
     
     let removeButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "folder.fill.badge.minus"), for: .normal)
+        button.setImage(UIImage(systemName: "minus.circle.fill"), for: .normal)
         button.tintColor = .red
         return button
     }()
@@ -39,7 +39,7 @@ class ItemDetailTableHeaderView2: BaseTableViewHeaderFooterView {
         
         removeButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.trailing.equalTo(-15)
+            make.trailing.equalTo(-10)
         }
     }
     

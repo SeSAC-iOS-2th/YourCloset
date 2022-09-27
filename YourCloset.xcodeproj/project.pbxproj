@@ -41,11 +41,11 @@
 		12767FA628D7419700E4D58F /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 12767FA528D7419700E4D58F /* Toast */; };
 		12767FAE28D74D2900E4D58F /* StoreItemToBuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12767FAD28D74D2900E4D58F /* StoreItemToBuyViewController.swift */; };
 		12767FB028D777B500E4D58F /* StoreItemTableViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12767FAF28D777B500E4D58F /* StoreItemTableViewCell2.swift */; };
+		1289FE9828E20400007B49DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 128D436228D0F1B0003C86BA /* Assets.xcassets */; };
 		128D435A28D0F1AE003C86BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128D435928D0F1AE003C86BA /* AppDelegate.swift */; };
 		128D435C28D0F1AE003C86BA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128D435B28D0F1AE003C86BA /* SceneDelegate.swift */; };
 		128D435E28D0F1AE003C86BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128D435D28D0F1AE003C86BA /* ViewController.swift */; };
 		128D436128D0F1AE003C86BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 128D435F28D0F1AE003C86BA /* Main.storyboard */; };
-		128D436328D0F1B0003C86BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 128D436228D0F1B0003C86BA /* Assets.xcassets */; };
 		128D436628D0F1B0003C86BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 128D436428D0F1B0003C86BA /* LaunchScreen.storyboard */; };
 		128D436F28D0F5B5003C86BA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128D436E28D0F5B5003C86BA /* BaseViewController.swift */; };
 		128D437528D0F929003C86BA /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128D437428D0F929003C86BA /* BaseView.swift */; };
@@ -66,6 +66,23 @@
 		12CF538728D8EA5D001BF159 /* AddGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF538628D8EA5D001BF159 /* AddGroupViewController.swift */; };
 		12CF538928D8EA77001BF159 /* AddGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CF538828D8EA77001BF159 /* AddGroupView.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1289FEA028E20779007B49DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1289FE9928E2072E007B49DC /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9B6725B782188F18CB76A740433F14E4;
+			remoteInfo = DropDown;
+		};
+		1289FEA228E20779007B49DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1289FE9928E2072E007B49DC /* Pods.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2E35EAC90B116B086BC85544AF8BAF53;
+			remoteInfo = "Pods-YourCloset";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		12038D3C28D264A4005D6DD7 /* ListToBuyTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListToBuyTopView.swift; sourceTree = "<group>"; };
@@ -99,12 +116,13 @@
 		125D8E1528DE6BFA000EC37A /* OpenSourceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceTableViewCell.swift; sourceTree = "<group>"; };
 		12767FAD28D74D2900E4D58F /* StoreItemToBuyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemToBuyViewController.swift; sourceTree = "<group>"; };
 		12767FAF28D777B500E4D58F /* StoreItemTableViewCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemTableViewCell2.swift; sourceTree = "<group>"; };
+		1289FE9928E2072E007B49DC /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = ../Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		128D435628D0F1AE003C86BA /* YourCloset.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourCloset.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		128D435928D0F1AE003C86BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		128D435B28D0F1AE003C86BA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		128D435D28D0F1AE003C86BA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		128D436028D0F1AE003C86BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		128D436228D0F1B0003C86BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		128D436228D0F1B0003C86BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = YourCloset/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		128D436528D0F1B0003C86BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		128D436728D0F1B0003C86BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		128D436E28D0F5B5003C86BA /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -221,13 +239,19 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
+		1289FE9C28E20779007B49DC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1289FEA128E20779007B49DC /* DropDown.framework */,
+				1289FEA328E20779007B49DC /* Pods_YourCloset.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		128D434D28D0F1AE003C86BA = {
 			isa = PBXGroup;
 			children = (
 				128D435828D0F1AE003C86BA /* YourCloset */,
-				128D435728D0F1AE003C86BA /* Products */,
-				F37DDBEAA6B21458F0AF6AE3 /* Pods */,
-				32BA7899BAA80A5277116C19 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -237,6 +261,7 @@
 				128D435628D0F1AE003C86BA /* YourCloset.app */,
 			);
 			name = Products;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		128D435828D0F1AE003C86BA /* YourCloset */ = {
@@ -246,9 +271,9 @@
 				1245C29728DA4884003449D2 /* DropDown */,
 				124F681F28D61F6B00FFC9C2 /* Realm */,
 				128D437028D0F76A003C86BA /* MainScreen */,
+				12038D4028D27936005D6DD7 /* ItemDetailScreen */,
 				128D437228D0F7AD003C86BA /* ListToBuyScreen */,
 				128D437328D0F847003C86BA /* SettingScreen */,
-				12038D4028D27936005D6DD7 /* ItemDetailScreen */,
 				128D436D28D0F594003C86BA /* Base */,
 				128D435928D0F1AE003C86BA /* AppDelegate.swift */,
 				128D435B28D0F1AE003C86BA /* SceneDelegate.swift */,
@@ -259,6 +284,10 @@
 				128D436728D0F1B0003C86BA /* Info.plist */,
 				128D438C28D11E0F003C86BA /* TabBarController.swift */,
 				120AAC9028D3E664000B3E8B /* ProjectColor.swift */,
+				1289FE9928E2072E007B49DC /* Pods.xcodeproj */,
+				128D435728D0F1AE003C86BA /* Products */,
+				F37DDBEAA6B21458F0AF6AE3 /* Pods */,
+				32BA7899BAA80A5277116C19 /* Frameworks */,
 			);
 			path = YourCloset;
 			sourceTree = "<group>";
@@ -316,6 +345,7 @@
 				D3CA9D1F062F8230F453F179 /* Pods_YourCloset.framework */,
 			);
 			name = Frameworks;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		F37DDBEAA6B21458F0AF6AE3 /* Pods */ = {
@@ -324,7 +354,8 @@
 				19D1FAD9E17930F241E75AEF /* Pods-YourCloset.debug.xcconfig */,
 				7FF4E97C996567F681BA36D7 /* Pods-YourCloset.release.xcconfig */,
 			);
-			path = Pods;
+			name = Pods;
+			path = ../Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -388,6 +419,12 @@
 			);
 			productRefGroup = 128D435728D0F1AE003C86BA /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 1289FE9C28E20779007B49DC /* Products */;
+					ProjectRef = 1289FE9928E2072E007B49DC /* Pods.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				128D435528D0F1AE003C86BA /* YourCloset */,
@@ -395,13 +432,30 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		1289FEA128E20779007B49DC /* DropDown.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = DropDown.framework;
+			remoteRef = 1289FEA028E20779007B49DC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		1289FEA328E20779007B49DC /* Pods_YourCloset.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Pods_YourCloset.framework;
+			remoteRef = 1289FEA228E20779007B49DC /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		128D435428D0F1AE003C86BA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				128D436628D0F1B0003C86BA /* LaunchScreen.storyboard in Resources */,
-				128D436328D0F1B0003C86BA /* Assets.xcassets in Resources */,
+				1289FE9828E20400007B49DC /* Assets.xcassets in Resources */,
 				128D436128D0F1AE003C86BA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -656,12 +710,15 @@
 				DEVELOPMENT_TEAM = 9QNSJTHSUQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = YourCloset/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "너의 옷장은";
+				INFOPLIST_KEY_NSCameraUsageDescription = "촬영을 하기 위해 카메라 접근 권한이 필요함";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진을 불러오기 위해 갤러리 접근 권한이 필요함";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -669,6 +726,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.joongwon.YourCloset;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -686,12 +746,15 @@
 				DEVELOPMENT_TEAM = 9QNSJTHSUQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = YourCloset/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "너의 옷장은";
+				INFOPLIST_KEY_NSCameraUsageDescription = "촬영을 하기 위해 카메라 접근 권한이 필요함";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진을 불러오기 위해 갤러리 접근 권한이 필요함";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -699,6 +762,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.joongwon.YourCloset;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -12,39 +12,54 @@ import UIKit
 class MainTableViewCell: BaseTableViewCell {
     
     let categoryNameLabel: UILabel = {
-        let nameLabel = UILabel()
-        nameLabel.font = UIFont.systemFont(ofSize: 18)
-        return nameLabel
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 18)
+        return label
     }()
-    
+        
     let itemNumLabel: UILabel = {
-        let numLabel = UILabel()
-        numLabel.text = "0개의 아이템"
-        numLabel.textColor = .darkGray
-        numLabel.font = UIFont.systemFont(ofSize: 10)
-        return numLabel
+        let label = UILabel()
+        label.text = "0개의 아이템"
+        label.textColor = .darkGray
+        label.font = UIFont.systemFont(ofSize: 10)
+        return label
     }()
     
     let arrowImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "chevron.right")
+        imageView.image = UIImage(named: "Handle")
         imageView.tintColor = .black
         return imageView
     }()
+    
+    override var frame: CGRect {
+        get {
+            return super.frame
+        } set(newFrame) {
+            var frame = newFrame
+            let newWidth = UIScreen.main.bounds.width * 0.9
+            let space = (frame.width - newWidth) / 2
+            frame.size.width = newWidth
+            frame.origin.x += space
+            super.frame = frame
+        }
+    }
     
     
     override func configure() {
         [categoryNameLabel, itemNumLabel, arrowImageView].forEach {
             self.addSubview($0)
         }
+        
+        layoutSubviews()
     }
     
     override func setConstraints() {
         categoryNameLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(self.snp.centerY)
+            make.centerY.equalToSuperview()
             make.leading.equalTo(15)
         }
-        
+                
         arrowImageView.snp.makeConstraints { make in
             make.centerY.equalTo(categoryNameLabel.snp.centerY)
             make.trailing.equalTo(-15)
@@ -56,4 +71,5 @@ class MainTableViewCell: BaseTableViewCell {
             make.trailing.equalTo(arrowImageView.snp.leading).offset(-8)
         }
     }
+    
 }

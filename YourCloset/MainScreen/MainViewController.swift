@@ -16,6 +16,12 @@ class MainViewController: BaseViewController {
     let groupRepo = GroupRepository()
     let itemRepo = ItemRepository()
     
+    let backgroundImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "FrontOfCloset")
+        return imageView
+    }()
+    
     lazy var mainTopView: MainTopview = {
         let mainTopView = MainTopview()
         mainTopView.backgroundColor = .white
@@ -25,6 +31,7 @@ class MainViewController: BaseViewController {
     let tableView: UITableView = {
         let tableView = UITableView()
         tableView.isScrollEnabled = false
+        tableView.backgroundColor = .clear
         return tableView
     }()
     
@@ -54,6 +61,7 @@ class MainViewController: BaseViewController {
         tableView.dataSource = self
         tableView.register(MainTableViewCell.self, forCellReuseIdentifier: "MainTableViewCell")
         
+        view.backgroundColor = .white
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,19 +95,22 @@ class MainViewController: BaseViewController {
     
     
     override func configure() {
-        [mainTopView, tableView].forEach {
+        [backgroundImageView, mainTopView, tableView].forEach {
             self.view.addSubview($0)
         }
     }
     
     override func setConstraints() {
+        backgroundImageView.snp.makeConstraints { make in
+            make.edges.equalTo(0)
+        }
         mainTopView.snp.makeConstraints { make in
             make.leading.trailing.top.equalTo(0)
             make.height.equalToSuperview().multipliedBy(0.12)
         }
         tableView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalTo(0)
-            make.top.equalTo(mainTopView.snp.bottom)
+            make.top.equalTo(mainTopView.snp.bottom).offset(self.view.frame.height * 0.05)
         }
     }
     
@@ -119,6 +130,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         let myItemByCategory = itemRepo.fetchByCategory(categoryNameArray[indexPath.row], true)
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainTableViewCell", for: indexPath) as? MainTableViewCell else { return UITableViewCell() }
+        
+        cell.layer.borderWidth = 1
+        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.cornerRadius = 8
         
         cell.selectionStyle = .none
         cell.itemNumLabel.text = "\(myItemByCategory.count)개의 아이템"

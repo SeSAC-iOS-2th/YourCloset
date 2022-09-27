@@ -102,6 +102,9 @@ class AddItemViewController: BaseViewController {
                     if self.pickImage != nil {
                         self.saveImageToDocumentDirectory(imageName: "\(self.transitionItem.objectId).png", image: self.pickImage!)
                         print("바뀐 id: \(self.transitionItem.objectId)")
+                    } else {
+                        self.deleteImageFromDocumentDirectory(imageName: "\(self.transitionItem.objectId).png")
+                        print("갤러리 이미지 -> 디폴트 이미지, 갤러리 이미지 도큐먼트에서 삭제 완료")
                     }
                     self.delegate?.sendModifyData(name: self.myItemInfo.name!, brand: self.myItemInfo.brand!, size: self.myItemInfo.size!, image: self.pickImage ?? UIImage())
                     self.delegate?.reload()
@@ -212,6 +215,21 @@ class AddItemViewController: BaseViewController {
         }
     }
     
+    func deleteImageFromDocumentDirectory(imageName: String) {
+        guard let documentDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        
+        let imageURL = documentDirectory.appendingPathComponent(imageName)
+        
+        if FileManager.default.fileExists(atPath: imageURL.path) {
+            do {
+                try FileManager.default.removeItem(at: imageURL)
+                print("이미지 삭제 완료")
+            } catch {
+                print("이미지 삭제하지 못함")
+            }
+        }
+    }
+    
 }
 
 extension AddItemViewController: UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
@@ -275,22 +293,37 @@ extension AddItemViewController: UITableViewDelegate, UITableViewDataSource, UIT
     }
     
     @objc func galaryButtonClicked(_ sender: CameraAndGalaryButton) {
-        var config = YPImagePickerConfiguration()
-        config.library.mediaType = .photo
         
-        let picker = YPImagePicker(configuration: config)
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
-        picker.didFinishPicking { [unowned picker] items, _ in
-            if let photo = items.singlePhoto {
-                print("이미지: \(photo.image)")
-                print("url: \(photo.image.hashValue)")
-                
-                self.pickImage = photo.image
-                self.tableView.reloadData()
-            }
-            picker.dismiss(animated: true)
+        let defaultImageAction = UIAlertAction(title: "디폴트 이미지", style: .default) { _ in
+            self.pickImage = nil
+            self.tableView.reloadData()
         }
-        present(picker, animated: true)
+        let galaryImageAction = UIAlertAction(title: "갤러리 및 카메라", style: .default) { _ in
+            var config = YPImagePickerConfiguration()
+            config.library.mediaType = .photo
+            
+            let picker = YPImagePicker(configuration: config)
+            
+            picker.didFinishPicking { [unowned picker] items, _ in
+                if let photo = items.singlePhoto {
+                    print("이미지: \(photo.image)")
+                    print("url: \(photo.image.hashValue)")
+                    
+                    self.pickImage = photo.image
+                    self.tableView.reloadData()
+                }
+                picker.dismiss(animated: true)
+            }
+            self.present(picker, animated: true)
+        }
+        
+        actionSheet.addAction(defaultImageAction)
+        actionSheet.addAction(galaryImageAction)
+        
+        self.present(actionSheet, animated: true)
+        
     }
     
     func showCategoryImage() -> UIImage {

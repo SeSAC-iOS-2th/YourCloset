@@ -18,7 +18,7 @@ class SettingTableViewCell: BaseTableViewCell {
     
     let arrowImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "arrowtriangle.right.fill")
+        imageView.image = UIImage(systemName: "chevron.right")
         imageView.tintColor = .black
         return imageView
     }()

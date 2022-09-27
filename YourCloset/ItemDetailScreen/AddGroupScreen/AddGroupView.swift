@@ -45,13 +45,13 @@ class AddGroupView: BaseView {
         
         titleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(5)
+            make.top.equalTo(10)
         }
         
         inputTextField.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(20)
-            make.top.equalTo(titleLabel.snp.bottom).offset(10)
+            make.top.equalTo(titleLabel.snp.bottom).offset(15)
         }
         
         addButton.snp.makeConstraints { make in

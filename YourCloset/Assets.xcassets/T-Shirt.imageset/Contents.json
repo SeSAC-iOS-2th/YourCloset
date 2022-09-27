@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "T-Shirt.png",
+      "filename" : "free-icon-tshirt-2806248.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "free-icon-tshirt-2806248@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "free-icon-tshirt-2806248@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

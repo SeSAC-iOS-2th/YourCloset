@@ -85,7 +85,7 @@ class AddGroupViewController: BaseViewController {
     override func setConstraints() {
         addGroupView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
-            make.height.equalToSuperview().multipliedBy(0.15)
+            make.height.equalTo(120)
             make.width.equalToSuperview().multipliedBy(0.75)
         }
         

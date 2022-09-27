@@ -33,12 +33,19 @@ class ItemDetailViewController: BaseViewController, reloadTableDelegate {
         itemDetailTopView.addGroupButton.addTarget(self, action: #selector(addGroupButtonClicked), for: .touchUpInside)
         itemDetailTopView.addItemButton.addTarget(self, action: #selector(addItemButtonClicked), for: .touchUpInside)
         
-        itemDetailTopView.backgroundColor = .white
+        itemDetailTopView.backgroundColor = .clear
         return itemDetailTopView
+    }()
+    
+    let backgroundImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "InsideOfCloset")
+        return imageView
     }()
     
     let tableView: UITableView = {
         let tableView = UITableView()
+        tableView.backgroundColor = .clear
         return tableView
     }()
     
@@ -81,7 +88,7 @@ class ItemDetailViewController: BaseViewController, reloadTableDelegate {
     }
     
     override func configure() {
-        [itemDetailTopView, tableView].forEach {
+        [backgroundImageView, itemDetailTopView, tableView].forEach {
             view.addSubview($0)
         }
     }
@@ -91,8 +98,13 @@ class ItemDetailViewController: BaseViewController, reloadTableDelegate {
             make.leading.trailing.top.equalTo(0)
             make.height.equalTo(view.frame.height * 0.12)
         }
+        backgroundImageView.snp.makeConstraints { make in
+            make.edges.equalTo(0)
+        }
         tableView.snp.makeConstraints { make in
-            make.leading.trailing.bottom.equalTo(0)
+            make.width.equalToSuperview().multipliedBy(0.63)
+            make.height.equalToSuperview().multipliedBy(0.8)
+            make.centerX.equalToSuperview()
             make.top.equalTo(itemDetailTopView.snp.bottom)
         }
     }
@@ -125,7 +137,7 @@ extension ItemDetailViewController: UITableViewDelegate, UITableViewDataSource {
             return header
         } else {
             guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ItemDetailTableHeaderView2") as? ItemDetailTableHeaderView2 else { return UIView() }
-                    
+            
             header.groupLabel.text = groupByCategory[section].group
             header.removeButton.addTarget(self, action: #selector(removeButtonClicked(_:)), for: .touchUpInside)
             header.removeButton.tag = section
@@ -165,6 +177,9 @@ extension ItemDetailViewController: UITableViewDelegate, UITableViewDataSource {
         let itemsByGroup = itemRepo.fetchByGroup(groupByCategory[indexPath.section].category, groupByCategory[indexPath.section].group)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ItemDetailTableViewCell", for: indexPath) as? ItemDetailTableViewCell else { return UITableViewCell() }
         
+        cell.layer.cornerRadius = 8
+        cell.layer.borderWidth = 1
+        cell.layer.borderColor = UIColor.black.cgColor
         cell.itemNameLabel.text = itemsByGroup[indexPath.row].name
         
         return cell
