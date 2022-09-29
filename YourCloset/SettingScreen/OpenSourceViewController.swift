@@ -35,8 +35,10 @@ class OpenSourceViewController: BaseViewController {
         navigationItem.title = "오픈소스 라이브러리"
         navigationItem.leftBarButtonItem = leftBarButton
         
+        
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.isScrollEnabled = false
         tableView.register(OpenSourceTableViewCell.self, forCellReuseIdentifier: "OpenSourceTableViewCell")
     }
     

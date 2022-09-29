@@ -20,6 +20,7 @@ class GroupListTableViewCell: BaseTableViewCell {
     
     let groupLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 16)
         label.textColor = .black
         return label
     }()
@@ -31,13 +32,14 @@ class GroupListTableViewCell: BaseTableViewCell {
     }
     
     override func setConstraints() {
-        groupLabel.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-        }
         dotImageView.snp.makeConstraints { make in
             make.height.width.equalTo(5)
             make.centerY.equalToSuperview()
-            make.trailing.equalTo(groupLabel.snp.leading).offset(-10)
+            make.leading.equalTo(20)
+        }
+        groupLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalTo(dotImageView.snp.trailing).offset(10)
         }
     }
     

@@ -22,6 +22,8 @@ class GroupListTableViewController: BaseViewController {
         let view = UIView()
         view.backgroundColor = UIColor.projectColor(.backgroundColor)
         view.layer.cornerRadius = 8
+        view.layer.borderWidth = 3
+        view.layer.borderColor = UIColor.projectColor(.itemColor).cgColor
         return view
     }()
     
@@ -36,9 +38,15 @@ class GroupListTableViewController: BaseViewController {
     lazy var backButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "chevron.left"), for: .normal)
-        button.tintColor = .black
+        button.tintColor = UIColor.projectColor(.itemColor)
         button.addTarget(self, action: #selector(backButtonClicked), for: .touchUpInside)
         return button
+    }()
+    
+    let lineView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.projectColor(.itemColor)
+        return view
     }()
 
     let tableView: UITableView = {
@@ -66,7 +74,7 @@ class GroupListTableViewController: BaseViewController {
     }
 
     override func configure() {
-        [groupListView, titleLabel, backButton, tableView].forEach {
+        [groupListView, titleLabel, backButton, lineView, tableView].forEach {
             view.addSubview($0)
         }
     }
@@ -84,11 +92,16 @@ class GroupListTableViewController: BaseViewController {
         backButton.snp.makeConstraints { make in
             make.centerY.equalTo(titleLabel)
             make.leading.equalTo(groupListView).offset(15)
-            //make.height.width.equalTo(30)
+        }
+        lineView.snp.makeConstraints { make in
+            make.width.equalTo(groupListView)
+            make.height.equalTo(1)
+            make.top.equalTo(titleLabel.snp.bottom).offset(10)
+            make.centerX.equalToSuperview()
         }
         tableView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(20)
-            make.leading.trailing.bottom.equalTo(groupListView)
+            make.leading.trailing.bottom.equalTo(groupListView).inset(3)
         }
     }
 
@@ -99,6 +112,10 @@ extension GroupListTableViewController: UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return groupByCategory.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 35
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

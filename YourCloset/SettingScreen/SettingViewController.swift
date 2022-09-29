@@ -15,7 +15,7 @@ class SettingViewController: BaseViewController {
     let groupRepo = GroupRepository()
     let itemRepo = ItemRepository()
     
-    let settingArray = ["닉네임", "백업/복구", "초기화", "오픈소스 라이브러리", "버전 정보"]
+    let settingArray = ["닉네임", "오픈소스 라이브러리", "버전 정보", "초기화"]
     
     let settingTopView: SettingTopView = {
         let settingTopView = SettingTopView()
@@ -72,10 +72,10 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         cell.selectionStyle = .none
         cell.backgroundColor = UIColor.projectColor(.backgroundColor)
         
-        if indexPath.row == 1 || indexPath.row == 3 {
+        if indexPath.row == 1 {
             cell.arrowButton.setImage(UIImage(systemName: "chevron.right"), for: .normal)
         }
-        if indexPath.row == 4 {
+        if indexPath.row == 2 {
             cell.arrowButton.setTitle("1.0", for: .normal)
             cell.arrowButton.setTitleColor(UIColor.darkGray, for: .normal)
         }
@@ -88,13 +88,11 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             showProfile()
         case 1:
-            print("2번째 셀 클릭")
+            showOpenSource()
         case 2:
             dataInitAlert()
         case 3:
-            showOpenSource()
-        case 4:
-            print("5번째 셀 클릭")
+            dataInitAlert()
         default:
             print("디폴트")
         }
