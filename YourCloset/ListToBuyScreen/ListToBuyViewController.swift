@@ -12,7 +12,7 @@ import RealmSwift
 import Toast
 
 
-class ListToBuyViewController: BaseViewController {
+class ListToBuyViewController: BaseViewController, reloadTableDelegate {
     
     let itemRepo = ItemRepository()
     
@@ -72,9 +72,9 @@ class ListToBuyViewController: BaseViewController {
     
     @objc func addButtonClicked() {
         let vc = StoreItemToBuyViewController()
-        vc.modalPresentationStyle = .fullScreen
-        self.navigationController?.pushViewController(vc, animated: true)
-        print("Touch Button")
+        vc.modalPresentationStyle = .overFullScreen
+        vc.reloadDelegate = self
+        present(vc, animated: true)
     }
             
     override func viewDidLoad() {
@@ -104,6 +104,10 @@ class ListToBuyViewController: BaseViewController {
         shoesItems = itemRepo.fetchByCategory("신발", false)
         accessoriesItems = itemRepo.fetchByCategory("악세서리", false)
     }
+    
+    func reload() {
+        self.fetchRepo()
+    }
         
     override func configure() {
         [tableView, nothingToBuyView].forEach {
@@ -119,7 +123,6 @@ class ListToBuyViewController: BaseViewController {
             make.edges.equalTo(0)
         }
     }
-    
     
 }
 
@@ -165,28 +168,28 @@ extension ListToBuyViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             checkBoxButtonImage = (outerItems[indexPath.row].checkBoxStatus!) ? UIImage(systemName: "checkmark.rectangle.fill") : UIImage(systemName: "checkmark.rectangle")
             cell.itemNameLabel.text = outerItems[indexPath.row].name
-            cell.brandLabel.text = outerItems[indexPath.row].brand
-            cell.sizeLabel.text = outerItems[indexPath.row].size
+            cell.brandLabel.text = "브랜드: \(outerItems[indexPath.row].brand)"
+            cell.sizeLabel.text = "사이즈: \(outerItems[indexPath.row].size)"
         case 1:
             checkBoxButtonImage = (topItems[indexPath.row].checkBoxStatus!) ? UIImage(systemName: "checkmark.rectangle.fill") : UIImage(systemName: "checkmark.rectangle")
             cell.itemNameLabel.text = topItems[indexPath.row].name
-            cell.brandLabel.text = topItems[indexPath.row].brand
-            cell.sizeLabel.text = topItems[indexPath.row].size
+            cell.brandLabel.text = "브랜드: \(topItems[indexPath.row].brand)"
+            cell.sizeLabel.text = "사이즈: \(topItems[indexPath.row].size)"
         case 2:
             checkBoxButtonImage = (bottomItems[indexPath.row].checkBoxStatus!) ? UIImage(systemName: "checkmark.rectangle.fill") : UIImage(systemName: "checkmark.rectangle")
             cell.itemNameLabel.text = bottomItems[indexPath.row].name
-            cell.brandLabel.text = bottomItems[indexPath.row].brand
-            cell.sizeLabel.text = bottomItems[indexPath.row].size
+            cell.brandLabel.text = "브랜드: \(bottomItems[indexPath.row].brand)"
+            cell.sizeLabel.text = "사이즈: \(bottomItems[indexPath.row].size)"
         case 3:
             checkBoxButtonImage = (shoesItems[indexPath.row].checkBoxStatus!) ? UIImage(systemName: "checkmark.rectangle.fill") : UIImage(systemName: "checkmark.rectangle")
             cell.itemNameLabel.text = shoesItems[indexPath.row].name
-            cell.brandLabel.text = shoesItems[indexPath.row].brand
-            cell.sizeLabel.text = shoesItems[indexPath.row].size
+            cell.brandLabel.text = "브랜드: \(shoesItems[indexPath.row].brand)"
+            cell.sizeLabel.text = "사이즈: \(shoesItems[indexPath.row].size)"
         case 4:
             checkBoxButtonImage = (accessoriesItems[indexPath.row].checkBoxStatus!) ? UIImage(systemName: "checkmark.rectangle.fill") : UIImage(systemName: "checkmark.rectangle")
             cell.itemNameLabel.text = accessoriesItems[indexPath.row].name
-            cell.brandLabel.text = accessoriesItems[indexPath.row].brand
-            cell.sizeLabel.text = accessoriesItems[indexPath.row].size
+            cell.brandLabel.text = "브랜드: \(accessoriesItems[indexPath.row].brand)"
+            cell.sizeLabel.text = "사이즈: \(accessoriesItems[indexPath.row].size)"
         default:
             break
         }
@@ -301,7 +304,7 @@ extension ListToBuyViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 self.view.makeToast("내 옷장으로 이동되었습니다.", duration: 1.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
                 
-                tableView.reloadData()
+                self.fetchRepo()
             }
             
             let noAction = UIAlertAction(title: "아니오", style: .cancel)

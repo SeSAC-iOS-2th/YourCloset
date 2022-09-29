@@ -17,8 +17,34 @@ class GroupRepository {
     }
     
     func fetchByCategory(_ categoryName: String) -> Results<Group> {
-        return localRealm.objects(Group.self).filter("category == '\(categoryName)'")
+        return localRealm.objects(Group.self).filter("category == '\(categoryName)'").sorted(byKeyPath: "count", ascending: false)
     }
+    
+    func fetchSpecificGroup(_ categoryName: String, _ groupName: String) -> Group {
+        let group = localRealm.objects(Group.self).filter("category == '\(categoryName)' && group == '\(groupName)'")
+        return group[0]
+    }
+    
+    func plusCount(_ group: Group) {
+        do {
+            try localRealm.write {
+                group.count += 1
+            }
+        } catch let error {
+            print(error)
+        }
+    }
+    
+    func minusCount(_ group: Group) {
+        do {
+            try localRealm.write {
+                group.count -= 1
+            }
+        } catch let error {
+            print(error)
+        }
+    }
+
     
     func createItem(group: Group) {
         do {

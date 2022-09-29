@@ -1,34 +1,33 @@
 //
-//  AddGroupView.swift
+//  ProfileView.swift
 //  YourCloset
 //
-//  Created by 이중원 on 2022/09/20.
+//  Created by 이중원 on 2022/09/29.
 //
 
 import Foundation
-import SnapKit
 import UIKit
+import SnapKit
 
-class AddGroupView: BaseView {
+class ProfileView: BaseView {
     
-    let titleLabel: UILabel = {
+    let profileLabel: UILabel = {
         let label = UILabel()
-        label.text = "그룹 추가"
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.text = "닉네임"
         return label
     }()
     
     let inputTextField: UITextField = {
         let textField = UITextField()
-        textField.placeholder = "Group"
+        textField.placeholder = "1~4글자 입력"
         textField.layer.borderWidth = 1
         textField.layer.borderColor = UIColor.lightGray.cgColor
         return textField
     }()
     
-    let addButton: UIButton = {
+    let storeButton: UIButton = {
         let button = UIButton()
-        button.setTitle("추가", for: .normal)
+        button.setTitle("저장", for: .normal)
         button.setTitleColor(UIColor.black, for: .normal)
         button.layer.borderWidth = 1
         button.layer.cornerRadius = 8
@@ -36,42 +35,27 @@ class AddGroupView: BaseView {
         return button
     }()
     
-    let showListButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "list.bullet.rectangle.portrait.fill"), for: .normal)
-        button.tintColor = .black
-        return button
-    }()
-    
     override func configure() {
-        [titleLabel, inputTextField, addButton, showListButton].forEach {
+        [profileLabel, inputTextField, storeButton].forEach {
             self.addSubview($0)
         }
     }
     
     override func setConstraints() {
-        
-        titleLabel.snp.makeConstraints { make in
+        profileLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(10)
         }
-        
         inputTextField.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(20)
-            make.top.equalTo(titleLabel.snp.bottom).offset(15)
+            make.top.equalTo(profileLabel.snp.bottom).offset(15)
         }
-        
-        addButton.snp.makeConstraints { make in
+        storeButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.height.equalToSuperview().multipliedBy(0.25)
             make.width.equalToSuperview().multipliedBy(0.2)
             make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-10)
-        }
-        
-        showListButton.snp.makeConstraints { make in
-            make.centerX.equalTo(inputTextField.snp.trailing)
-            make.centerY.equalTo(titleLabel)
         }
     }
     

@@ -48,6 +48,8 @@ class MainViewController: BaseViewController {
         
         if let nickname = UserDefaults.standard.string(forKey: "nickname") {
             mainTopView.appTitleLabel.text = "\(nickname)님의 옷장"
+        } else {
+            mainTopView.appTitleLabel.text = "너의 옷장은"
         }
         
         setDefaultGroup()
@@ -58,11 +60,11 @@ class MainViewController: BaseViewController {
     
     func setDefaultGroup() {
         if groupRepo.fetch().count == 0 {
-            groupRepo.createItem(group: Group(category: "아우터", group: "Default"))
-            groupRepo.createItem(group: Group(category: "상의", group: "Default"))
-            groupRepo.createItem(group: Group(category: "하의", group: "Default"))
-            groupRepo.createItem(group: Group(category: "신발", group: "Default"))
-            groupRepo.createItem(group: Group(category: "악세서리", group: "Default"))
+            groupRepo.createItem(group: Group(category: "아우터", group: "Default", count: 100))
+            groupRepo.createItem(group: Group(category: "상의", group: "Default", count: 100))
+            groupRepo.createItem(group: Group(category: "하의", group: "Default", count: 100))
+            groupRepo.createItem(group: Group(category: "신발", group: "Default", count: 100))
+            groupRepo.createItem(group: Group(category: "악세서리", group: "Default", count: 100))
         }
     }
     

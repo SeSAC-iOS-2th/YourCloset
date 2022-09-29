@@ -12,13 +12,15 @@ import UIKit
 class Group: Object {
     @Persisted var category: String
     @Persisted var group: String
+    @Persisted var count: Int
     
     @Persisted(primaryKey: true) var objectId: ObjectId
     
-    convenience init(category: String, group: String) {
+    convenience init(category: String, group: String, count: Int) {
         self.init()
         self.category = category
         self.group = group
+        self.count = count
     }
 }
 

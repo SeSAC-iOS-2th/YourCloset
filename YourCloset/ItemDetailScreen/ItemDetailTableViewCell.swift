@@ -24,10 +24,16 @@ class ItemDetailTableViewCell: BaseTableViewCell {
     
     override func setConstraints() {
         itemNameLabel.snp.makeConstraints { make in
-            make.leading.equalTo(15)
+            make.leading.equalTo(5)
             make.centerY.equalToSuperview()
             make.height.equalTo(30)
         }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.contentView.layer.cornerRadius = 8
     }
     
 }

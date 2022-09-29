@@ -64,7 +64,7 @@ class ItemDetailViewController: BaseViewController, reloadTableDelegate, UIGestu
         label.text = "옷장에 옷들을 추가해보세요!"
         return label
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -177,12 +177,18 @@ extension ItemDetailViewController: UITableViewDelegate, UITableViewDataSource {
         return 30
     }
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        let itemsByGroup = itemRepo.fetchByGroup(groupByCategory[section].category, groupByCategory[section].group)
+        return itemsByGroup.count == 0 ? 0 : 30
+    }
+    
         
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ItemDetailTableHeaderView1") as? ItemDetailTableHeaderView1 else { return UIView() }
                             
             header.groupLabel.text = groupByCategory[section].group
+            header.groupLabel.textColor = .black
             header.backgroundColor = .clear
                             
             return header
@@ -192,11 +198,48 @@ extension ItemDetailViewController: UITableViewDelegate, UITableViewDataSource {
             header.backgroundColor = .clear
             
             header.groupLabel.text = groupByCategory[section].group
-            header.removeButton.addTarget(self, action: #selector(removeButtonClicked(_:)), for: .touchUpInside)
+            header.groupLabel.textColor = .black
+            header.removeButton.addTarget(self, action: #selector(showRemoveActionSheet(_:)), for: .touchUpInside)
             header.removeButton.tag = section
-            
+                        
             return header
         }
+    }
+    
+    @objc func showRemoveActionSheet(_ sender: UIButton) {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let removeGroupAction = UIAlertAction(title: "그룹 삭제", style: .default) { _ in
+            let itemsByGroup = self.itemRepo.fetchByGroup(self.groupByCategory[sender.tag].category, self.groupByCategory[sender.tag].group)
+            
+            let alert = UIAlertController(title: nil, message: "그룹을 삭제하시겠습니까?\n 해당 그룹의 아이템은 Default 그룹으로 옮겨집니다.", preferredStyle: .alert)
+            
+            let yesAction = UIAlertAction(title: "네", style: .default) { _ in
+                for item in itemsByGroup {
+                    self.itemRepo.updateGroupOfItem(item: item)
+                }
+                
+                let group = self.groupByCategory[sender.tag]
+                self.groupRepo.deleteItem(group: group)
+                
+                self.view.makeToast("삭제되었습니다.", duration: 1.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
+                
+                self.tableView.reloadData()
+            }
+            
+            let noAction = UIAlertAction(title: "아니오", style: .cancel)
+            
+            alert.addAction(yesAction)
+            alert.addAction(noAction)
+            
+            self.present(alert, animated: true)
+        }
+        let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+        
+        actionSheet.addAction(removeGroupAction)
+        actionSheet.addAction(cancelAction)
+        
+        self.present(actionSheet, animated: true)
     }
     
     @objc func removeButtonClicked(_ sender: UIButton) {
@@ -230,10 +273,10 @@ extension ItemDetailViewController: UITableViewDelegate, UITableViewDataSource {
         let itemsByGroup = itemRepo.fetchByGroup(groupByCategory[indexPath.section].category, groupByCategory[indexPath.section].group)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ItemDetailTableViewCell", for: indexPath) as? ItemDetailTableViewCell else { return UITableViewCell() }
         
-        cell.layer.cornerRadius = 2
+        cell.layer.cornerRadius = 8
         cell.layer.borderWidth = 1
         cell.layer.borderColor = UIColor.black.cgColor
-        cell.backgroundColor = UIColor.projectColor(.itemColor)
+        cell.backgroundColor = UIColor.projectColor(.backgroundColor)
         cell.itemNameLabel.text = itemsByGroup[indexPath.row].name
         
         return cell
@@ -241,6 +284,7 @@ extension ItemDetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let itemsByGroup = itemRepo.fetchByGroup(groupByCategory[indexPath.section].category, groupByCategory[indexPath.section].group)
+        let group = groupRepo.fetchSpecificGroup(groupByCategory[indexPath.section].category, groupByCategory[indexPath.section].group)
         
         let remove = UIContextualAction(style: .normal, title: nil) { action, view, completionHandler in
             
@@ -253,6 +297,9 @@ extension ItemDetailViewController: UITableViewDelegate, UITableViewDataSource {
                 self.itemRepo.deleteItem(item: item)
                 
                 self.view.makeToast("삭제되었습니다.", duration: 1.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
+                
+                self.groupRepo.minusCount(group)
+                
                 self.tableView.reloadData()
             }
             
@@ -274,7 +321,7 @@ extension ItemDetailViewController: UITableViewDelegate, UITableViewDataSource {
         let itemsByGroup = itemRepo.fetchByGroup(groupByCategory[indexPath.section].category, groupByCategory[indexPath.section].group)
         
         let vc = ItemDetailPageViewController()
-        vc.delegate = self
+        vc.reloadDelegate = self
         vc.modalPresentationStyle = .overCurrentContext
         if let image = loadImageFromDocumentDirectory(imageName: "\(itemsByGroup[indexPath.row].objectId).png") {
             vc.itemDetailPageView.itemImageView.image = image

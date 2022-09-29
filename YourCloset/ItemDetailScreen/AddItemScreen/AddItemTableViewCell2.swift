@@ -21,6 +21,19 @@ class AddItemTableViewCell2: BaseTableViewCell {
         return textField
     }()
     
+    override var frame: CGRect {
+        get {
+            return super.frame
+        } set(newFrame) {
+            var frame = newFrame
+            let newWidth = UIScreen.main.bounds.width * 0.65
+            let space = (frame.width - newWidth) / 2
+            frame.size.width = newWidth
+            frame.origin.x += space
+            super.frame = frame
+        }
+    }
+    
     override func configure() {
         [infoLabel, infoTextField].forEach {
             self.contentView.addSubview($0)
@@ -31,12 +44,12 @@ class AddItemTableViewCell2: BaseTableViewCell {
         infoLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.width.equalTo(70)
-            make.leading.equalTo(20)
+            make.leading.equalTo(0)
         }
         
         infoTextField.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.equalTo(infoLabel.snp.trailing).offset(20)
+            make.leading.equalTo(infoLabel.snp.trailing).offset(10)
         }
     }
 }

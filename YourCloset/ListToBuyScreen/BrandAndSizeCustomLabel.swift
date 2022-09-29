@@ -22,9 +22,9 @@ class BrandAndSizeCustomLabel: UILabel {
     
     func configure() {
         font = UIFont.systemFont(ofSize: 14)
-        layer.borderWidth = 0.5
-        layer.borderColor = UIColor.black.cgColor
-        layer.cornerRadius = 5
+//        layer.borderWidth = 0.5
+//        layer.borderColor = UIColor.black.cgColor
+//        layer.cornerRadius = 5
         textAlignment = .center
     }
 }

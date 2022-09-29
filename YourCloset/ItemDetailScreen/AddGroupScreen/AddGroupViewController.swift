@@ -16,11 +16,12 @@ class AddGroupViewController: BaseViewController {
     
     var categoryInfo = ""
     
-    let addGroupView: AddGroupView = {
+    lazy var addGroupView: AddGroupView = {
         let addGroupView = AddGroupView()
         addGroupView.backgroundColor = UIColor.projectColor(.backgroundColor)
         addGroupView.layer.cornerRadius = 8
         addGroupView.inputTextField.becomeFirstResponder()
+        addGroupView.showListButton.addTarget(self, action: #selector(showGroupListButtonClicked), for: .touchUpInside)
         return addGroupView
     }()
     
@@ -59,21 +60,41 @@ class AddGroupViewController: BaseViewController {
         if let text = self.addGroupView.inputTextField.text, text.isEmpty {
             self.view.makeToast("입력값이 비어있습니다.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
         } else {
-            let alert = UIAlertController(title: nil, message: "그룹을 추가하시겠습니까?", preferredStyle: .alert)
-            
-            let yesAction = UIAlertAction(title: "네", style: .default) { _ in
-                let group = Group(category: self.categoryInfo, group: self.addGroupView.inputTextField.text ?? "")
-                self.groupRepo.createItem(group: group)
-                self.view.makeToast("저장되었습니다.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
-                self.dismiss(animated: true)
+            if checkExistGroup(self.addGroupView.inputTextField.text) {
+                self.view.makeToast("이미 존재하는 그룹입니다!", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
+            } else {
+                let alert = UIAlertController(title: nil, message: "그룹을 추가하시겠습니까?", preferredStyle: .alert)
+                
+                let yesAction = UIAlertAction(title: "네", style: .default) { _ in
+                    let group = Group(category: self.categoryInfo, group: self.addGroupView.inputTextField.text ?? "", count: 0)
+                    self.groupRepo.createItem(group: group)
+                    self.view.makeToast("저장되었습니다.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
+                    self.dismiss(animated: true)
+                }
+                let noAction = UIAlertAction(title: "아니오", style: .cancel)
+                
+                alert.addAction(yesAction)
+                alert.addAction(noAction)
+                
+                present(alert, animated: true)
             }
-            let noAction = UIAlertAction(title: "아니오", style: .cancel)
-            
-            alert.addAction(yesAction)
-            alert.addAction(noAction)
-            
-            present(alert, animated: true)
         }
+    }
+    
+    @objc func showGroupListButtonClicked() {
+        let vc = GroupListTableViewController()
+        vc.categoryInfo = categoryInfo
+        self.present(vc, animated: true)
+    }
+    
+    func checkExistGroup(_ inputGroup: String!) -> Bool {
+        let group = self.groupRepo.fetchByCategory(self.categoryInfo)
+        
+        for element in group {
+            if inputGroup == element.group { return true }
+        }
+        
+        return false
     }
     
     override func configure() {

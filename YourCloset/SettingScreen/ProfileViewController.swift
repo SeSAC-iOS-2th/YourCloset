@@ -12,93 +12,81 @@ import Toast
 
 class ProfileViewController: BaseViewController {
     
-    lazy var leftBarButton: UIBarButtonItem = {
-        let barButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonClikced))
-        barButton.tintColor = .black
-        return barButton
+    let profileView: ProfileView = {
+        let profileView = ProfileView()
+        profileView.backgroundColor = UIColor.projectColor(.backgroundColor)
+        profileView.layer.cornerRadius = 8
+        profileView.inputTextField.becomeFirstResponder()
+        return profileView
     }()
     
-    lazy var rightBarButton: UIBarButtonItem = {
-        let barButton = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(storeButtonClicked))
-        barButton.tintColor = .black
-        return barButton
+    lazy var xButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.addTarget(self, action: #selector(xButtonClicked), for: .touchUpInside)
+        button.tintColor = .lightGray
+        return button
     }()
     
-    let nicknameLabel: UILabel = {
-        let label = UILabel()
-        label.text = "닉네임: "
-        return label
-    }()
-    
-    lazy var nicknameTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "1~4글자 입력"
-        textField.layer.borderWidth = 1
-        textField.layer.borderColor = UIColor.lightGray.cgColor
-        textField.font = UIFont.systemFont(ofSize: 18)
-        textField.delegate = self
-        textField.becomeFirstResponder()
-        return textField
-    }()
-    
-    @objc func backButtonClikced() {
+    @objc func xButtonClicked() {
         dismiss(animated: true)
     }
-        
+
     @objc func storeButtonClicked() {
-        if let nickname = self.nicknameTextField.text, nickname.isEmpty {
+        if let nickname = self.profileView.inputTextField.text, nickname.isEmpty {
             self.view.makeToast("입력값이 비어있습니다.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
         } else {
-            let alert = UIAlertController(title: nil, message: "닉네임을 저장하시겠습니까?", preferredStyle: .alert)
-            
-            let yesAction = UIAlertAction(title: "네", style: .default, handler: {_ in
-                UserDefaults.standard.set(self.nicknameTextField.text, forKey: "nickname")
-                self.view.makeToast("저장되었습니다.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
+            if self.profileView.inputTextField.text == UserDefaults.standard.string(forKey: "nickname") {
+                self.view.makeToast("중복된 닉네임입니다.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
+            } else {
+                let alert = UIAlertController(title: nil, message: "닉네임을 저장하시겠습니까?", preferredStyle: .alert)
                 
-                self.nicknameTextField.resignFirstResponder()
+                let yesAction = UIAlertAction(title: "네", style: .default, handler: {_ in
+                    UserDefaults.standard.set(self.profileView.inputTextField.text, forKey: "nickname")
+                    self.view.makeToast("저장되었습니다.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
 
-            })
-            let noAction = UIAlertAction(title: "아니오", style: .cancel)
-            
-            alert.addAction(yesAction)
-            alert.addAction(noAction)
-            
-            present(alert, animated: true)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                        self.dismiss(animated: true)
+                    })
+                })
+                let noAction = UIAlertAction(title: "아니오", style: .cancel)
+
+                alert.addAction(yesAction)
+                alert.addAction(noAction)
+
+                self.present(alert, animated: true)
+            }
         }
-    }
-    
+}
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         hideKeyboardWhenTappedBackground()
+        view.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.5)
         
-        view.backgroundColor = UIColor.projectColor(.backgroundColor)
-        
-        navigationItem.title = "프로필"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
-        navigationItem.leftBarButtonItem = leftBarButton
-        navigationItem.rightBarButtonItem = rightBarButton
+        self.profileView.inputTextField.delegate = self
+        self.profileView.storeButton.addTarget(self, action: #selector(storeButtonClicked), for: .touchUpInside)
     }
     
     override func configure() {
-        [nicknameLabel, nicknameTextField].forEach {
+        [profileView, xButton].forEach {
             view.addSubview($0)
         }
     }
 
     override func setConstraints() {
-        nicknameLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(50)
-            make.leading.equalTo(view.safeAreaLayoutGuide).offset(15)
-            make.width.equalTo(50)
+        profileView.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+            make.height.equalTo(120)
+            make.width.equalToSuperview().multipliedBy(0.75)
         }
-        nicknameTextField.snp.makeConstraints { make in
-            make.top.equalTo(nicknameLabel.snp.top)
-            make.leading.equalTo(nicknameLabel.snp.trailing).offset(5)
-            make.trailing.equalTo(view.safeAreaLayoutGuide).offset(-15)
-        }
-    }
+        
+        xButton.snp.makeConstraints { make in
+            make.trailing.equalTo(profileView.snp.leading).offset(-10)
+            make.bottom.equalTo(profileView.snp.top).offset(-10)
+            make.height.width.equalTo(20)
+        }    }
     
 }
 

@@ -15,7 +15,7 @@ class SettingViewController: BaseViewController {
     let groupRepo = GroupRepository()
     let itemRepo = ItemRepository()
     
-    let settingArray = ["프로필", "백업/복구", "초기화", "오픈소스 라이브러리", "버전 정보"]
+    let settingArray = ["닉네임", "백업/복구", "초기화", "오픈소스 라이브러리", "버전 정보"]
     
     let settingTopView: SettingTopView = {
         let settingTopView = SettingTopView()
@@ -71,7 +71,14 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         cell.nameLabel.text = settingArray[indexPath.row]
         cell.selectionStyle = .none
         cell.backgroundColor = UIColor.projectColor(.backgroundColor)
-
+        
+        if indexPath.row == 1 || indexPath.row == 3 {
+            cell.arrowButton.setImage(UIImage(systemName: "chevron.right"), for: .normal)
+        }
+        if indexPath.row == 4 {
+            cell.arrowButton.setTitle("1.0", for: .normal)
+            cell.arrowButton.setTitleColor(UIColor.darkGray, for: .normal)
+        }
         return cell
     }
     
@@ -96,9 +103,8 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     
     func showProfile() {
         let vc = ProfileViewController()
-        let nav = UINavigationController(rootViewController: vc)
-        nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: true)
+        vc.modalPresentationStyle = .overCurrentContext
+        present(vc, animated: true)
     }
     
     func dataInitAlert() {
@@ -111,6 +117,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             self.itemRepo.deleteAll()
             
             UserDefaults.standard.removeObject(forKey: "nickname")
+//            UserDefaults.standard.set("이름없음~!@#$%", forKey: "nickname")
             
             self.view.makeToast("초기화되었습니다.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
         }

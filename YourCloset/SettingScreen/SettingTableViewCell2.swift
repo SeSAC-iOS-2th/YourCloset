@@ -1,15 +1,15 @@
 //
-//  SettingTableViewCell.swift
+//  SettingTableViewCell2.swift
 //  YourCloset
 //
-//  Created by 이중원 on 2022/09/14.
+//  Created by 이중원 on 2022/09/29.
 //
 
 import Foundation
 import SnapKit
 import UIKit
 
-class SettingTableViewCell: BaseTableViewCell {
+class SettingTableViewCell2: BaseTableViewCell {
     
     let nameLabel: UILabel = {
         let label = UILabel()

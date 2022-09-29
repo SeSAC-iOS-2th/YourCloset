@@ -25,7 +25,7 @@ class ItemDetailTableHeaderView1: BaseTableViewHeaderFooterView {
     override func setConstraints() {
         groupLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.equalTo(15)
+            make.leading.equalTo(5)
         }
     }
 

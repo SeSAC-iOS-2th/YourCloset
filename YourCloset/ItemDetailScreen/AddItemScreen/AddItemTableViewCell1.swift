@@ -30,6 +30,19 @@ class AddItemTableViewCell1: BaseTableViewCell {
         return imageView
     }()
     
+    override var frame: CGRect {
+        get {
+            return super.frame
+        } set(newFrame) {
+            var frame = newFrame
+            let newWidth = UIScreen.main.bounds.width * 0.65
+            let space = (frame.width - newWidth) / 2
+            frame.size.width = newWidth
+            frame.origin.x += space
+            super.frame = frame
+        }
+    }
+    
     override func configure() {
         [itemImageView, galaryButton, galaryButtonImageView].forEach {
             contentView.addSubview($0)
@@ -39,9 +52,8 @@ class AddItemTableViewCell1: BaseTableViewCell {
     override func setConstraints() {
         itemImageView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
-            //make.height.equalToSuperview().multipliedBy(0.75)
-            //make.width.equalToSuperview().multipliedBy(0.45)
-            make.width.height.equalTo(150)
+            //make.width.height.equalTo(250)
+            make.width.height.equalTo(UIScreen.main.bounds.width * 0.65)
         }
         
         galaryButton.snp.makeConstraints { make in

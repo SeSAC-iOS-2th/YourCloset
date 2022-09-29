@@ -21,6 +21,7 @@ class ItemDetailPageViewController: BaseViewController, SendDataDelegate {
     
     lazy var itemDetailPageView: ItemDetailPageView = {
         let pageView = ItemDetailPageView()
+        pageView.layer.cornerRadius = 8
         pageView.backgroundColor = UIColor.projectColor(.backgroundColor)
         pageView.modifyButton.addTarget(self, action: #selector(modifyButtonClicked), for: .touchUpInside)
         return pageView
@@ -36,11 +37,11 @@ class ItemDetailPageViewController: BaseViewController, SendDataDelegate {
     
     var transitionItem = Item()
     
-    weak var delegate: reloadTableDelegate?
+    weak var reloadDelegate: reloadTableDelegate?
     
     @objc func modifyButtonClicked() {
         let vc = AddItemViewController()
-        vc.delegate = self
+        vc.sendDelegate = self
         UserDefaults.standard.set("modify", forKey: "addOrModify")
         vc.beforeModifyInfo.append(contentsOf: [itemDetailPageView.itemNameInfoLabel.text!, itemDetailPageView.brandInfoLabel.text!, itemDetailPageView.sizeInfoLabel.text!])
         vc.pickImage = itemDetailPageView.itemImageView.image
@@ -51,7 +52,7 @@ class ItemDetailPageViewController: BaseViewController, SendDataDelegate {
     }
     
     @objc func xButtonClicked() {
-        self.delegate?.reload()
+        self.reloadDelegate?.reload()
         dismiss(animated: true)
     }
     
@@ -71,8 +72,8 @@ class ItemDetailPageViewController: BaseViewController, SendDataDelegate {
         itemDetailPageView.snp.makeConstraints { make in
             make.centerX.equalTo(view.snp.centerX)
             make.centerY.equalTo(view.snp.centerY)
-            make.height.equalTo(view.frame.height * 0.5)
-            make.width.equalTo(view.frame.width * 0.75)
+            make.height.equalTo(500)
+            make.width.equalTo(300)
         }
         
         xButton.snp.makeConstraints { make in
@@ -94,7 +95,7 @@ class ItemDetailPageViewController: BaseViewController, SendDataDelegate {
     }
     
     func reload() {
-        self.delegate?.reload()
+        self.reloadDelegate?.reload()
     }
     
     func showCategoryImage() -> UIImage {
@@ -115,4 +116,5 @@ class ItemDetailPageViewController: BaseViewController, SendDataDelegate {
     }
     
 }
+
 

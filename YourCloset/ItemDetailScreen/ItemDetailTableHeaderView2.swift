@@ -1,8 +1,8 @@
 //
-//  ItemDetailTableHeaderView.swift
+//  ItemDetailTableHeaderView2.swift
 //  YourCloset
 //
-//  Created by 이중원 on 2022/09/22.
+//  Created by 이중원 on 2022/09/29.
 //
 
 import Foundation
@@ -17,11 +17,11 @@ class ItemDetailTableHeaderView2: BaseTableViewHeaderFooterView {
         label.font = UIFont.systemFont(ofSize: 14)
         return label
     }()
-    
+        
     let removeButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "minus.circle.fill"), for: .normal)
-        button.tintColor = .red
+        button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+        button.tintColor = .black
         return button
     }()
     
@@ -34,14 +34,13 @@ class ItemDetailTableHeaderView2: BaseTableViewHeaderFooterView {
     override func setConstraints() {
         groupLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.equalTo(15)
+            make.leading.equalTo(5)
         }
-        
+                
         removeButton.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.trailing.equalTo(-10)
         }
     }
-    
     
 }

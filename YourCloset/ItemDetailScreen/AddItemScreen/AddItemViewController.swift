@@ -60,7 +60,7 @@ class AddItemViewController: BaseViewController {
     
     var pickImage: UIImage?
         
-    weak var delegate: SendDataDelegate?
+    weak var sendDelegate: SendDataDelegate?
     
     lazy var addItemTopView: AddItemTopView = {
         let addItemTopView = AddItemTopView()
@@ -92,6 +92,7 @@ class AddItemViewController: BaseViewController {
             let yesAction = UIAlertAction(title: "네", style: .default, handler: {_ in
                             
                 if self.isAddNotModify() {
+                    
                     let item = Item(category: self.categoryInfo, group: self.myItemInfo.group!, imageURL: "", name: self.myItemInfo.name!, brand: self.myItemInfo.brand!, size: self.myItemInfo.size!, purchasingStatus: true)
                     self.itemRepo.createItem(item: item)
                     if self.pickImage != nil {
@@ -99,17 +100,25 @@ class AddItemViewController: BaseViewController {
                         print("그냥 id: \(item.objectId)")
                     }
                 } else {
+                    
                     self.itemRepo.modifyItemInfo(item: self.transitionItem, group: self.myItemInfo.group!, name: self.myItemInfo.name!, brand: self.myItemInfo.brand!, size: self.myItemInfo.size!)
                     if self.pickImage != nil {
+                        
                         self.saveImageToDocumentDirectory(imageName: "\(self.transitionItem.objectId).png", image: self.pickImage!)
                         print("바뀐 id: \(self.transitionItem.objectId)")
+                        
                     } else {
+                        
                         self.deleteImageFromDocumentDirectory(imageName: "\(self.transitionItem.objectId).png")
                         print("갤러리 이미지 -> 디폴트 이미지, 갤러리 이미지 도큐먼트에서 삭제 완료")
+                        
                     }
-                    self.delegate?.sendModifyData(name: self.myItemInfo.name!, brand: self.myItemInfo.brand!, size: self.myItemInfo.size!, image: self.pickImage ?? UIImage())
-                    self.delegate?.reload()
+                    
+                    self.sendDelegate?.sendModifyData(name: self.myItemInfo.name!, brand: self.myItemInfo.brand!, size: self.myItemInfo.size!, image: self.pickImage ?? UIImage())
+                    
+                    self.sendDelegate?.reload()
                 }
+                self.groupRepo.plusCount(self.groupRepo.fetchSpecificGroup(self.categoryInfo, self.myItemInfo.group!))
                 self.view.makeToast(toastMessage, duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
                 self.presentingViewController?.dismiss(animated: true)
             })
@@ -240,7 +249,7 @@ extension AddItemViewController: UITableViewDelegate, UITableViewDataSource, UIT
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return indexPath.row == 0 ? 200 : 50
+        return indexPath.row == 0 ? 300 : 50
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -286,8 +295,10 @@ extension AddItemViewController: UITableViewDelegate, UITableViewDataSource, UIT
             cell.selectionStyle = .none
             cell.backgroundColor = UIColor.projectColor(.backgroundColor)
             cell.infoLabel.text = infoNameArray[indexPath.row]
+            
             cell.infoTextField.placeholder = infoPlaceholderArray[indexPath.row]
             cell.infoTextField.tag = indexPath.row - 1
+            
             if !isAddNotModify() {
                 cell.infoTextField.text = beforeModifyInfo[indexPath.row - 1]
             }
@@ -368,9 +379,17 @@ extension AddItemViewController: UITableViewDelegate, UITableViewDataSource, UIT
             break
         }
     }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let currentText = textField.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return false }
+        
+        let changeText = currentText.replacingCharacters(in: stringRange, with: string)
+        return changeText.count <= 14
+    }
         
     func setDropDown(_ dropView: UIView, _ dropTextField: UITextField, _ iconImageView: UIImageView) {
-        dropView.backgroundColor = hexStringToUIColor(hex: "#F1F1F1")
+        dropView.backgroundColor = UIColor.lightGray
         dropView.layer.cornerRadius = 8
         
         if !isAddNotModify() {
@@ -384,8 +403,8 @@ extension AddItemViewController: UITableViewDelegate, UITableViewDataSource, UIT
         iconImageView.tintColor = .gray
         
         DropDown.appearance().textColor = UIColor.black
-        DropDown.appearance().selectedTextColor = UIColor.blue
-        DropDown.appearance().backgroundColor = UIColor.white
+        DropDown.appearance().selectedTextColor = UIColor.red
+        DropDown.appearance().backgroundColor = UIColor.projectColor(.backgroundColor)
         DropDown.appearance().selectionBackgroundColor = UIColor.lightGray
         DropDown.appearance().setupCornerRadius(8)
         dropDown.dismissMode = .automatic
@@ -407,27 +426,5 @@ extension AddItemViewController: UITableViewDelegate, UITableViewDataSource, UIT
     @objc func dropDownClicked() {
         dropDown.show()
     }
-    
-    func hexStringToUIColor (hex:String) -> UIColor {
-        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-
-        if (cString.hasPrefix("#")) {
-            cString.remove(at: cString.startIndex)
-        }
-
-        if ((cString.count) != 6) {
-            return UIColor.gray
-        }
-
-        var rgbValue:UInt64 = 0
-        Scanner(string: cString).scanHexInt64(&rgbValue)
-
-        return UIColor(
-            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
-            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
-            alpha: CGFloat(1.0)
-        )
-    }
-
 }
+

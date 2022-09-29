@@ -17,33 +17,33 @@ class ItemDetailPageView: BaseView {
         return imageView
     }()
     
-    let itemNameLabel: UILabel = {
-        let label = UILabel()
+    let itemNameLabel: CustomLabel = {
+        let label = CustomLabel()
         label.text = "제품명: "
         return label
     }()
-    let itemNameInfoLabel: UILabel = {
-        let label = UILabel()
+    let itemNameInfoLabel: CustomLabel = {
+        let label = CustomLabel()
         return label
     }()
     
-    let brandLabel: UILabel = {
-        let label = UILabel()
+    let brandLabel: CustomLabel = {
+        let label = CustomLabel()
         label.text = "브랜드: "
         return label
     }()
-    let brandInfoLabel: UILabel = {
-        let label = UILabel()
+    let brandInfoLabel: CustomLabel = {
+        let label = CustomLabel()
         return label
     }()
 
-    let sizeLabel: UILabel = {
-        let label = UILabel()
+    let sizeLabel: CustomLabel = {
+        let label = CustomLabel()
         label.text = "사이즈: "
         return label
     }()
-    let sizeInfoLabel: UILabel = {
-        let label = UILabel()
+    let sizeInfoLabel: CustomLabel = {
+        let label = CustomLabel()
         return label
     }()
         
@@ -57,7 +57,7 @@ class ItemDetailPageView: BaseView {
     let modifyButton: UIButton = {
         let button = UIButton()
         button.setTitle("정보 수정하기", for: .normal)
-        button.setTitleColor(UIColor.black, for: .normal)
+        button.setTitleColor(UIColor.projectColor(.closetEdgeColor), for: .normal)
         return button
     }()
     
@@ -72,38 +72,37 @@ class ItemDetailPageView: BaseView {
             itemImageView.snp.makeConstraints { make in
                 make.centerX.equalToSuperview()
                 make.top.equalTo(30)
-                //make.width.equalToSuperview().multipliedBy(0.65)
-                //make.height.equalToSuperview().multipliedBy(0.4)
-                make.width.height.equalTo(150)
+                make.width.height.equalTo(250)
             }
             
             itemNameLabel.snp.makeConstraints { make in
-                make.leading.equalTo(self.safeAreaLayoutGuide).offset(30)
-                make.top.equalTo(itemImageView.snp.bottom).offset(15)
+                make.leading.equalTo(itemImageView)
+                make.top.equalTo(itemImageView.snp.bottom).offset(30)
             }
             
             itemNameInfoLabel.snp.makeConstraints { make in
-                make.leading.equalTo(itemNameLabel.snp.trailing).offset(10)
+                make.leading.equalTo(itemNameLabel.snp.trailing)
+                make.width.equalTo(200)
                 make.top.equalTo(itemNameLabel)
             }
             
             brandLabel.snp.makeConstraints { make in
-                make.leading.equalTo(self.safeAreaLayoutGuide).offset(30)
+                make.leading.equalTo(itemImageView)
                 make.top.equalTo(itemNameLabel.snp.bottom).offset(15)
             }
             
             brandInfoLabel.snp.makeConstraints { make in
-                make.leading.equalTo(brandLabel.snp.trailing).offset(10)
+                make.leading.equalTo(brandLabel.snp.trailing)
                 make.top.equalTo(brandLabel)
             }
             
             sizeLabel.snp.makeConstraints { make in
-                make.leading.equalTo(self.safeAreaLayoutGuide).offset(30)
+                make.leading.equalTo(itemImageView)
                 make.top.equalTo(brandLabel.snp.bottom).offset(15)
             }
             
             sizeInfoLabel.snp.makeConstraints { make in
-                make.leading.equalTo(sizeLabel.snp.trailing).offset(10)
+                make.leading.equalTo(sizeLabel.snp.trailing)
                 make.top.equalTo(sizeLabel)
             }
                                     
