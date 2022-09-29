@@ -17,13 +17,14 @@
 		120AAC9928D40D89000B3E8B /* ItemDetailPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120AAC9828D40D89000B3E8B /* ItemDetailPageViewController.swift */; };
 		120B37D128E360FA00A4806C /* NothingToBuyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B37D028E360FA00A4806C /* NothingToBuyView.swift */; };
 		120B37D628E3676700A4806C /* ProjectColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B37D528E3676700A4806C /* ProjectColor.swift */; };
+		1218F19E28E569AE00100044 /* GroupListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1218F19D28E569AE00100044 /* GroupListTableViewCell.swift */; };
+		1218F1A028E5778200100044 /* StoreItemToBuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1218F19F28E5778200100044 /* StoreItemToBuyViewController.swift */; };
 		1222B27328D20F6A0051210B /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1222B27228D20F6A0051210B /* BaseTableViewCell.swift */; };
 		1222B27528D20FCB0051210B /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1222B27428D20FCB0051210B /* MainTableViewCell.swift */; };
 		1222B27728D2190D0051210B /* SettingTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1222B27628D2190D0051210B /* SettingTopView.swift */; };
-		1222B27928D21C010051210B /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1222B27828D21C010051210B /* SettingTableViewCell.swift */; };
+		1222B27928D21C010051210B /* SettingTableViewCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1222B27828D21C010051210B /* SettingTableViewCell1.swift */; };
 		122BE73828E0729400AB27A3 /* extension+UiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 122BE73728E0729400AB27A3 /* extension+UiViewController.swift */; };
 		1235FC0828DC145700531AFF /* BaseTableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1235FC0728DC145700531AFF /* BaseTableViewHeaderFooterView.swift */; };
-		1235FC0A28DC150700531AFF /* ItemDetailTableHeaderView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1235FC0928DC150700531AFF /* ItemDetailTableHeaderView2.swift */; };
 		1245C28428DA21A4003449D2 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1245C28328DA21A4003449D2 /* AddItemViewController.swift */; };
 		1245C28B28DA2D4A003449D2 /* AddItemTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1245C28A28DA2D4A003449D2 /* AddItemTopView.swift */; };
 		1245C28F28DA47EC003449D2 /* AddItemTableViewCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1245C28E28DA47EC003449D2 /* AddItemTableViewCell1.swift */; };
@@ -31,8 +32,6 @@
 		1245C29328DA47FD003449D2 /* AddItemTableViewCell3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1245C29228DA47FD003449D2 /* AddItemTableViewCell3.swift */; };
 		1245C29928DA5777003449D2 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1245C29828DA5777003449D2 /* Group.swift */; };
 		1245C29B28DA5898003449D2 /* GroupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1245C29A28DA5898003449D2 /* GroupRepository.swift */; };
-		124F681C28D61F1300FFC9C2 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 124F681B28D61F1300FFC9C2 /* Realm */; };
-		124F681E28D61F1300FFC9C2 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 124F681D28D61F1300FFC9C2 /* RealmSwift */; };
 		124F682128D61FB500FFC9C2 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124F682028D61FB500FFC9C2 /* Item.swift */; };
 		124F682328D6219300FFC9C2 /* ItemRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124F682228D6219300FFC9C2 /* ItemRepository.swift */; };
 		125D8E0728DE188C000EC37A /* CheckBoxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D8E0628DE188C000EC37A /* CheckBoxButton.swift */; };
@@ -40,8 +39,12 @@
 		125D8E1428DE6991000EC37A /* OpenSourceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D8E1328DE6991000EC37A /* OpenSourceViewController.swift */; };
 		125D8E1628DE6BFA000EC37A /* OpenSourceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D8E1528DE6BFA000EC37A /* OpenSourceTableViewCell.swift */; };
 		12767FA628D7419700E4D58F /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 12767FA528D7419700E4D58F /* Toast */; };
-		12767FAE28D74D2900E4D58F /* StoreItemToBuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12767FAD28D74D2900E4D58F /* StoreItemToBuyViewController.swift */; };
 		12767FB028D777B500E4D58F /* StoreItemTableViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12767FAF28D777B500E4D58F /* StoreItemTableViewCell2.swift */; };
+		128063AF28E3D9580054F49C /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 128063AE28E3D9580054F49C /* Realm */; };
+		128063B128E3D9580054F49C /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 128063B028E3D9580054F49C /* RealmSwift */; };
+		1283BF6E28E4DB5900275F91 /* ItemDetailTableHeaderView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1283BF6D28E4DB5900275F91 /* ItemDetailTableHeaderView2.swift */; };
+		1283BF7028E4EB6B00275F91 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1283BF6F28E4EB6B00275F91 /* CustomLabel.swift */; };
+		1283BF7228E5256F00275F91 /* GroupListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1283BF7128E5256F00275F91 /* GroupListTableViewController.swift */; };
 		1289FE9828E20400007B49DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 128D436228D0F1B0003C86BA /* Assets.xcassets */; };
 		128D435A28D0F1AE003C86BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128D435928D0F1AE003C86BA /* AppDelegate.swift */; };
 		128D435C28D0F1AE003C86BA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128D435B28D0F1AE003C86BA /* SceneDelegate.swift */; };
@@ -56,6 +59,8 @@
 		128D438828D11CBB003C86BA /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128D438728D11CBB003C86BA /* SettingViewController.swift */; };
 		128D438A28D11CDC003C86BA /* ListToBuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128D438928D11CDC003C86BA /* ListToBuyViewController.swift */; };
 		128D438D28D11E0F003C86BA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 128D438C28D11E0F003C86BA /* TabBarController.swift */; };
+		129A135528E4C70700D14560 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A135428E4C70700D14560 /* ProfileView.swift */; };
+		129A135928E4CEE000D14560 /* SettingTableViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 129A135828E4CEE000D14560 /* SettingTableViewCell2.swift */; };
 		12BAABD528DF61C500668F40 /* BrandAndSizeCustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BAABD428DF61C500668F40 /* BrandAndSizeCustomLabel.swift */; };
 		12BAABD828DF846900668F40 /* YPImagePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 12BAABD728DF846900668F40 /* YPImagePicker */; };
 		12BAABDA28DF8CCD00668F40 /* CameraAndGalaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12BAABD928DF8CCD00668F40 /* CameraAndGalaryButton.swift */; };
@@ -96,13 +101,14 @@
 		120AAC9828D40D89000B3E8B /* ItemDetailPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailPageViewController.swift; sourceTree = "<group>"; };
 		120B37D028E360FA00A4806C /* NothingToBuyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NothingToBuyView.swift; sourceTree = "<group>"; };
 		120B37D528E3676700A4806C /* ProjectColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectColor.swift; sourceTree = "<group>"; };
+		1218F19D28E569AE00100044 /* GroupListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListTableViewCell.swift; sourceTree = "<group>"; };
+		1218F19F28E5778200100044 /* StoreItemToBuyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemToBuyViewController.swift; sourceTree = "<group>"; };
 		1222B27228D20F6A0051210B /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		1222B27428D20FCB0051210B /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		1222B27628D2190D0051210B /* SettingTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTopView.swift; sourceTree = "<group>"; };
-		1222B27828D21C010051210B /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		1222B27828D21C010051210B /* SettingTableViewCell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell1.swift; sourceTree = "<group>"; };
 		122BE73728E0729400AB27A3 /* extension+UiViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension+UiViewController.swift"; sourceTree = "<group>"; };
 		1235FC0728DC145700531AFF /* BaseTableViewHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewHeaderFooterView.swift; sourceTree = "<group>"; };
-		1235FC0928DC150700531AFF /* ItemDetailTableHeaderView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailTableHeaderView2.swift; sourceTree = "<group>"; };
 		1245C28328DA21A4003449D2 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		1245C28A28DA2D4A003449D2 /* AddItemTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemTopView.swift; sourceTree = "<group>"; };
 		1245C28E28DA47EC003449D2 /* AddItemTableViewCell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemTableViewCell1.swift; sourceTree = "<group>"; };
@@ -116,8 +122,10 @@
 		125D8E0828DE3506000EC37A /* ItemDetailTableHeaderView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailTableHeaderView1.swift; sourceTree = "<group>"; };
 		125D8E1328DE6991000EC37A /* OpenSourceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceViewController.swift; sourceTree = "<group>"; };
 		125D8E1528DE6BFA000EC37A /* OpenSourceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenSourceTableViewCell.swift; sourceTree = "<group>"; };
-		12767FAD28D74D2900E4D58F /* StoreItemToBuyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemToBuyViewController.swift; sourceTree = "<group>"; };
 		12767FAF28D777B500E4D58F /* StoreItemTableViewCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemTableViewCell2.swift; sourceTree = "<group>"; };
+		1283BF6D28E4DB5900275F91 /* ItemDetailTableHeaderView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailTableHeaderView2.swift; sourceTree = "<group>"; };
+		1283BF6F28E4EB6B00275F91 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
+		1283BF7128E5256F00275F91 /* GroupListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListTableViewController.swift; sourceTree = "<group>"; };
 		1289FE9928E2072E007B49DC /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = ../Pods/Pods.xcodeproj; sourceTree = "<group>"; };
 		128D435628D0F1AE003C86BA /* YourCloset.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YourCloset.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		128D435928D0F1AE003C86BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +142,8 @@
 		128D438728D11CBB003C86BA /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		128D438928D11CDC003C86BA /* ListToBuyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListToBuyViewController.swift; sourceTree = "<group>"; };
 		128D438C28D11E0F003C86BA /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		129A135428E4C70700D14560 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		129A135828E4CEE000D14560 /* SettingTableViewCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell2.swift; sourceTree = "<group>"; };
 		12BAABD428DF61C500668F40 /* BrandAndSizeCustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandAndSizeCustomLabel.swift; sourceTree = "<group>"; };
 		12BAABD928DF8CCD00668F40 /* CameraAndGalaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAndGalaryButton.swift; sourceTree = "<group>"; };
 		12BAABDB28DF948900668F40 /* extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension+String.swift"; sourceTree = "<group>"; };
@@ -152,12 +162,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				128063B128E3D9580054F49C /* RealmSwift in Frameworks */,
 				12767FA628D7419700E4D58F /* Toast in Frameworks */,
 				12BAABD828DF846900668F40 /* YPImagePicker in Frameworks */,
-				124F681E28D61F1300FFC9C2 /* RealmSwift in Frameworks */,
-				124F681C28D61F1300FFC9C2 /* Realm in Frameworks */,
 				128D438128D11875003C86BA /* SnapKit in Frameworks */,
 				12C6C1B428D7D04800606FDD /* Pods_YourCloset.framework in Frameworks */,
+				128063AF28E3D9580054F49C /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -173,9 +183,10 @@
 				12038D4328D27A33005D6DD7 /* ItemDetailTopView.swift */,
 				120AAC9428D4090E000B3E8B /* ItemDetailTableViewCell.swift */,
 				125D8E0828DE3506000EC37A /* ItemDetailTableHeaderView1.swift */,
-				1235FC0928DC150700531AFF /* ItemDetailTableHeaderView2.swift */,
+				1283BF6D28E4DB5900275F91 /* ItemDetailTableHeaderView2.swift */,
 				120AAC9828D40D89000B3E8B /* ItemDetailPageViewController.swift */,
 				120AAC9628D40BF7000B3E8B /* ItemDetailPageView.swift */,
+				1283BF6F28E4EB6B00275F91 /* CustomLabel.swift */,
 			);
 			path = ItemDetailScreen;
 			sourceTree = "<group>";
@@ -193,6 +204,8 @@
 			children = (
 				12CF538628D8EA5D001BF159 /* AddGroupViewController.swift */,
 				12CF538828D8EA77001BF159 /* AddGroupView.swift */,
+				1283BF7128E5256F00275F91 /* GroupListTableViewController.swift */,
+				1218F19D28E569AE00100044 /* GroupListTableViewCell.swift */,
 			);
 			path = AddGroupScreen;
 			sourceTree = "<group>";
@@ -213,7 +226,7 @@
 		1245C29628DA485B003449D2 /* StoreItemScreen */ = {
 			isa = PBXGroup;
 			children = (
-				12767FAD28D74D2900E4D58F /* StoreItemToBuyViewController.swift */,
+				1218F19F28E5778200100044 /* StoreItemToBuyViewController.swift */,
 				12C6C1B628D7D90000606FDD /* StoreItemTableViewCell1.swift */,
 				12767FAF28D777B500E4D58F /* StoreItemTableViewCell2.swift */,
 			);
@@ -342,8 +355,10 @@
 			children = (
 				128D438728D11CBB003C86BA /* SettingViewController.swift */,
 				1222B27628D2190D0051210B /* SettingTopView.swift */,
-				1222B27828D21C010051210B /* SettingTableViewCell.swift */,
+				1222B27828D21C010051210B /* SettingTableViewCell1.swift */,
+				129A135828E4CEE000D14560 /* SettingTableViewCell2.swift */,
 				120AAC9228D3F5DC000B3E8B /* ProfileViewController.swift */,
+				129A135428E4C70700D14560 /* ProfileView.swift */,
 				125D8E1328DE6991000EC37A /* OpenSourceViewController.swift */,
 				125D8E1528DE6BFA000EC37A /* OpenSourceTableViewCell.swift */,
 			);
@@ -389,10 +404,10 @@
 			name = YourCloset;
 			packageProductDependencies = (
 				128D438028D11875003C86BA /* SnapKit */,
-				124F681B28D61F1300FFC9C2 /* Realm */,
-				124F681D28D61F1300FFC9C2 /* RealmSwift */,
 				12767FA528D7419700E4D58F /* Toast */,
 				12BAABD728DF846900668F40 /* YPImagePicker */,
+				128063AE28E3D9580054F49C /* Realm */,
+				128063B028E3D9580054F49C /* RealmSwift */,
 			);
 			productName = YourCloset;
 			productReference = 128D435628D0F1AE003C86BA /* YourCloset.app */;
@@ -424,9 +439,9 @@
 			mainGroup = 128D434D28D0F1AE003C86BA;
 			packageReferences = (
 				128D437F28D11875003C86BA /* XCRemoteSwiftPackageReference "SnapKit" */,
-				124F681A28D61F1300FFC9C2 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				12767FA428D7419700E4D58F /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				12BAABD628DF846900668F40 /* XCRemoteSwiftPackageReference "YPImagePicker" */,
+				128063AD28E3D9580054F49C /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 128D435728D0F1AE003C86BA /* Products */;
 			projectDirPath = "";
@@ -520,7 +535,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1235FC0A28DC150700531AFF /* ItemDetailTableHeaderView2.swift in Sources */,
 				120AAC9928D40D89000B3E8B /* ItemDetailPageViewController.swift in Sources */,
 				125D8E0928DE3506000EC37A /* ItemDetailTableHeaderView1.swift in Sources */,
 				12767FB028D777B500E4D58F /* StoreItemTableViewCell2.swift in Sources */,
@@ -532,16 +546,17 @@
 				124F682128D61FB500FFC9C2 /* Item.swift in Sources */,
 				1222B27728D2190D0051210B /* SettingTopView.swift in Sources */,
 				12038D4228D27998005D6DD7 /* ItemDetailViewController.swift in Sources */,
-				12767FAE28D74D2900E4D58F /* StoreItemToBuyViewController.swift in Sources */,
-				1222B27928D21C010051210B /* SettingTableViewCell.swift in Sources */,
+				1222B27928D21C010051210B /* SettingTableViewCell1.swift in Sources */,
 				1245C29128DA47F6003449D2 /* AddItemTableViewCell2.swift in Sources */,
 				128D436F28D0F5B5003C86BA /* BaseViewController.swift in Sources */,
 				1245C28F28DA47EC003449D2 /* AddItemTableViewCell1.swift in Sources */,
+				129A135928E4CEE000D14560 /* SettingTableViewCell2.swift in Sources */,
 				125D8E1628DE6BFA000EC37A /* OpenSourceTableViewCell.swift in Sources */,
 				128D437528D0F929003C86BA /* BaseView.swift in Sources */,
 				12BAABD528DF61C500668F40 /* BrandAndSizeCustomLabel.swift in Sources */,
 				120B37D628E3676700A4806C /* ProjectColor.swift in Sources */,
 				1245C28428DA21A4003449D2 /* AddItemViewController.swift in Sources */,
+				1283BF6E28E4DB5900275F91 /* ItemDetailTableHeaderView2.swift in Sources */,
 				122BE73828E0729400AB27A3 /* extension+UiViewController.swift in Sources */,
 				128D438D28D11E0F003C86BA /* TabBarController.swift in Sources */,
 				128D438828D11CBB003C86BA /* SettingViewController.swift in Sources */,
@@ -554,6 +569,7 @@
 				120AAC9728D40BF7000B3E8B /* ItemDetailPageView.swift in Sources */,
 				128D435A28D0F1AE003C86BA /* AppDelegate.swift in Sources */,
 				12BAABDC28DF948900668F40 /* extension+String.swift in Sources */,
+				1218F1A028E5778200100044 /* StoreItemToBuyViewController.swift in Sources */,
 				128D437E28D0FCB2003C86BA /* MainTopView.swift in Sources */,
 				124F682328D6219300FFC9C2 /* ItemRepository.swift in Sources */,
 				1245C29928DA5777003449D2 /* Group.swift in Sources */,
@@ -562,12 +578,16 @@
 				1222B27528D20FCB0051210B /* MainTableViewCell.swift in Sources */,
 				12C6C1B728D7D90000606FDD /* StoreItemTableViewCell1.swift in Sources */,
 				1235FC0828DC145700531AFF /* BaseTableViewHeaderFooterView.swift in Sources */,
+				1283BF7028E4EB6B00275F91 /* CustomLabel.swift in Sources */,
 				12C6C1B928D7DCD000606FDD /* DropDownView.swift in Sources */,
+				129A135528E4C70700D14560 /* ProfileView.swift in Sources */,
 				1245C29B28DA5898003449D2 /* GroupRepository.swift in Sources */,
 				125D8E1428DE6991000EC37A /* OpenSourceViewController.swift in Sources */,
 				12BAABDE28DF949700668F40 /* extension+UIImage.swift in Sources */,
 				1245C29328DA47FD003449D2 /* AddItemTableViewCell3.swift in Sources */,
+				1218F19E28E569AE00100044 /* GroupListTableViewCell.swift in Sources */,
 				12038D4428D27A33005D6DD7 /* ItemDetailTopView.swift in Sources */,
+				1283BF7228E5256F00275F91 /* GroupListTableViewController.swift in Sources */,
 				120AAC9528D4090E000B3E8B /* ItemDetailTableViewCell.swift in Sources */,
 				128D438A28D11CDC003C86BA /* ListToBuyViewController.swift in Sources */,
 			);
@@ -807,20 +827,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		124F681A28D61F1300FFC9C2 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.28.6;
-			};
-		};
 		12767FA428D7419700E4D58F /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 5.0.0;
+			};
+		};
+		128063AD28E3D9580054F49C /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.30.0;
 			};
 		};
 		128D437F28D11875003C86BA /* XCRemoteSwiftPackageReference "SnapKit" */ = {
@@ -842,20 +862,20 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		124F681B28D61F1300FFC9C2 /* Realm */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 124F681A28D61F1300FFC9C2 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = Realm;
-		};
-		124F681D28D61F1300FFC9C2 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 124F681A28D61F1300FFC9C2 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
-		};
 		12767FA528D7419700E4D58F /* Toast */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 12767FA428D7419700E4D58F /* XCRemoteSwiftPackageReference "Toast-Swift" */;
 			productName = Toast;
+		};
+		128063AE28E3D9580054F49C /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 128063AD28E3D9580054F49C /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		128063B028E3D9580054F49C /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 128063AD28E3D9580054F49C /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 		128D438028D11875003C86BA /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;

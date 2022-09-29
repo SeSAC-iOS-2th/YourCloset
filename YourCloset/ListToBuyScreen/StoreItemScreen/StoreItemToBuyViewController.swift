@@ -1,13 +1,13 @@
 //
-//  StoreItemToBuyViewController.swift
+//  StoreItemViewController.swift
 //  YourCloset
 //
-//  Created by 이중원 on 2022/09/18.
+//  Created by 이중원 on 2022/09/29.
 //
 
 import Foundation
-import SnapKit
 import UIKit
+import SnapKit
 import Toast
 import DropDown
 
@@ -40,27 +40,49 @@ class StoreItemToBuyViewController: BaseViewController {
     
     let categoryArray = ["아우터", "상의", "하의", "신발", "악세서리"]
     
-    lazy var leftBarButton: UIBarButtonItem = {
-        let barButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonClikced))
-        barButton.tintColor = .black
-        return barButton
+    weak var reloadDelegate: reloadTableDelegate?
+    
+    let storeItemView: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.projectColor(.backgroundColor)
+        view.layer.cornerRadius = 8
+        return view
     }()
     
-    lazy var rightBarButton: UIBarButtonItem = {
-        let barButton = UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(storeButtonClicked))
-        barButton.tintColor = .black
-        return barButton
+    let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "구매 예정 아이템 추가"
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        return label
     }()
     
+    lazy var storeButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("저장", for: .normal)
+        button.setTitleColor(UIColor.black, for: .normal)
+        button.layer.borderWidth = 1
+        button.layer.cornerRadius = 8
+        button.layer.borderColor = UIColor.lightGray.cgColor
+        button.addTarget(self, action: #selector(storeButtonClicked), for: .touchUpInside)
+        return button
+    }()
+        
     let tableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .systemGray4
+        tableView.backgroundColor = UIColor.projectColor(.backgroundColor)
         return tableView
     }()
     
+    lazy var xButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.tintColor = .lightGray
+        button.addTarget(self, action: #selector(xButtonClikced), for: .touchUpInside)
+        return button
+    }()
     
-    @objc func backButtonClikced() {
-        self.navigationController?.popViewController(animated: true)
+    @objc func xButtonClikced() {
+        self.dismiss(animated: true)
     }
     
     @objc func storeButtonClicked() {
@@ -75,8 +97,12 @@ class StoreItemToBuyViewController: BaseViewController {
                 
                 self.itemRepo.createItem(item: item)
                 self.view.makeToast("저장되었습니다.", duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
-                self.navigationController?.popViewController(animated: true)
                 
+                self.reloadDelegate?.reload()
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                    self.dismiss(animated: true)
+                })
             })
             let noAction = UIAlertAction(title: "아니오", style: .cancel)
             
@@ -105,38 +131,51 @@ class StoreItemToBuyViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        hideKeyboardWhenTappedBackground()
         
-        view.backgroundColor = .systemGray4
-        navigationItem.title = "구매 예정 아이템 추가"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
-        self.navigationItem.leftBarButtonItem = leftBarButton
-        self.navigationItem.rightBarButtonItem = rightBarButton
-        navigationController?.navigationBar.barTintColor = .systemGray4
+        view.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.5)
+        
+        hideKeyboardWhenTappedBackground()
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.isScrollEnabled = false
         tableView.register(StoreItemTableViewCell1.self, forCellReuseIdentifier: "StoreItemTableViewCell1")
         tableView.register(StoreItemTableViewCell2.self, forCellReuseIdentifier: "StoreItemTableViewCell2")
-
     }
     
     override func configure() {
-        [tableView].forEach {
+        [storeItemView, titleLabel, storeButton, tableView, xButton].forEach {
             view.addSubview($0)
         }
     }
     
     override func setConstraints() {
+        storeItemView.snp.makeConstraints { make in
+            make.height.equalTo(350)
+            make.width.equalTo(280)
+            make.center.equalToSuperview()
+        }
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(storeItemView).offset(15)
+            make.centerX.equalTo(storeItemView)
+        }
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).inset(70)
-            make.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(30)
-            make.height.equalToSuperview()
+            make.leading.trailing.equalTo(storeItemView)
+            make.top.equalTo(titleLabel.snp.bottom).offset(50)
+            make.height.equalTo(180)
+        }
+        storeButton.snp.makeConstraints { make in
+            make.centerX.equalTo(storeItemView)
+            make.height.equalTo(40)
+            make.width.equalTo(50)
+            make.bottom.equalTo(storeItemView).offset(-10)
+        }
+        xButton.snp.makeConstraints { make in
+            make.trailing.equalTo(storeItemView.snp.leading).offset(-10)
+            make.bottom.equalTo(storeItemView.snp.top).offset(-10)
+            make.height.width.equalTo(20)
         }
     }
-    
-    
 }
 
 extension StoreItemToBuyViewController: UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
@@ -198,7 +237,7 @@ extension StoreItemToBuyViewController: UITableViewDelegate, UITableViewDataSour
 
     
     func setDropDown(_ dropView: UIView, _ dropTextField: UITextField, _ iconImageView: UIImageView) {
-        dropView.backgroundColor = hexStringToUIColor(hex: "#F1F1F1")
+        dropView.backgroundColor = UIColor.lightGray
         dropView.layer.cornerRadius = 8
         
         dropTextField.text = "Category"
@@ -208,8 +247,8 @@ extension StoreItemToBuyViewController: UITableViewDelegate, UITableViewDataSour
         iconImageView.tintColor = .gray
         
         DropDown.appearance().textColor = UIColor.black
-        DropDown.appearance().selectedTextColor = UIColor.blue
-        DropDown.appearance().backgroundColor = UIColor.white
+        DropDown.appearance().selectedTextColor = UIColor.red
+        DropDown.appearance().backgroundColor = UIColor.projectColor(.backgroundColor)
         DropDown.appearance().selectionBackgroundColor = UIColor.lightGray
         DropDown.appearance().setupCornerRadius(8)
         dropDown.dismissMode = .automatic
@@ -232,28 +271,4 @@ extension StoreItemToBuyViewController: UITableViewDelegate, UITableViewDataSour
     @objc func dropDownClicked() {
         dropDown.show()
     }
-    
-    func hexStringToUIColor (hex:String) -> UIColor {
-        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-
-        if (cString.hasPrefix("#")) {
-            cString.remove(at: cString.startIndex)
-        }
-
-        if ((cString.count) != 6) {
-            return UIColor.gray
-        }
-
-        var rgbValue:UInt64 = 0
-        Scanner(string: cString).scanHexInt64(&rgbValue)
-
-        return UIColor(
-            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
-            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
-            alpha: CGFloat(1.0)
-        )
-    }
-    
 }
-
