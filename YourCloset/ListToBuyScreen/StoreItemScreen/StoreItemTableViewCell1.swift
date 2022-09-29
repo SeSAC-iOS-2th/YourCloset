@@ -21,6 +21,7 @@ class StoreItemTableViewCell1: BaseTableViewCell {
         return dropDownView
     }()
     
+    
     override func configure() {
         [infoLabel, dropDownView].forEach {
             self.contentView.addSubview($0)

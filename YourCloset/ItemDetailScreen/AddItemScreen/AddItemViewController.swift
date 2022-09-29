@@ -120,7 +120,10 @@ class AddItemViewController: BaseViewController {
                 }
                 self.groupRepo.plusCount(self.groupRepo.fetchSpecificGroup(self.categoryInfo, self.myItemInfo.group!))
                 self.view.makeToast(toastMessage, duration: 2.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
-                self.presentingViewController?.dismiss(animated: true)
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                    self.presentingViewController?.dismiss(animated: true)
+                })
             })
             let noAction = UIAlertAction(title: "아니오", style: .cancel)
             
@@ -157,6 +160,9 @@ class AddItemViewController: BaseViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.layoutMargins = UIEdgeInsets.zero
+        tableView.separatorInset = UIEdgeInsets.zero
+        
         tableView.register(AddItemTableViewCell1.self, forCellReuseIdentifier: "AddItemTableViewCell1")
         tableView.register(AddItemTableViewCell2.self, forCellReuseIdentifier: "AddItemTableViewCell2")
         tableView.register(AddItemTableViewCell3.self, forCellReuseIdentifier: "AddItemTableViewCell3")

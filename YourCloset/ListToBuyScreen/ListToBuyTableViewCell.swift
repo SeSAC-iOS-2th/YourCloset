@@ -14,7 +14,7 @@ class ListToBuyTableViewCell: BaseTableViewCell {
     let itemNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 18)
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         return label
     }()
     
@@ -42,6 +42,26 @@ class ListToBuyTableViewCell: BaseTableViewCell {
         
         checkBoxButton.setImage(checkBoxImage, for: .normal)
     }
+    
+    override var frame: CGRect {
+        get {
+            return super.frame
+        } set(newFrame) {
+            var frame = newFrame
+            let newWidth = UIScreen.main.bounds.width * 0.92
+            let space = (frame.width - newWidth) / 2
+            frame.size.width = newWidth
+            frame.origin.x += space
+            super.frame = frame
+        }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.contentView.layer.cornerRadius = 8
+        self.layer.cornerRadius = 16
+    }
         
     override func configure() {
         [itemNameLabel, brandLabel, sizeLabel, checkBoxButton].forEach {
@@ -58,13 +78,11 @@ class ListToBuyTableViewCell: BaseTableViewCell {
         brandLabel.snp.makeConstraints { make in
             make.leading.equalTo(itemNameLabel.snp.leading)
             make.top.equalTo(itemNameLabel.snp.bottom).offset(15)
-            make.width.greaterThanOrEqualTo(50)
         }
         
         sizeLabel.snp.makeConstraints { make in
             make.top.equalTo(brandLabel.snp.top)
             make.leading.equalTo(brandLabel.snp.trailing).offset(15)
-            make.width.greaterThanOrEqualTo(20)
         }
         
         checkBoxButton.snp.makeConstraints { make in

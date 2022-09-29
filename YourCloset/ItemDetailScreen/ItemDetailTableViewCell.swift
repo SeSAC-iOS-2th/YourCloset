@@ -16,9 +16,17 @@ class ItemDetailTableViewCell: BaseTableViewCell {
         return label
     }()
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.contentView.layer.cornerRadius = 8
+        self.contentView.layer.borderWidth = 1
+        self.contentView.layer.borderColor = UIColor.black.cgColor
+    }
+    
     override func configure() {
         [itemNameLabel].forEach {
-            self.addSubview($0)
+            self.contentView.addSubview($0)
         }
     }
     

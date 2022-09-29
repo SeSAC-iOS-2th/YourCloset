@@ -11,6 +11,12 @@ import RealmSwift
 class GroupRepository {
     
     let localRealm = try! Realm()
+
+//    do {
+//        let localRealm = try Realm()
+//    } catch error {
+//        print(Error)
+//    }
     
     func fetch() -> Results<Group> {
         return localRealm.objects(Group.self)

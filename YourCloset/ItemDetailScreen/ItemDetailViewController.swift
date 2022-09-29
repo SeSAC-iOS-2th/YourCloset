@@ -273,10 +273,12 @@ extension ItemDetailViewController: UITableViewDelegate, UITableViewDataSource {
         let itemsByGroup = itemRepo.fetchByGroup(groupByCategory[indexPath.section].category, groupByCategory[indexPath.section].group)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ItemDetailTableViewCell", for: indexPath) as? ItemDetailTableViewCell else { return UITableViewCell() }
         
-        cell.layer.cornerRadius = 8
-        cell.layer.borderWidth = 1
-        cell.layer.borderColor = UIColor.black.cgColor
-        cell.backgroundColor = UIColor.projectColor(.backgroundColor)
+        cell.contentView.layer.cornerRadius = 8
+        cell.contentView.layer.borderWidth = 1
+        cell.contentView.layer.borderColor = UIColor.black.cgColor
+        cell.contentView.backgroundColor = UIColor.projectColor(.backgroundColor)
+        cell.backgroundColor = .clear
+        
         cell.itemNameLabel.text = itemsByGroup[indexPath.row].name
         
         return cell

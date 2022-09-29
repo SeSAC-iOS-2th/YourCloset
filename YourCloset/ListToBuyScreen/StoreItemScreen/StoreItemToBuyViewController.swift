@@ -139,6 +139,8 @@ class StoreItemToBuyViewController: BaseViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.isScrollEnabled = false
+        tableView.layoutMargins = UIEdgeInsets.init(top: 0, left: 20, bottom: 0, right: 20)
+        tableView.separatorInset = UIEdgeInsets.init(top: 0, left: 20, bottom: 0, right: 20)
         tableView.register(StoreItemTableViewCell1.self, forCellReuseIdentifier: "StoreItemTableViewCell1")
         tableView.register(StoreItemTableViewCell2.self, forCellReuseIdentifier: "StoreItemTableViewCell2")
     }
@@ -195,7 +197,7 @@ extension StoreItemToBuyViewController: UITableViewDelegate, UITableViewDataSour
             cell.selectionStyle = .none
             cell.infoLabel.text = infoNameArray[indexPath.row]
             cell.dropDownView.dropTextField.tag = indexPath.row
-
+            
             setDropDown(cell.dropDownView, cell.dropDownView.dropTextField, cell.dropDownView.iconImageView)
 
             cell.dropDownView.selectButton.addTarget(self, action: #selector(dropDownClicked), for: .touchUpInside)

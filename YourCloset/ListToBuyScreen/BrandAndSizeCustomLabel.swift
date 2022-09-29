@@ -25,6 +25,5 @@ class BrandAndSizeCustomLabel: UILabel {
 //        layer.borderWidth = 0.5
 //        layer.borderColor = UIColor.black.cgColor
 //        layer.cornerRadius = 5
-        textAlignment = .center
     }
 }

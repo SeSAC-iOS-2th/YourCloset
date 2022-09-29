@@ -84,6 +84,8 @@ class ListToBuyViewController: BaseViewController, reloadTableDelegate {
         tableView.dataSource = self
         tableView.register(ListToBuyTableViewCell.self, forCellReuseIdentifier: "ListToBuyTableViewCell")
         
+        view.backgroundColor = UIColor.projectColor(.backgroundColor)
+        
         navigationItem.title = "구매 예정 목록"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 22)]
         navigationItem.rightBarButtonItem = rightBarButton
@@ -164,35 +166,42 @@ extension ListToBuyViewController: UITableViewDelegate, UITableViewDataSource {
         var checkBoxButtonImage: UIImage! = UIImage()
         cell.checkBoxButton.indexPath = indexPath
         
+        cell.contentView.backgroundColor = .lightGray
+        cell.contentView.layer.cornerRadius = 8
+        cell.contentView.layer.borderColor = UIColor.black.cgColor
+        cell.contentView.layer.borderWidth = 1
+        cell.backgroundColor = .clear
+        
         switch indexPath.section {
         case 0:
             checkBoxButtonImage = (outerItems[indexPath.row].checkBoxStatus!) ? UIImage(systemName: "checkmark.rectangle.fill") : UIImage(systemName: "checkmark.rectangle")
             cell.itemNameLabel.text = outerItems[indexPath.row].name
-            cell.brandLabel.text = "브랜드: \(outerItems[indexPath.row].brand)"
-            cell.sizeLabel.text = "사이즈: \(outerItems[indexPath.row].size)"
+            cell.brandLabel.text = outerItems[indexPath.row].brand
+            cell.sizeLabel.text = outerItems[indexPath.row].size
         case 1:
             checkBoxButtonImage = (topItems[indexPath.row].checkBoxStatus!) ? UIImage(systemName: "checkmark.rectangle.fill") : UIImage(systemName: "checkmark.rectangle")
             cell.itemNameLabel.text = topItems[indexPath.row].name
-            cell.brandLabel.text = "브랜드: \(topItems[indexPath.row].brand)"
-            cell.sizeLabel.text = "사이즈: \(topItems[indexPath.row].size)"
+            cell.brandLabel.text = topItems[indexPath.row].brand
+            cell.sizeLabel.text = topItems[indexPath.row].size
         case 2:
             checkBoxButtonImage = (bottomItems[indexPath.row].checkBoxStatus!) ? UIImage(systemName: "checkmark.rectangle.fill") : UIImage(systemName: "checkmark.rectangle")
             cell.itemNameLabel.text = bottomItems[indexPath.row].name
-            cell.brandLabel.text = "브랜드: \(bottomItems[indexPath.row].brand)"
-            cell.sizeLabel.text = "사이즈: \(bottomItems[indexPath.row].size)"
+            cell.brandLabel.text = bottomItems[indexPath.row].brand
+            cell.sizeLabel.text = bottomItems[indexPath.row].size
         case 3:
             checkBoxButtonImage = (shoesItems[indexPath.row].checkBoxStatus!) ? UIImage(systemName: "checkmark.rectangle.fill") : UIImage(systemName: "checkmark.rectangle")
             cell.itemNameLabel.text = shoesItems[indexPath.row].name
-            cell.brandLabel.text = "브랜드: \(shoesItems[indexPath.row].brand)"
-            cell.sizeLabel.text = "사이즈: \(shoesItems[indexPath.row].size)"
+            cell.brandLabel.text = shoesItems[indexPath.row].brand
+            cell.sizeLabel.text = shoesItems[indexPath.row].size
         case 4:
             checkBoxButtonImage = (accessoriesItems[indexPath.row].checkBoxStatus!) ? UIImage(systemName: "checkmark.rectangle.fill") : UIImage(systemName: "checkmark.rectangle")
             cell.itemNameLabel.text = accessoriesItems[indexPath.row].name
-            cell.brandLabel.text = "브랜드: \(accessoriesItems[indexPath.row].brand)"
-            cell.sizeLabel.text = "사이즈: \(accessoriesItems[indexPath.row].size)"
+            cell.brandLabel.text = accessoriesItems[indexPath.row].brand
+            cell.sizeLabel.text = accessoriesItems[indexPath.row].size
         default:
             break
         }
+
         cell.checkBoxButton.addTarget(self, action: #selector(checkBoxButtonClicked(_:)), for: .touchUpInside)
         cell.checkBoxButton.setImage(checkBoxButtonImage, for: .normal)
         
