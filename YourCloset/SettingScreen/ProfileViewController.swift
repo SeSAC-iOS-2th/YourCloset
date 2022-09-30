@@ -12,11 +12,14 @@ import Toast
 
 class ProfileViewController: BaseViewController {
     
-    let profileView: ProfileView = {
+    lazy var profileView: ProfileView = {
         let profileView = ProfileView()
         profileView.backgroundColor = UIColor.projectColor(.backgroundColor)
         profileView.layer.cornerRadius = 8
         profileView.inputTextField.becomeFirstResponder()
+        if let nickname = UserDefaults.standard.string(forKey: "nickname") {
+            profileView.inputTextField.text = nickname
+        }
         return profileView
     }()
     
@@ -86,7 +89,8 @@ class ProfileViewController: BaseViewController {
             make.trailing.equalTo(profileView.snp.leading).offset(-10)
             make.bottom.equalTo(profileView.snp.top).offset(-10)
             make.height.width.equalTo(20)
-        }    }
+        }
+    }
     
 }
 

@@ -36,6 +36,7 @@ class SettingViewController: BaseViewController {
         tableView.dataSource = self
         tableView.isScrollEnabled = false
         tableView.register(SettingTableViewCell.self, forCellReuseIdentifier: "SettingTableViewCell")
+        
     }
     
     override func configure() {
@@ -76,7 +77,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
             cell.arrowButton.setImage(UIImage(systemName: "chevron.right"), for: .normal)
         }
         if indexPath.row == 2 {
-            cell.arrowButton.setTitle("1.0", for: .normal)
+            cell.arrowButton.setTitle("1.1", for: .normal)
             cell.arrowButton.setTitleColor(UIColor.darkGray, for: .normal)
         }
         return cell
@@ -90,7 +91,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         case 1:
             showOpenSource()
         case 2:
-            dataInitAlert()
+            print("3번째 셀 클릭")
         case 3:
             dataInitAlert()
         default:
