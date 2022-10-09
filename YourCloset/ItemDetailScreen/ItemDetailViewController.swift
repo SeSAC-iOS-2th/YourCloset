@@ -29,6 +29,7 @@ class ItemDetailViewController: BaseViewController, reloadTableDelegate, UIGestu
     var itemsByCategory: Results<Item>! {
         didSet {
             self.noticeLabel.isHidden = itemsByCategory.count != 0 ? true : false
+            self.chatImageView.isHidden = itemsByCategory.count != 0 ? true: false
         }
     }
     
@@ -57,11 +58,19 @@ class ItemDetailViewController: BaseViewController, reloadTableDelegate, UIGestu
         return tableView
     }()
     
+    let chatImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.backgroundColor = .clear
+        imageView.image = UIImage(named: "ChatImageRect")
+        return imageView
+    }()
+    
     let noticeLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.text = "옷장에 옷들을 추가해보세요!"
+        label.text = "옷장에 아이템을 추가해보세요!"
+        label.font = UIFont.boldSystemFont(ofSize: 13)
         return label
     }()
 
@@ -113,7 +122,7 @@ class ItemDetailViewController: BaseViewController, reloadTableDelegate, UIGestu
     }
     
     override func configure() {
-        [backgroundImageView, itemDetailTopView, tableView, noticeLabel].forEach {
+        [backgroundImageView, itemDetailTopView, tableView, chatImageView, noticeLabel].forEach {
             view.addSubview($0)
         }
     }
@@ -132,8 +141,14 @@ class ItemDetailViewController: BaseViewController, reloadTableDelegate, UIGestu
             make.centerX.equalToSuperview()
             make.top.equalTo(itemDetailTopView.snp.bottom).offset(20)
         }
+        chatImageView.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().offset(-45)
+            make.height.width.equalTo(100)
+        }
         noticeLabel.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().offset(-50)
             make.width.height.equalTo(100)
         }
     }
@@ -257,6 +272,7 @@ extension ItemDetailViewController: UITableViewDelegate, UITableViewDataSource {
             
             self.view.makeToast("삭제되었습니다.", duration: 1.0, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
             
+            self.itemsByCategory = self.itemRepo.fetchByCategory(self.categoryInfo, true)
             self.tableView.reloadData()
         }
         

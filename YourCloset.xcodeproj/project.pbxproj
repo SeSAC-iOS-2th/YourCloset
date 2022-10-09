@@ -666,7 +666,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "너의 옷장은";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				INFOPLIST_KEY_NSCameraUsageDescription = "패션 아이템 사진을 업로드하기 위해 사진 앨범 접근을 허용해주세요.";
+				INFOPLIST_KEY_NSContactsUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "패션 아이템 사진을 촬영하기 위해 카메라 접근을 허용해주세요.";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -721,7 +724,10 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "너의 옷장은";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				INFOPLIST_KEY_NSCameraUsageDescription = "패션 아이템 사진을 업로드하기 위해 사진 앨범 접근을 허용해주세요.";
+				INFOPLIST_KEY_NSContactsUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "패션 아이템 사진을 촬영하기 위해 카메라 접근을 허용해주세요.";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -738,13 +744,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 9QNSJTHSUQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = YourCloset/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "너의 옷장은";
-				INFOPLIST_KEY_NSCameraUsageDescription = "촬영을 하기 위해 카메라 접근 권한이 필요함";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진을 불러오기 위해 갤러리 접근 권한이 필요함";
+				INFOPLIST_KEY_NSCameraUsageDescription = "패션 아이템 사진을 업로드하기 위해 사진 앨범 접근을 허용해주세요.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "패션 아이템 사진을 촬영하기 위해 카메라 접근을 허용해주세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -755,7 +761,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.joongwon.YourCloset;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -774,13 +780,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 9QNSJTHSUQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = YourCloset/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "너의 옷장은";
-				INFOPLIST_KEY_NSCameraUsageDescription = "촬영을 하기 위해 카메라 접근 권한이 필요함";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진을 불러오기 위해 갤러리 접근 권한이 필요함";
+				INFOPLIST_KEY_NSCameraUsageDescription = "패션 아이템 사진을 업로드하기 위해 사진 앨범 접근을 허용해주세요.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "패션 아이템 사진을 촬영하기 위해 카메라 접근을 허용해주세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -791,7 +797,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.joongwon.YourCloset;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

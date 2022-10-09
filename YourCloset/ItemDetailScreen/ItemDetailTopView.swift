@@ -34,7 +34,7 @@ class ItemDetailTopView: BaseView {
     let addItemButton: UIButton = {
         let button = UIButton()
         button.tintColor = .black
-        button.setImage(UIImage(systemName: "plus"), for: .normal)
+        button.setImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
         return button
     }()
     

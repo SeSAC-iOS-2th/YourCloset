@@ -18,6 +18,8 @@ class AddItemTableViewCell3: BaseTableViewCell {
         
     let dropDownView: DropDownView = {
         let dropDownView = DropDownView()
+        dropDownView.dropTextField.isSelected = false
+        dropDownView.dropTextField.isEnabled = false
         return dropDownView
     }()
     
