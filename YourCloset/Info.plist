@@ -2,18 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleIconName</key>
+	<string>AppIcon</string>
 	<key>CFBundleLocalizations</key>
 	<array>
 		<string>ko</string>
 	</array>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>패션 아이템 사진을 업로드하기 위해 사진 앨범 접근을 허용해주세요.</string>
-	<key>NSCameraUsageDescription</key>
-	<string>패션 아이템 사진을 촬영하기 위해 카메라 접근을 허용해주세요.</string>
-	<key>CFBundleIconName</key>
-	<string>AppIcon</string>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -33,5 +27,9 @@
 			</array>
 		</dict>
 	</dict>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 </dict>
 </plist>

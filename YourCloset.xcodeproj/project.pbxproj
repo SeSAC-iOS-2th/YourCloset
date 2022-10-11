@@ -19,10 +19,10 @@
 		120B37D628E3676700A4806C /* ProjectColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120B37D528E3676700A4806C /* ProjectColor.swift */; };
 		1218F19E28E569AE00100044 /* GroupListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1218F19D28E569AE00100044 /* GroupListTableViewCell.swift */; };
 		1218F1A028E5778200100044 /* StoreItemToBuyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1218F19F28E5778200100044 /* StoreItemToBuyViewController.swift */; };
-		121FBF7628F5C6E60052E8ED /* GoogleService-Info-2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 121FBF7528F5C6E60052E8ED /* GoogleService-Info-2.plist */; };
 		121FBF7928F5C7CC0052E8ED /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 121FBF7828F5C7CC0052E8ED /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		121FBF7B28F5C7CC0052E8ED /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 121FBF7A28F5C7CC0052E8ED /* FirebaseCrashlytics */; };
 		121FBF7D28F5C7CC0052E8ED /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 121FBF7C28F5C7CC0052E8ED /* FirebaseMessaging */; };
+		121FBF8028F5CF0C0052E8ED /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 121FBF7F28F5CF0C0052E8ED /* GoogleService-Info.plist */; };
 		1222B27328D20F6A0051210B /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1222B27228D20F6A0051210B /* BaseTableViewCell.swift */; };
 		1222B27528D20FCB0051210B /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1222B27428D20FCB0051210B /* MainTableViewCell.swift */; };
 		1222B27728D2190D0051210B /* SettingTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1222B27628D2190D0051210B /* SettingTopView.swift */; };
@@ -107,7 +107,8 @@
 		120B37D528E3676700A4806C /* ProjectColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectColor.swift; sourceTree = "<group>"; };
 		1218F19D28E569AE00100044 /* GroupListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupListTableViewCell.swift; sourceTree = "<group>"; };
 		1218F19F28E5778200100044 /* StoreItemToBuyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreItemToBuyViewController.swift; sourceTree = "<group>"; };
-		121FBF7528F5C6E60052E8ED /* GoogleService-Info-2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-2.plist"; sourceTree = "<group>"; };
+		121FBF7E28F5CA2C0052E8ED /* YourCloset.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YourCloset.entitlements; sourceTree = "<group>"; };
+		121FBF7F28F5CF0C0052E8ED /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1222B27228D20F6A0051210B /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		1222B27428D20FCB0051210B /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
 		1222B27628D2190D0051210B /* SettingTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTopView.swift; sourceTree = "<group>"; };
@@ -298,6 +299,7 @@
 		128D435828D0F1AE003C86BA /* YourCloset */ = {
 			isa = PBXGroup;
 			children = (
+				121FBF7E28F5CA2C0052E8ED /* YourCloset.entitlements */,
 				120B37D428E3675D00A4806C /* Project */,
 				125D8E0A28DE3823000EC37A /* Extension */,
 				1245C29728DA4884003449D2 /* DropDown */,
@@ -310,10 +312,10 @@
 				128D435928D0F1AE003C86BA /* AppDelegate.swift */,
 				128D435B28D0F1AE003C86BA /* SceneDelegate.swift */,
 				128D435D28D0F1AE003C86BA /* ViewController.swift */,
-				121FBF7528F5C6E60052E8ED /* GoogleService-Info-2.plist */,
 				128D435F28D0F1AE003C86BA /* Main.storyboard */,
 				128D436228D0F1B0003C86BA /* Assets.xcassets */,
 				128D436428D0F1B0003C86BA /* LaunchScreen.storyboard */,
+				121FBF7F28F5CF0C0052E8ED /* GoogleService-Info.plist */,
 				128D436728D0F1B0003C86BA /* Info.plist */,
 				128D438C28D11E0F003C86BA /* TabBarController.swift */,
 				1289FE9928E2072E007B49DC /* Pods.xcodeproj */,
@@ -494,8 +496,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				128D436628D0F1B0003C86BA /* LaunchScreen.storyboard in Resources */,
+				121FBF8028F5CF0C0052E8ED /* GoogleService-Info.plist in Resources */,
 				1289FE9828E20400007B49DC /* Assets.xcassets in Resources */,
-				121FBF7628F5C6E60052E8ED /* GoogleService-Info-2.plist in Resources */,
 				128D436128D0F1AE003C86BA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -757,19 +759,22 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = YourCloset/YourCloset.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 9QNSJTHSUQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = YourCloset/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "너의 옷장은";
-				INFOPLIST_KEY_NSCameraUsageDescription = "패션 아이템 사진을 업로드하기 위해 사진 앨범 접근을 허용해주세요.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "패션 아이템 사진을 촬영하기 위해 카메라 접근을 허용해주세요.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "패션 아이템 사진을 촬영하기 위해 카메라 접근을 허용해주세요.";
+				INFOPLIST_KEY_NSContactsUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "패션 아이템 사진을 업로드하기 위해 사진 앨범 접근을 허용해주세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -793,19 +798,22 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = YourCloset/YourCloset.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 9QNSJTHSUQ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = YourCloset/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "너의 옷장은";
-				INFOPLIST_KEY_NSCameraUsageDescription = "패션 아이템 사진을 업로드하기 위해 사진 앨범 접근을 허용해주세요.";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "패션 아이템 사진을 촬영하기 위해 카메라 접근을 허용해주세요.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "패션 아이템 사진을 촬영하기 위해 카메라 접근을 허용해주세요.";
+				INFOPLIST_KEY_NSContactsUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "패션 아이템 사진을 업로드하기 위해 사진 앨범 접근을 허용해주세요.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
