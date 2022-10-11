@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>789378907802-kbesrrjmmda9tqtk5kdr290ofvnb88ca.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.789378907802-kbesrrjmmda9tqtk5kdr290ofvnb88ca</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDprEy2fytlkoUU2-IjSVNo9nvKaUK3avM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>789378907802</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.joongwon.YourCloset</string>
+	<key>PROJECT_ID</key>
+	<string>yourcloset-a7ee4</string>
+	<key>STORAGE_BUCKET</key>
+	<string>yourcloset-a7ee4.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:789378907802:ios:4373e66e5da8e54eda6923</string>
+</dict>
+</plist>
